@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+N:\SE350-Lab\HelloWorld\HelloWorld.uvproj
+Project File Date:  01/20/2016
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling uart_polling.c...
+compiling main.c...
+linking...
+Program Size: Code=1140 RO-data=236 RW-data=4 ZI-data=612  
+"HelloWorld.axf" - 0 Error(s), 0 Warning(s).

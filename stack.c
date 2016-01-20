@@ -1,6 +1,5 @@
 #include "node.c"
 #include <string.h>
-#include <stdlib.h>
 
 typedef struct {
 	int nodeSize;
@@ -16,10 +15,7 @@ stack* stackCreate(int size) {
 
 void stackPush(stack *s, void *value) {
 	node *newNode = malloc(sizeof(node));
-	// newNode->value = malloc(s->nodeSize);
-	// memcpy(newNode->value, value, s->nodeSize);
 	newNode->value = value;
-	
 	newNode->next = s->root;
 	s->root = newNode;
 }
@@ -33,21 +29,20 @@ void* stackPop(stack *s) {
 
 int main(void) {
 	stack *s = stackCreate(128);
-	int *a;
+	int *a = malloc(sizeof(int));
 	*a = 1;
-	int *b;
+	int *b = malloc(sizeof(int));;
 	*b = 2;
-	int *c;
-	*c = 3;;
+	int *c = malloc(sizeof(int));;
+	*c = 3;
 	stackPush(s, a);
 	printf ("%d \n", *((int*)s->root->value));
 	stackPush(s, b);
 	printf ("%d \n", *((int*)s->root->value));
 	stackPush(s, c);
 	printf ("%d \n", *((int*)s->root->value));
-
-	printf ("%d \n", *((int*)(stackPop(s)->value)));
-	printf ("%d \n", *((int*)(stackPop(s)->value)));
-	printf ("%d \n", *((int*)(stackPop(s)->value)));
+	printf("%d \n", *((int*)stackPop(s)));
+	printf("%d \n", *((int*)stackPop(s)));
+	printf("%d \n", *((int*)stackPop(s)));
 	return 0;
 }

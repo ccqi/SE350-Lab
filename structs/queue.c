@@ -1,5 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "node.c"
-#include <string.h>
 
 typedef struct {
 	int nodeSize;
@@ -37,6 +38,14 @@ void* queueDequeue(queue *q) {
 	return head->value;
 }
 
+void* queuePeek(queue *q) {
+	return q->head->value;
+}
+
+int queueEmpty(queue *q) {
+	return !q->head;
+}
+
 int main(void) {
 	queue *q = queueCreate(128);
 	int *a = malloc(sizeof(int));
@@ -47,12 +56,19 @@ int main(void) {
 	*c = 3;
 	queueEnqueue(q, a);
 	printf ("%d \n", *((int*)q->head->value));
+	printf ("%d \n", *((int*)queuePeek(q)));
 	queueEnqueue(q, b);
 	printf ("%d \n", *((int*)q->head->value));
+	printf ("%d \n", *((int*)queuePeek(q)));
 	queueEnqueue(q, c);
 	printf ("%d \n", *((int*)q->head->value));
+	printf ("%d \n", *((int*)queuePeek(q)));
 	printf("%d \n", *((int*)queueDequeue(q)));
+	printf ("%d \n", *((int*)queuePeek(q)));
 	printf("%d \n", *((int*)queueDequeue(q)));
+	printf ("%d \n", *((int*)queuePeek(q)));
+	printf("Empty: %d \n", queueEmpty(q));
 	printf("%d \n", *((int*)queueDequeue(q)));
+	printf("Empty: %d \n", queueEmpty(q));
 	return 0;
 }

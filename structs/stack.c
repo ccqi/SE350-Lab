@@ -1,5 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "node.c"
-#include <string.h>
 
 typedef struct {
 	int nodeSize;
@@ -26,6 +27,13 @@ void* stackPop(stack *s) {
 	return root->value;
 }
 
+void* stackPeek(stack *s) {
+	return s->root->value;
+}
+
+int stackEmpty(stack *s) {
+	return !s->root;
+}
 
 int main(void) {
 	stack *s = stackCreate(128);
@@ -37,12 +45,19 @@ int main(void) {
 	*c = 3;
 	stackPush(s, a);
 	printf ("%d \n", *((int*)s->root->value));
+	printf("%d \n", *((int*)stackPeek(s)));
 	stackPush(s, b);
 	printf ("%d \n", *((int*)s->root->value));
+	printf("%d \n", *((int*)stackPeek(s)));
 	stackPush(s, c);
 	printf ("%d \n", *((int*)s->root->value));
+	printf("%d \n", *((int*)stackPeek(s)));
 	printf("%d \n", *((int*)stackPop(s)));
+	printf("%d \n", *((int*)stackPeek(s)));
 	printf("%d \n", *((int*)stackPop(s)));
+	printf("Empty: %d \n", stackEmpty(s));
+	printf("%d \n", *((int*)stackPeek(s)));
 	printf("%d \n", *((int*)stackPop(s)));
+	printf("Empty: %d \n", stackEmpty(s));
 	return 0;
 }

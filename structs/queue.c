@@ -48,6 +48,13 @@ int queueEmpty(queue *q) {
 	return !q->head;
 }
 
+void queueFree(queue *q) {
+	while(!queueEmpty(q)) {
+		queueDequeue(q);
+	}
+	free(q);
+}
+
 int main(void) {
 	queue *q = queueCreate(128);
 	int *a = malloc(sizeof(int));
@@ -72,7 +79,7 @@ int main(void) {
 	printf("Empty: %d \n", queueEmpty(q));
 	printf("%d \n", *((int*)queueDequeue(q)));
 	printf("Empty: %d \n", queueEmpty(q));
-	free(q);
+	queueFree(q);
 	free(a);
 	free(b);
 	free(c);

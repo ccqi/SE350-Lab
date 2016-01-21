@@ -37,7 +37,14 @@ int stackEmpty(stack *s) {
 	return !s->root;
 }
 
-int main(void) {
+void stackFree(stack *s) {
+	while(!stackEmpty(s)) {
+		stackPop(s);
+	}
+	free(s);
+}
+
+int main2(void) {
 	stack *s = stackCreate(128);
 	int *a = malloc(sizeof(int));
 	*a = 1;
@@ -61,7 +68,7 @@ int main(void) {
 	printf("%d \n", *((int*)stackPeek(s)));
 	printf("%d \n", *((int*)stackPop(s)));
 	printf("Empty: %d \n", stackEmpty(s));
-	free(s);
+	stackFree(s);
 	free(a);
 	free(b);
 	free(c);

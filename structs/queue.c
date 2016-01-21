@@ -35,7 +35,9 @@ void* queueDequeue(queue *q) {
 	} else{
 		q->head = q->tail = NULL;
 	}
-	return head->value;
+	void *value = head->value;
+	free(head);
+	return value;
 }
 
 void* queuePeek(queue *q) {
@@ -70,5 +72,9 @@ int main(void) {
 	printf("Empty: %d \n", queueEmpty(q));
 	printf("%d \n", *((int*)queueDequeue(q)));
 	printf("Empty: %d \n", queueEmpty(q));
+	free(q);
+	free(a);
+	free(b);
+	free(c);
 	return 0;
 }

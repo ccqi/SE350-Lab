@@ -24,7 +24,9 @@ void stackPush(stack *s, void *value) {
 void* stackPop(stack *s) {
 	node *root = s->root;
 	s->root = s->root->next;
-	return root->value;
+	void *value = root->value;
+	free(root);
+	return value;
 }
 
 void* stackPeek(stack *s) {
@@ -59,5 +61,9 @@ int main(void) {
 	printf("%d \n", *((int*)stackPeek(s)));
 	printf("%d \n", *((int*)stackPop(s)));
 	printf("Empty: %d \n", stackEmpty(s));
+	free(s);
+	free(a);
+	free(b);
+	free(c);
 	return 0;
 }

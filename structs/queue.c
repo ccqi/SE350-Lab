@@ -55,7 +55,7 @@ void queueFree(queue *q) {
 	free(q);
 }
 
-int main(void) {
+int main2(void) {
 	queue *q = queueCreate(128);
 	int *a = malloc(sizeof(int));
 	*a = 1;

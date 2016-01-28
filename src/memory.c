@@ -1,4 +1,5 @@
 #include "rtx.h"
+#include "heap.h"
 
 #define RAM_END_ADDR 0x10008000
 
@@ -10,6 +11,7 @@ unsigned int Image$$RW_IRAM1$$ZI$$Limit = 0;
 
 extern PCB **gp_pcbs;
 extern PROC_INIT g_proc_table[NUM_TEST_PROCS];
+extern int release_processor();
 
 U32 *gp_stack;
 
@@ -38,9 +40,11 @@ void memory_init() {
 	}
 
 	// Allocate memory for heap
-	p_heap = (U32*) p_end;
+	p_heap = NULL;
 	for (i = 0; i < NUM_MEMORY_BLOCKS; i++) {
-		p_end += MEMORY_BLOCK_SIZE;
+		MEMORY_BLOCK *block = (MEMORY_BLOCK*) p_end;
+		heap_push(p_heap, block);
+		p_end += sizeof(MEMORY_BLOCK*) + MEMORY_BLOCK_SIZE;
 	}
 }
 
@@ -60,7 +64,9 @@ U32 *alloc_stack(U32 size_b)
 }
 
 void *request_memory_block() {
-
+	while (1) {
+		release_processor();
+	}
 }
 
 int release_memory_block(void *memory_block) {

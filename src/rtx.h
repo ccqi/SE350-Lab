@@ -10,8 +10,8 @@
 #define LOW			2
 #define LOWEST	3
 
-#define MEMORY_BLOCK_SIZE = 128
-#define NUM_MEMORY_BLOCKS = 1
+#define MEMORY_BLOCK_SIZE 128
+#define NUM_MEMORY_BLOCKS 1
 
 typedef unsigned int U32;
 typedef unsigned char U8;
@@ -20,7 +20,10 @@ typedef unsigned char U8;
 typedef enum {
 	NEW,
 	READY,
-	RUN
+	BLOCK,
+	WAIT,
+	EXEC,
+	INTERRUPT
 } PROC_STATE;
 
 // PCB
@@ -32,6 +35,11 @@ typedef struct {
 	U32 pc;
 	U32 *sp;
 } PCB;
+
+// Memory block
+typedef struct {
+	U32 *next;
+} MEMORY_BLOCK;
 
 // Initialization table item
 typedef struct proc_init

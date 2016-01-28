@@ -1,7 +1,9 @@
 #ifndef _RTX_H
 #define _RTX_H
 
+#define RTX_ERR -1
 #define NULL 0
+#define RTX_SUCCESS 0
 
 #define NUM_TEST_PROCS 2
 

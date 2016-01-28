@@ -64,11 +64,24 @@ U32 *alloc_stack(U32 size_b)
 }
 
 void *request_memory_block() {
-	while (1) {
+	while (heap_empty(p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
+		// ADD PCB TO BLOCKED RESOURCE QUEUE
+		// SET PROCSS STATE TO BLOCK
 		release_processor();
 	}
+	U32 *block = heap_pop(p_heap);
+	return block;
 }
 
 int release_memory_block(void *memory_block) {
-	return 0;
+	if (memory_block == NULL) {
+		return RTX_ERR;
+	}
+
+	if (0) { // BLOCKED RESOURCE QUEUE
+		// GIVE BLOCK TO BLOCKED RESOURCE
+	} else {
+		heap_push(p_heap, memory_block);
+	}
+	return RTX_SUCCESS;
 }

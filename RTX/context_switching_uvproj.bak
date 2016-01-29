@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Context Switching SIM</TargetName>
+      <TargetName>RTX</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -442,14 +442,29 @@
               <FilePath>.\src\k_rtx_init.c</FilePath>
             </File>
             <File>
-              <FileName>k_memory.c</FileName>
+              <FileName>heap.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\k_memory.c</FilePath>
+              <FilePath>.\src\heap.c</FilePath>
             </File>
             <File>
-              <FileName>k_process.c</FileName>
+              <FileName>memory.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\src\k_process.c</FilePath>
+              <FilePath>.\src\memory.c</FilePath>
+            </File>
+            <File>
+              <FileName>process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\process.c</FilePath>
+            </File>
+            <File>
+              <FileName>process_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\process_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>rtx.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\src\rtx.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -465,13 +480,6 @@
         </Group>
         <Group>
           <GroupName>Documentation</GroupName>
-          <Files>
-            <File>
-              <FileName>Abstract.txt</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Abstract.txt</FilePath>
-            </File>
-          </Files>
         </Group>
       </Groups>
     </Target>

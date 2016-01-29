@@ -1,17 +1,4 @@
-#include "rtx.h"
-#include "heap.h"
-
-#define RAM_END_ADDR 0x10008000
-
-#ifdef DEBUG_0
-extern unsigned int Image$$RW_IRAM1$$ZI$$Limit;
-#else
-unsigned int Image$$RW_IRAM1$$ZI$$Limit = 0;
-#endif
-
-extern PCB **gp_pcbs;
-extern PROC_INIT g_proc_table[NUM_TEST_PROCS];
-extern int release_processor();
+#include "memory.h"
 
 U32 *gp_stack;
 
@@ -64,12 +51,13 @@ U32 *alloc_stack(U32 size_b)
 }
 
 void *request_memory_block() {
+	U32 *block;
 	while (heap_empty(p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
 		// ADD PCB TO BLOCKED RESOURCE QUEUE
 		// SET PROCSS STATE TO BLOCK
 		release_processor();
 	}
-	U32 *block = heap_pop(p_heap);
+	block = heap_pop(p_heap);
 	return block;
 }
 

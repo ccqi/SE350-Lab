@@ -1,0 +1,11 @@
+*.d
+*.o
+*.crf
+*.axf
+*.__i
+#files we don't care about
+HelloWorld.htm
+HelloWorld.lnp
+HelloWorld.map
+HelloWorld.plg
+HelloWorld.tra

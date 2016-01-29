@@ -44,7 +44,6 @@ typedef struct {
 // PROC_QUEUE
 typedef struct {
 	U32 *PCB;
-	U32 *next;
 } PROC_QUEUE;
 
 // Memory block

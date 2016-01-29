@@ -35,6 +35,9 @@ void process_init() {
 			*(--sp) = 0x0;
 		}
 		gp_pcbs[i]->sp = sp;
+
+		// Add to priority queue
+		process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
 	}
 }
 

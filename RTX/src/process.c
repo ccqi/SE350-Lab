@@ -86,6 +86,8 @@ int k_set_process_priority(int process_id, int priority) {
 
 	pcb->priority = priority;
 	process_enqueue(gp_pcb_queue, pcb, priority);
+	// Check for preemption
+	k_release_processor();
 	return RTX_OK;
 }
 

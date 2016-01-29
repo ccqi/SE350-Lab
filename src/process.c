@@ -1,5 +1,11 @@
 #include "rtx.h"
 #include "process.h"
+#include <LPC17xx.h>
+#include <system_LPC17xx.h>
+
+#ifdef DEBUG_0
+#include "printf.h"
+#endif
 
 PCB **gp_pcbs;
 PCB *gp_current_process = NULL;
@@ -20,6 +26,7 @@ void process_init() {
 		g_proc_table[i].pid = g_test_procs[i].pid;
 		g_proc_table[i].stack_size = g_test_procs[i].stack_size;
 		g_proc_table[i].start_pc = g_test_procs[i].start_pc;
+		g_proc_table[i].priority = g_test_procs[i].priority;
 	}
 
 	// Initialize exception stack frame (initial context) for each process
@@ -37,8 +44,25 @@ void process_init() {
 		gp_pcbs[i]->sp = sp;
 
 		// Add to priority queue
+		gp_pcbs[i]->priority = g_proc_table[i].priority;
 		process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
 	}
+
+	#ifdef DEBUG_0
+	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
+	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
+	set_process_priority(gp_pcbs[0]->id, HIGH);
+	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
+	set_process_priority(gp_pcbs[0]->id, MEDIUM);
+	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
+	set_process_priority(gp_pcbs[0]->id, LOW);
+	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
+	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
+	#endif
 }
 
 int set_process_priority(int process_id, int priority) {

@@ -1,5 +1,9 @@
 #include "process_queue.h"
 
+#ifdef DEBUG_0
+#include "printf.h"
+#endif
+
 void process_enqueue(PROC_QUEUE **p_queue, PCB *pcb, int priority) {
 	PROC_QUEUE *q = p_queue[priority];
 	pcb->next = q->PCB;

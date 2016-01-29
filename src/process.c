@@ -42,11 +42,23 @@ void process_init() {
 }
 
 int set_process_priority(int process_id, int priority) {
-	return 0;
+	PCB *pcb = (PCB*) process_remove(gp_pcb_queue, process_id);
+	
+	if (pcb == NULL)
+		return RTX_ERR;
+
+	pcb->priority = priority;
+	process_enqueue(gp_pcb_queue, pcb, priority);
+	return RTX_OK;
 }
 
 int get_process_priority(int process_id) {
-	return -1;
+	PCB* pcb = process_find(gp_pcb_queue, process_id);
+
+	if (pcb != NULL) {
+		return pcb->priority;
+	}
+	return RTX_ERR;
 }
 
 // todo

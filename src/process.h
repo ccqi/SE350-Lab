@@ -2,6 +2,7 @@
 #define _PROCESS_H
 
 #include "rtx.h"
+#include "process_queue.h"
 
 #define INITIAL_xPSR 0x01000000
 

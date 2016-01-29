@@ -15,6 +15,8 @@
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 1
 
+#define NUM_PROC_PRIORITY 3
+
 typedef unsigned int U32;
 typedef unsigned char U8;
 
@@ -36,7 +38,14 @@ typedef struct {
 	// Registers
 	U32 pc;
 	U32 *sp;
+	U32 *next;
 } PCB;
+
+// PROC_QUEUE
+typedef struct {
+	U32 *PCB;
+	U32 *next;
+} PROC_QUEUE;
 
 // Memory block
 typedef struct {

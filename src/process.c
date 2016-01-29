@@ -6,6 +6,8 @@ PCB *gp_current_process = NULL;
 
 PROC_INIT g_proc_table[NUM_TEST_PROCS];
 
+PCB **gp_pcbs_ready;
+
 void process_init() {
 	U32 *sp;
 	int i;

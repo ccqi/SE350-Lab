@@ -12,6 +12,7 @@ void memory_init() {
 	p_end += 4;
 
 	// Allocate memory for pcb pointers
+	// todo allocate for a priority queue
 	gp_pcbs = (PCB**) p_end;
 	p_end += NUM_TEST_PROCS * sizeof(PCB*);
 

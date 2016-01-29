@@ -21,7 +21,7 @@
 ### ADS-LD Output File: 'HelloWorld.axf'
 ### ADS-LD Command File: 'HelloWorld.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'HelloWorld.lnp', Handle=0x00001D14
+### Creating CmdFile 'HelloWorld.lnp', Handle=0x00000778
 ### Writing '.lnp' file
 ### ADS-LD Command file 'HelloWorld.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

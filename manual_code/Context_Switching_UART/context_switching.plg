@@ -3,9 +3,11 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-P:\s\se350\code\manual_code\Context_Switching_UART\context_switching.uvproj
-Project File Date:  02/28/2014
+N:\SE350\SE350-Lab\manual_code\Context_Switching_UART\context_switching.uvproj
+Project File Date:  01/29/2016
 
 <h2>Output:</h2>
-Clean started: Project: 'context_switching'
-   deleting intermediate output files for target 'Context Switching SIM'
+Load "N:\\SE350\\SE350-Lab\\manual_code\\Context_Switching_UART\\context_switching.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.

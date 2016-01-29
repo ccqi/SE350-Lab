@@ -4,6 +4,8 @@
 PCB **gp_pcbs;
 PCB *gp_current_process = NULL;
 
+PROC_QUEUE **gp_pcb_queue;
+
 PROC_INIT g_proc_table[NUM_TEST_PROCS];
 
 PCB **gp_pcbs_ready;

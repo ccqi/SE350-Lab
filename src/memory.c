@@ -21,6 +21,14 @@ void memory_init() {
 		p_end += sizeof(PCB);
 	}
 
+	// Allocate memory for priority queue
+	gp_pcb_queue = (PROC_QUEUE**) p_end;
+	p_end += NUM_PROC_PRIORITY * sizeof(PROC_QUEUE*);
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		gp_pcb_queue[i] = (PROC_QUEUE*) p_end;
+		p_end += sizeof(PROC_QUEUE);
+	}
+
 	// Prepare alloc_stack() for stack memory allocation 
 	gp_stack = (U32*) RAM_END_ADDR;
 	if ((U32) gp_stack & 0x04) {

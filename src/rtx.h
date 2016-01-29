@@ -15,7 +15,7 @@
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 1
 
-#define NUM_PROC_PRIORITY 3
+#define NUM_PROC_PRIORITY 4
 
 typedef unsigned int U32;
 typedef unsigned char U8;

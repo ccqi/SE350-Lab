@@ -12,9 +12,9 @@ extern void set_test_procs(void);
 extern void __rte(void);
 extern U32 *alloc_stack(U32 size_b);
 
-void process_init();
+void process_init(void);
 int set_process_priority(int process_id, int priority);
 int get_process_priority(int process_id);
-int release_processor();
+int release_processor(void);
 
 #endif

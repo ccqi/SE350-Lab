@@ -71,5 +71,5 @@ int release_memory_block(void *memory_block) {
 	} else {
 		heap_push(p_heap, memory_block);
 	}
-	return RTX_SUCCESS;
+	return RTX_OK;
 }

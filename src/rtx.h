@@ -3,7 +3,7 @@
 
 #define RTX_ERR -1
 #define NULL 0
-#define RTX_SUCCESS 0
+#define RTX_OK 0
 
 #define NUM_TEST_PROCS 2
 
@@ -24,7 +24,7 @@ typedef enum {
 	READY,
 	BLOCK,
 	WAIT,
-	EXEC,
+	RUN,
 	INTERRUPT
 } PROC_STATE;
 
@@ -46,7 +46,7 @@ typedef struct {
 // Initialization table item
 typedef struct proc_init
 {	
-	int pid;
+	U32 pid;
 	int priority;
 	int stack_size;
 	void (*start_pc) ();

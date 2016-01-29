@@ -1,11 +1,3 @@
-/**
- * @file:   usr_proc.c
- * @brief:  Two user processes: proc1 and proc2
- * @author: Yiqing Huang
- * @date:   2014/02/28
- * NOTE: Each process is in an infinite loop. Processes never terminate.
- */
-
 #include "rtx.h"
 #include "uart_polling.h"
 #include "usr_proc.h"
@@ -44,8 +36,10 @@ void proc1(void)
 	int i = 0;
 	int ret_val = 10;
 	int x = 0;
+	void *block1 = NULL;
 
 	while ( 1) {
+		block1 = request_memory_block();
 		if ( i != 0 && i%5 == 0 ) {
 			uart1_put_string("\n\r");
 			
@@ -60,7 +54,7 @@ void proc1(void)
 		}
 		uart1_put_char('A' + i%26);
 		i++;
-		
+		release_memory_block(block1);
 	}
 }
 
@@ -73,7 +67,9 @@ void proc2(void)
 	int i = 0;
 	int ret_val = 20;
 	int x = 0;
+	void *block1 = NULL;
 	while ( 1) {
+		block1 = request_memory_block();
 		if ( i != 0 && i%5 == 0 ) {
 			uart1_put_string("\n\r");
 			
@@ -87,7 +83,7 @@ void proc2(void)
 		}
 		uart1_put_char('0' + i%10);
 		i++;
-		
+		release_memory_block(block1);
 	}
 }
 
@@ -126,12 +122,14 @@ void proc4(void) {
 	void *block2 = NULL;
 	void *block3 = NULL;
 	void *block4 = NULL;
+	void *block5 = NULL;
 	while (1) {
 		uart0_put_string("Hello proc4\n");
 		block1 = request_memory_block();
 		block2 = request_memory_block();
 		block3 = request_memory_block();
 		block4 = request_memory_block();
+		block5 = request_memory_block();
 		uart0_put_string("proc4: Request 4 memory blocks.\n");
 		release_memory_block(block1);
 		release_memory_block(block2);

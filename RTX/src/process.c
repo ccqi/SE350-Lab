@@ -98,22 +98,12 @@ int k_get_process_priority(int process_id) {
 	return RTX_ERR;
 }
 
-// todo
 PCB *scheduler(void) {
-	gp_current_process = (PCB*) process_peek(gp_pcb_queue);
+	gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
+	#ifdef DEBUG_0
+	printf("gp_current_process->id = 0x%x \n", gp_current_process->id);
+	#endif
 	return gp_current_process;
-	// if (gp_current_process == NULL) {
-	// 	gp_current_process = gp_pcbs[0]; 
-	// 	return gp_pcbs[0];
-	// }
-
-	// if (gp_current_process == gp_pcbs[0]) {
-	// 	return gp_pcbs[1];
-	// } else if (gp_current_process == gp_pcbs[1]) {
-	// 	return gp_pcbs[0];
-	// } else {
-	// 	return NULL;
-	// }
 }
 
 int process_switch(PCB *p_pcb_old) {
@@ -123,7 +113,9 @@ int process_switch(PCB *p_pcb_old) {
 
 	if (state == NEW) {
 		if (gp_current_process != p_pcb_old && p_pcb_old->state != NEW) {
-			p_pcb_old->state = READY;
+			if (p_pcb_old->state != BLOCK) {
+				p_pcb_old->state = READY;
+			}
 			p_pcb_old->sp = (U32 *) __get_MSP();
 		}
 		gp_current_process->state = RUN;
@@ -133,8 +125,10 @@ int process_switch(PCB *p_pcb_old) {
 	
 	/* The following will only execute if the if block above is FALSE */
 	if (gp_current_process != p_pcb_old) {
-		if (state == READY){ 		
-			p_pcb_old->state = READY; 
+		if (state == READY) {
+			if (p_pcb_old->state != BLOCK) {
+				p_pcb_old->state = READY;
+			}
 			p_pcb_old->sp = (U32 *) __get_MSP(); // save the old process's sp
 			gp_current_process->state = RUN;
 			__set_MSP((U32) gp_current_process->sp); //switch to the new proc's stack    

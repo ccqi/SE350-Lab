@@ -1,5 +1,9 @@
 #include "memory.h"
 
+#ifdef DEBUG_0
+#include "printf.h"
+#endif
+
 U32 *gp_stack;
 
 U32 *p_heap;
@@ -59,10 +63,11 @@ U32 *alloc_stack(U32 size_b)
 }
 
 void *k_request_memory_block() {
-	U32 *block;
+	U32 *block = NULL;
 	while (heap_empty(&p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
 		// ADD PCB TO BLOCKED RESOURCE QUEUE
 		// SET PROCSS STATE TO BLOCK
+		gp_current_process->state = BLOCK;
 		k_release_processor();
 	}
 	block = heap_pop(&p_heap);

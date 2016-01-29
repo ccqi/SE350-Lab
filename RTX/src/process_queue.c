@@ -89,3 +89,33 @@ void *process_peek(PROC_QUEUE **p_queue) {
 	}
 	return NULL;
 }
+
+void *process_peek_ready(PROC_QUEUE **p_queue) {
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		PCB *pcb = (PCB*) q->first;
+		while (pcb != NULL) {
+			if (pcb->state != BLOCK) {
+				return pcb;
+			}
+			pcb = (PCB*) pcb->next;
+		}
+	}
+	return NULL;
+}
+
+void *process_peek_block(PROC_QUEUE **p_queue) {
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		PCB *pcb = (PCB*) q->first;
+		while (pcb != NULL) {
+			if (pcb->state == BLOCK) {
+				return pcb;
+			}
+			pcb = (PCB*) pcb->next;
+		}
+	}
+	return NULL;
+}

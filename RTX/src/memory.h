@@ -3,11 +3,13 @@
 
 #include "rtx.h"
 #include "heap.h"
+#include "process_queue.h"
 
 #define RAM_END_ADDR 0x10008000
 
 extern unsigned int Image$$RW_IRAM1$$ZI$$Limit;
 
+extern PCB *gp_current_process;
 extern PCB **gp_pcbs;
 extern PROC_QUEUE **gp_pcb_queue;
 extern PROC_INIT g_proc_table[NUM_PROCS];

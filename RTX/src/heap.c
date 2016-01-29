@@ -6,7 +6,7 @@ void heap_push(U32 **p_heap, MEMORY_BLOCK *block) {
 }
 
 void *heap_pop(U32 **p_heap) {
-	MEMORY_BLOCK* block = (MEMORY_BLOCK*) ((MEMORY_BLOCK*) *p_heap)->next;
+	MEMORY_BLOCK* block = (MEMORY_BLOCK*) *p_heap;
 	*p_heap = block->next;
 	block->next = NULL;
 	return block;

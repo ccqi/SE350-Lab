@@ -90,9 +90,23 @@ void proc2(void)
 
 void proc3(void) {
 	int i;
+	void *block1 = NULL;
+	void *block2 = NULL;
+	void *block3 = NULL;
+	void *block4 = NULL;
 	while (1) {
 		uart0_put_string("Hello proc3\n");
-		for (i = 0; i < 500000; i++);
+		block1 = request_memory_block();
+		block2 = request_memory_block();
+		block3 = request_memory_block();
+		block4 = request_memory_block();
+		uart0_put_string("proc3: Request 4 memory blocks.\n");
+		// for (i = 0; i < 50000; i++);
+		release_memory_block(block1);
+		release_memory_block(block2);
+		release_memory_block(block3);
+		release_memory_block(block4);
+		uart0_put_string("proc3: Release 4 memory blocks.\n");
 		release_processor();
 	}
 }

@@ -25,19 +25,22 @@ int test_6_ok = 0;
 
 void print_test_start() {
 	uart1_put_string("G001_test: START\r\n");
+	uart1_put_string("G001_test: total ");
+	uart1_put_char((unsigned char)(test_num + 48));
+	uart1_put_string(" tests\r\n");
 }
 
 void print_test_OK(int n) {
-	uart1_put_string("G001_test: ");
+	uart1_put_string("G001_test: test ");
 	uart1_put_char((unsigned char)(n + 48));
-	uart1_put_string(" test OK\r\n");
+	uart1_put_string(" OK\r\n");
 	test_ok++;
 }
 
 void print_test_FAIL(int n) {
-	uart1_put_string("G001_test: ");
+	uart1_put_string("G001_test: test ");
 	uart1_put_char((unsigned char)(n + 48));
-	uart1_put_string(" test FAIL\r\n");
+	uart1_put_string(" FAIL\r\n");
 	test_fail++;
 }
 

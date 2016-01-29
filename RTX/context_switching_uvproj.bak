@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>Target 1</TargetName>
+      <TargetName>Context Switching SIM</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <TargetOption>
@@ -44,7 +44,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>HelloWorld</OutputName>
+          <OutputName>context_switching</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -152,7 +152,7 @@
             <CpuDllArguments></CpuDllArguments>
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile>.\RAM.ini</InitializationFile>
+            <InitializationFile></InitializationFile>
             <Driver>BIN\UL2CM3.DLL</Driver>
           </TargetDlls>
         </DebugOption>
@@ -297,7 +297,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x8000</Size>
+                <Size>0x80000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -322,7 +322,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x10000000</StartAddress>
-                <Size>0x4000</Size>
+                <Size>0x8000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -364,7 +364,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>NO_CRP</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -389,97 +389,87 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Source Group 1</GroupName>
+          <GroupName>Startup Code</GroupName>
           <Files>
             <File>
               <FileName>startup_LPC17xx.s</FileName>
               <FileType>2</FileType>
-              <FilePath>.\startup_LPC17xx.s</FilePath>
+              <FilePath>.\src\startup_LPC17xx.s</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>System Code</GroupName>
+          <Files>
             <File>
               <FileName>system_LPC17xx.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\system_LPC17xx.c</FilePath>
+              <FilePath>.\src\system_LPC17xx.c</FilePath>
             </File>
             <File>
               <FileName>uart_polling.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\uart_polling.c</FilePath>
-            </File>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\main.c</FilePath>
-            </File>
-            <File>
-              <FileName>HAL.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\HAL.c</FilePath>
-            </File>
-            <File>
-              <FileName>heap.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\heap.c</FilePath>
-            </File>
-            <File>
-              <FileName>heap.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\heap.h</FilePath>
-            </File>
-            <File>
-              <FileName>memory.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\memory.c</FilePath>
-            </File>
-            <File>
-              <FileName>memory.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\memory.h</FilePath>
-            </File>
-            <File>
-              <FileName>process.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\process.c</FilePath>
-            </File>
-            <File>
-              <FileName>process.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\process.h</FilePath>
-            </File>
-            <File>
-              <FileName>process_queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\process_queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>process_queue.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\process_queue.h</FilePath>
-            </File>
-            <File>
-              <FileName>rtx.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\rtx.h</FilePath>
-            </File>
-            <File>
-              <FileName>usr_proc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\src\usr_proc.c</FilePath>
+              <FilePath>.\src\uart_polling.c</FilePath>
             </File>
             <File>
               <FileName>printf.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\src\printf.c</FilePath>
+              <FilePath>.\src\printf.c</FilePath>
             </File>
             <File>
-              <FileName>printf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\src\printf.h</FilePath>
+              <FileName>main_svc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\main_svc.c</FilePath>
             </File>
             <File>
-              <FileName>uart_polling.h</FileName>
+              <FileName>uart_irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\uart_irq.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RTX Kernel Code</GroupName>
+          <Files>
+            <File>
+              <FileName>HAL.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\HAL.c</FilePath>
+            </File>
+            <File>
+              <FileName>k_rtx_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\k_rtx_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>k_memory.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\k_memory.c</FilePath>
+            </File>
+            <File>
+              <FileName>k_process.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\k_process.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>User Code</GroupName>
+          <Files>
+            <File>
+              <FileName>usr_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\usr_proc.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Documentation</GroupName>
+          <Files>
+            <File>
+              <FileName>Abstract.txt</FileName>
               <FileType>5</FileType>
-              <FilePath>.\uart_polling.h</FilePath>
+              <FilePath>.\Abstract.txt</FilePath>
             </File>
           </Files>
         </Group>

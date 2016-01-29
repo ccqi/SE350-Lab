@@ -1,0 +1,90 @@
+Dependencies for Project 'context_switching', Target 'RTX': (DO NOT MODIFY !)
+F (.\src\startup_LPC17xx.s)(0x569FBFE2)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx --pd "NO_CRP SETA 1" --list ".\startup_LPC17xx.lst" --xref -o "startup_LPC17xx.o" --depend "startup_LPC17xx.d")
+F (.\src\system_LPC17xx.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "system_lpc17xx.o" --omf_browse "system_lpc17xx.crf" --depend "system_lpc17xx.d")
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+F (.\src\uart_polling.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "uart_polling.o" --omf_browse "uart_polling.crf" --depend "uart_polling.d")
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (src\uart_polling.h)(0x569FBFE2)
+I (src\uart_def.h)(0x569FBFE2)
+F (.\src\printf.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "printf.o" --omf_browse "printf.crf" --depend "printf.d")
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
+F (.\src\main_svc.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "main_svc.o" --omf_browse "main_svc.crf" --depend "main_svc.d")
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (src\rtx.h)(0x56AB2C9A)
+I (src\uart_polling.h)(0x569FBFE2)
+I (src\uart_def.h)(0x569FBFE2)
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
+F (.\src\uart_irq.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "uart_irq.o" --omf_browse "uart_irq.crf" --depend "uart_irq.d")
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (src\uart.h)(0x569FBFE2)
+I (src\uart_def.h)(0x569FBFE2)
+I (src\uart_polling.h)(0x569FBFE2)
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
+F (.\src\HAL.c)(0x569FBFE2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "hal.o" --omf_browse "hal.crf" --depend "hal.d")
+F (.\src\k_rtx_init.c)(0x56AB2D59)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "k_rtx_init.o" --omf_browse "k_rtx_init.crf" --depend "k_rtx_init.d")
+I (src\k_rtx_init.h)(0x56AB2D69)
+I (src\rtx.h)(0x56AB2C9A)
+I (src\uart_polling.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (src\uart_def.h)(0x569FBFE2)
+I (src\uart.h)(0x569FBFE2)
+I (src\memory.h)(0x56AB2D21)
+I (src\heap.h)(0x56AB0A42)
+I (src\process.h)(0x56AB2CFE)
+I (src\process_queue.h)(0x56AADF18)
+F (.\src\heap.c)(0x56AB0A66)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "heap.o" --omf_browse "heap.crf" --depend "heap.d")
+I (src\heap.h)(0x56AB0A42)
+I (src\rtx.h)(0x56AB2C9A)
+F (.\src\memory.c)(0x56AB2D14)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "memory.o" --omf_browse "memory.crf" --depend "memory.d")
+I (src\memory.h)(0x56AB2D21)
+I (src\rtx.h)(0x56AB2C9A)
+I (src\heap.h)(0x56AB0A42)
+F (.\src\process.c)(0x56AB41BA)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "process.o" --omf_browse "process.crf" --depend "process.d")
+I (src\process.h)(0x56AB2CFE)
+I (src\rtx.h)(0x56AB2C9A)
+I (src\process_queue.h)(0x56AADF18)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
+F (.\src\process_queue.c)(0x56AAF679)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "process_queue.o" --omf_browse "process_queue.crf" --depend "process_queue.d")
+I (src\process_queue.h)(0x56AADF18)
+I (src\rtx.h)(0x56AB2C9A)
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
+F (.\src\rtx.h)(0x56AB2C9A)()
+F (.\src\usr_proc.c)(0x56AB4179)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "usr_proc.o" --omf_browse "usr_proc.crf" --depend "usr_proc.d")
+I (src\rtx.h)(0x56AB2C9A)
+I (src\uart_polling.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (src\uart_def.h)(0x569FBFE2)
+I (src\usr_proc.h)(0x569FBFE2)
+I (src\printf.h)(0x569FBFE2)
+I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)

@@ -9,6 +9,8 @@
 PCB **gp_pcbs;
 PCB *gp_current_process = NULL;
 
+U32 g_switch_flag = 0;
+
 PROC_QUEUE **gp_pcb_queue;
 
 PROC_INIT g_proc_table[NUM_TEST_PROCS];
@@ -49,22 +51,22 @@ void process_init() {
 
 	#ifdef DEBUG_0
 	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
-	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	printf("gp_pcbs[0]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[0]->id));
 	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
-	set_process_priority(gp_pcbs[0]->id, HIGH);
-	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	k_set_process_priority(gp_pcbs[0]->id, HIGH);
+	printf("gp_pcbs[0]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[0]->id));
 	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
-	set_process_priority(gp_pcbs[0]->id, MEDIUM);
-	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	k_set_process_priority(gp_pcbs[0]->id, MEDIUM);
+	printf("gp_pcbs[0]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[0]->id));
 	printf("gp_pcbs[0]->priority = 0x%x \n", gp_pcbs[0]->priority);
-	set_process_priority(gp_pcbs[0]->id, LOW);
-	printf("gp_pcbs[0]->priority = 0x%x \n", get_process_priority(gp_pcbs[0]->id));
+	k_set_process_priority(gp_pcbs[0]->id, LOW);
+	printf("gp_pcbs[0]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[0]->id));
 	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
 	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
 	#endif
 }
 
-int set_process_priority(int process_id, int priority) {
+int k_set_process_priority(int process_id, int priority) {
 	PCB *pcb = (PCB*) process_remove(gp_pcb_queue, process_id);
 	
 	if (pcb == NULL)
@@ -75,7 +77,7 @@ int set_process_priority(int process_id, int priority) {
 	return RTX_OK;
 }
 
-int get_process_priority(int process_id) {
+int k_get_process_priority(int process_id) {
 	PCB* pcb = process_find(gp_pcb_queue, process_id);
 
 	if (pcb != NULL) {
@@ -130,7 +132,7 @@ int process_switch(PCB *p_pcb_old) {
 	return RTX_OK;
 }
 
-int release_processor() {
+int k_release_processor() {
 	PCB *p_pcb_old = NULL;
 	
 	p_pcb_old = gp_current_process;

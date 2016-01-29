@@ -94,18 +94,20 @@ int k_get_process_priority(int process_id) {
 
 // todo
 PCB *scheduler(void) {
-	if (gp_current_process == NULL) {
-		gp_current_process = gp_pcbs[0]; 
-		return gp_pcbs[0];
-	}
+	gp_current_process = (PCB*) process_peek(gp_pcb_queue);
+	return gp_current_process;
+	// if (gp_current_process == NULL) {
+	// 	gp_current_process = gp_pcbs[0]; 
+	// 	return gp_pcbs[0];
+	// }
 
-	if (gp_current_process == gp_pcbs[0]) {
-		return gp_pcbs[1];
-	} else if (gp_current_process == gp_pcbs[1]) {
-		return gp_pcbs[0];
-	} else {
-		return NULL;
-	}
+	// if (gp_current_process == gp_pcbs[0]) {
+	// 	return gp_pcbs[1];
+	// } else if (gp_current_process == gp_pcbs[1]) {
+	// 	return gp_pcbs[0];
+	// } else {
+	// 	return NULL;
+	// }
 }
 
 int process_switch(PCB *p_pcb_old) {

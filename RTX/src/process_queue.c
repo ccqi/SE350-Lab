@@ -78,3 +78,14 @@ void *process_remove(PROC_QUEUE **p_queue, int pid) {
 	}
 	return NULL;
 }
+
+void *process_peek(PROC_QUEUE **p_queue) {
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		if (q->first != NULL) {
+			return q->first;
+		}
+	}
+	return NULL;
+}

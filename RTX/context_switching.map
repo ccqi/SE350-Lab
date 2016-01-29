@@ -303,16 +303,16 @@ Image Symbol Table
     .text                                    0x00000a60   Section        0  heap.o(.text)
     .text                                    0x00000a88   Section        0  memory.o(.text)
     .text                                    0x00000b68   Section        0  process.o(.text)
-    .text                                    0x00000ee0   Section        0  process_queue.o(.text)
-    .text                                    0x00000fa4   Section        0  usr_proc.o(.text)
-    .text                                    0x00001108   Section        0  heapauxi.o(.text)
-    .text                                    0x0000110e   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x00001158   Section        0  exit.o(.text)
-    .text                                    0x00001164   Section        8  libspace.o(.text)
-    .text                                    0x0000116c   Section        0  sys_exit.o(.text)
-    .text                                    0x00001178   Section        2  use_no_semi.o(.text)
-    .text                                    0x0000117a   Section        0  indicate_semi.o(.text)
-    .constdata                               0x0000117c   Section      175  k_rtx_init.o(.constdata)
+    .text                                    0x00000eac   Section        0  process_queue.o(.text)
+    .text                                    0x00000f8c   Section        0  usr_proc.o(.text)
+    .text                                    0x000010f8   Section        0  heapauxi.o(.text)
+    .text                                    0x000010fe   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x00001148   Section        0  exit.o(.text)
+    .text                                    0x00001154   Section        8  libspace.o(.text)
+    .text                                    0x0000115c   Section        0  sys_exit.o(.text)
+    .text                                    0x00001168   Section        2  use_no_semi.o(.text)
+    .text                                    0x0000116a   Section        0  indicate_semi.o(.text)
+    .constdata                               0x0000116c   Section      175  k_rtx_init.o(.constdata)
     .data                                    0x10000000   Section        4  system_lpc17xx.o(.data)
     .data                                    0x10000004   Section        8  printf.o(.data)
     stdout_putf                              0x10000004   Data           4  printf.o(.data)
@@ -480,33 +480,34 @@ Image Symbol Table
     k_get_process_priority                   0x00000b69   Thumb Code    28  process.o(.text)
     k_set_process_priority                   0x00000b85   Thumb Code    44  process.o(.text)
     process_switch                           0x00000bb1   Thumb Code   120  process.o(.text)
-    scheduler                                0x00000c29   Thumb Code    72  process.o(.text)
-    k_release_processor                      0x00000c71   Thumb Code    48  process.o(.text)
-    null_process                             0x00000ca1   Thumb Code     8  process.o(.text)
-    set_null_proc                            0x00000ca9   Thumb Code    24  process.o(.text)
-    process_init                             0x00000cc1   Thumb Code   458  process.o(.text)
-    process_enqueue                          0x00000ee1   Thumb Code    30  process_queue.o(.text)
-    process_dequeue                          0x00000eff   Thumb Code    40  process_queue.o(.text)
-    process_find                             0x00000f27   Thumb Code    42  process_queue.o(.text)
-    process_remove                           0x00000f51   Thumb Code    82  process_queue.o(.text)
-    proc3                                    0x00000fa5   Thumb Code    30  usr_proc.o(.text)
-    proc2                                    0x00000fc3   Thumb Code    96  usr_proc.o(.text)
-    proc1                                    0x00001023   Thumb Code    96  usr_proc.o(.text)
-    set_test_procs                           0x00001083   Thumb Code    66  usr_proc.o(.text)
-    __use_two_region_memory                  0x00001109   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x0000110b   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x0000110d   Thumb Code     2  heapauxi.o(.text)
-    __user_setup_stackheap                   0x0000110f   Thumb Code    74  sys_stackheap_outer.o(.text)
-    exit                                     0x00001159   Thumb Code    12  exit.o(.text)
-    __user_libspace                          0x00001165   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x00001165   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x00001165   Thumb Code     0  libspace.o(.text)
-    _sys_exit                                0x0000116d   Thumb Code     8  sys_exit.o(.text)
-    __I$use$semihosting                      0x00001179   Thumb Code     0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x00001179   Thumb Code     2  use_no_semi.o(.text)
-    __semihosting_library_function           0x0000117b   Thumb Code     0  indicate_semi.o(.text)
-    Region$$Table$$Base                      0x0000122c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0000124c   Number         0  anon$$obj.o(Region$$Table)
+    scheduler                                0x00000c29   Thumb Code    20  process.o(.text)
+    k_release_processor                      0x00000c3d   Thumb Code    48  process.o(.text)
+    null_process                             0x00000c6d   Thumb Code     8  process.o(.text)
+    set_null_proc                            0x00000c75   Thumb Code    24  process.o(.text)
+    process_init                             0x00000c8d   Thumb Code   458  process.o(.text)
+    process_enqueue                          0x00000ead   Thumb Code    30  process_queue.o(.text)
+    process_dequeue                          0x00000ecb   Thumb Code    40  process_queue.o(.text)
+    process_find                             0x00000ef3   Thumb Code    42  process_queue.o(.text)
+    process_remove                           0x00000f1d   Thumb Code    82  process_queue.o(.text)
+    process_peek                             0x00000f6f   Thumb Code    28  process_queue.o(.text)
+    proc3                                    0x00000f8d   Thumb Code    30  usr_proc.o(.text)
+    proc2                                    0x00000fab   Thumb Code    96  usr_proc.o(.text)
+    proc1                                    0x0000100b   Thumb Code    96  usr_proc.o(.text)
+    set_test_procs                           0x0000106b   Thumb Code    70  usr_proc.o(.text)
+    __use_two_region_memory                  0x000010f9   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x000010fb   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x000010fd   Thumb Code     2  heapauxi.o(.text)
+    __user_setup_stackheap                   0x000010ff   Thumb Code    74  sys_stackheap_outer.o(.text)
+    exit                                     0x00001149   Thumb Code    12  exit.o(.text)
+    __user_libspace                          0x00001155   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x00001155   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x00001155   Thumb Code     0  libspace.o(.text)
+    _sys_exit                                0x0000115d   Thumb Code     8  sys_exit.o(.text)
+    __I$use$semihosting                      0x00001169   Thumb Code     0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x00001169   Thumb Code     2  use_no_semi.o(.text)
+    __semihosting_library_function           0x0000116b   Thumb Code     0  indicate_semi.o(.text)
+    Region$$Table$$Base                      0x0000121c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000123c   Number         0  anon$$obj.o(Region$$Table)
     SystemFrequency                          0x10000000   Data           4  system_lpc17xx.o(.data)
     g_buffer                                 0x1000000c   Data          16  uart_irq.o(.data)
     gp_buffer                                0x1000001c   Data           4  uart_irq.o(.data)
@@ -534,9 +535,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000cd
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x0000128c, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x0000127c, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x0000124c, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x0000123c, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -599,21 +600,21 @@ Memory Map of the image
     0x00000a60   0x00000026   Code   RO          198    .text               heap.o
     0x00000a86   0x00000002   PAD
     0x00000a88   0x000000e0   Code   RO          210    .text               memory.o
-    0x00000b68   0x00000378   Code   RO          227    .text               process.o
-    0x00000ee0   0x000000c2   Code   RO          252    .text               process_queue.o
-    0x00000fa2   0x00000002   PAD
-    0x00000fa4   0x00000164   Code   RO          264    .text               usr_proc.o
-    0x00001108   0x00000006   Code   RO          284    .text               c_w.l(heapauxi.o)
-    0x0000110e   0x0000004a   Code   RO          304    .text               c_w.l(sys_stackheap_outer.o)
-    0x00001158   0x0000000c   Code   RO          306    .text               c_w.l(exit.o)
-    0x00001164   0x00000008   Code   RO          314    .text               c_w.l(libspace.o)
-    0x0000116c   0x0000000c   Code   RO          373    .text               c_w.l(sys_exit.o)
-    0x00001178   0x00000002   Code   RO          384    .text               c_w.l(use_no_semi.o)
-    0x0000117a   0x00000000   Code   RO          386    .text               c_w.l(indicate_semi.o)
-    0x0000117a   0x00000002   PAD
-    0x0000117c   0x000000af   Data   RO          169    .constdata          k_rtx_init.o
-    0x0000122b   0x00000001   PAD
-    0x0000122c   0x00000020   Data   RO          438    Region$$Table       anon$$obj.o
+    0x00000b68   0x00000344   Code   RO          227    .text               process.o
+    0x00000eac   0x000000de   Code   RO          252    .text               process_queue.o
+    0x00000f8a   0x00000002   PAD
+    0x00000f8c   0x0000016c   Code   RO          264    .text               usr_proc.o
+    0x000010f8   0x00000006   Code   RO          284    .text               c_w.l(heapauxi.o)
+    0x000010fe   0x0000004a   Code   RO          304    .text               c_w.l(sys_stackheap_outer.o)
+    0x00001148   0x0000000c   Code   RO          306    .text               c_w.l(exit.o)
+    0x00001154   0x00000008   Code   RO          314    .text               c_w.l(libspace.o)
+    0x0000115c   0x0000000c   Code   RO          373    .text               c_w.l(sys_exit.o)
+    0x00001168   0x00000002   Code   RO          384    .text               c_w.l(use_no_semi.o)
+    0x0000116a   0x00000000   Code   RO          386    .text               c_w.l(indicate_semi.o)
+    0x0000116a   0x00000002   PAD
+    0x0000116c   0x000000af   Data   RO          169    .constdata          k_rtx_init.o
+    0x0000121b   0x00000001   PAD
+    0x0000121c   0x00000020   Data   RO          438    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x10000000, Size: 0x00000310, Max: 0x00008000, ABSOLUTE)
@@ -646,16 +647,16 @@ Image component sizes
         36         10          0          0          0       1495   main_svc.o
        224         26          0          8          0       1646   memory.o
        708         12          0          8          0       3976   printf.o
-       888         86          0         20         64       4516   process.o
-       194          0          0          0          0       2102   process_queue.o
+       836         86          0         20         64       4488   process.o
+       222          0          0          0          0       2387   process_queue.o
         52         18        204          0        512        768   startup_lpc17xx.o
        540         64          0          4          0      21551   system_lpc17xx.o
        560        184          0         23          0      25744   uart_irq.o
        292         54          0          0          0       1949   uart_polling.o
-       356         68          0          0         48       1430   usr_proc.o
+       364         72          0          0         48       1434   usr_proc.o
 
     ----------------------------------------------------------------------
-      4000        528        412         64        624      66994   Object Totals
+      3984        532        412         64        624      67255   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          1          1          0          0   (incl. Padding)
 
@@ -704,15 +705,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      4272        544        412         64        720      66426   Grand Totals
-      4272        544        412         64        720      66426   ELF Image Totals
-      4272        544        412         64          0          0   ROM Totals
+      4256        548        412         64        720      66687   Grand Totals
+      4256        548        412         64        720      66687   ELF Image Totals
+      4256        548        412         64          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4684 (   4.57kB)
+    Total RO  Size (Code + RO Data)                 4668 (   4.56kB)
     Total RW  Size (RW Data + ZI Data)               784 (   0.77kB)
-    Total ROM Size (Code + RO Data + RW Data)       4748 (   4.64kB)
+    Total ROM Size (Code + RO Data + RW Data)       4732 (   4.62kB)
 
 ==============================================================================
 

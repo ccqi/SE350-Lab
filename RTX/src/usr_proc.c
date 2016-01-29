@@ -27,6 +27,7 @@ void set_test_procs() {
   
 	g_test_procs[0].start_pc = &proc1;
 	g_test_procs[1].start_pc = &proc2;
+	g_test_procs[2].start_pc = &proc3;
 }
 
 
@@ -83,5 +84,14 @@ void proc2(void)
 		uart1_put_char('0' + i%10);
 		i++;
 		
+	}
+}
+
+void proc3(void) {
+	int i;
+	while (1) {
+		uart0_put_string("Hello proc3");
+		for (i = 0; i < 500000; i++);
+		release_processor();
 	}
 }

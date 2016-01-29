@@ -5,7 +5,8 @@
 #define NULL 0
 #define RTX_OK 0
 
-#define NUM_TEST_PROCS 2
+#define NUM_TEST_PROCS 3
+#define NUM_PROCS 4
 
 #define HIGH		0
 #define MEDIUM	1
@@ -43,7 +44,8 @@ typedef struct {
 
 // PROC_QUEUE
 typedef struct {
-	U32 *PCB;
+	U32 *first;
+	U32 *last;
 } PROC_QUEUE;
 
 // Memory block

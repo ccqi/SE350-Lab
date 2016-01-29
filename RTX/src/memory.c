@@ -64,24 +64,37 @@ U32 *alloc_stack(U32 size_b)
 
 void *k_request_memory_block() {
 	U32 *block = NULL;
-	while (heap_empty(&p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
-		// ADD PCB TO BLOCKED RESOURCE QUEUE
-		// SET PROCSS STATE TO BLOCK
+	while (gp_current_process->memory_block == NULL && heap_empty(&p_heap)) {
+		// Block current process until a block is free
 		gp_current_process->state = BLOCK;
 		k_release_processor();
 	}
-	block = heap_pop(&p_heap);
+	if (gp_current_process->memory_block != NULL) { // Unblocked by release_memory_block
+		block = gp_current_process->memory_block;
+		gp_current_process->memory_block = NULL;
+	} else { // Memory available in heap
+		block = heap_pop(&p_heap);
+	}
 	return block;
 }
 
 int k_release_memory_block(void *memory_block) {
+	PCB* blocked_process;
+
 	if (memory_block == NULL) {
 		return RTX_ERR;
 	}
-
-	if (0) { // BLOCKED RESOURCE QUEUE
-		// GIVE BLOCK TO BLOCKED RESOURCE
+	
+	// Check for blocked resources
+	blocked_process = (PCB*) process_peek_block(gp_pcb_queue);
+	if (blocked_process != NULL) {
+		// Give block to blocked resource
+		blocked_process->memory_block = (U32*) memory_block;
+		blocked_process->state = READY;
+		// Switch process if higher priority unblocked
+		k_release_processor();
 	} else {
+		// Push back onto heap
 		heap_push(&p_heap, memory_block);
 	}
 	return RTX_OK;

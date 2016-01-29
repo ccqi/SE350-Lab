@@ -40,6 +40,7 @@ typedef struct {
 	U32 pc;
 	U32 *sp;
 	U32 *next;
+	U32 *memory_block;
 } PCB;
 
 // PROC_QUEUE

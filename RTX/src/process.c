@@ -73,11 +73,13 @@ void process_init() {
 }
 
 int k_set_process_priority(int process_id, int priority) {
+	PCB *pcb;
+	
 	if (process_id < 1 || priority < HIGH || priority > LOWEST) {
 		return RTX_ERR;
 	}
 
-	PCB *pcb = (PCB*) process_remove(gp_pcb_queue, process_id);
+	pcb = (PCB*) process_remove(gp_pcb_queue, process_id);
 	
 	if (pcb == NULL)
 		return RTX_ERR;

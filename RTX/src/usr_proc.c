@@ -85,6 +85,12 @@ void proc1(void)
 	void *block3 = NULL;
 	void *block4 = NULL;
 	print_test_start();
+
+	// Reduce memory blocks to 4
+	for (i = 0; i < NUM_MEMORY_BLOCKS - 4; i++) {
+		block1 = request_memory_block();
+	}
+
 	while (1) {
 		block1 = request_memory_block();
 		block2 = request_memory_block();
@@ -231,6 +237,7 @@ void proc5(void)
 	int ret2;
 	int ret3;
 	int ret4;
+	void *block = NULL;
 	while (1) {
 		// Change null priority
 		ret1 = set_process_priority(0, LOWEST);
@@ -255,20 +262,33 @@ void proc5(void)
 		// Go to proc6
 		set_process_priority(6, HIGH);
 		// Since same priority as proc5, proc5 should continue to run
+
+		block = request_memory_block();
+		set_process_priority(5, MEDIUM);
 		test_6_ok = 1;
-		set_process_priority(5, LOWEST);
+		release_memory_block(block);
+		// This should never run
+		test_6_ok = 0;
 	}
 }
 
+// Test memory blocking.
 void proc6(void)
 {
-	if (test_6_ok) {
-		print_test_OK(6);
-	} else {
-		print_test_FAIL(6);
-	}
-	print_test_results();
+	int i;
 	while (1) {
-		release_processor();
+		for (i = 0; i < 4; i++) {
+			request_memory_block();
+		}
+		if (test_6_ok) {
+			print_test_OK(6);
+		} else {
+			print_test_FAIL(6);
+		}
+		print_test_results();
+
+		while (1) {
+			release_processor();
+		}
 	}
 }

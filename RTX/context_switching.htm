@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C:\Users\Ernest\Desktop\Winter 2016\SE 350\SE350-Lab\RTX\context_switching.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\Ernest\Desktop\Winter 2016\SE 350\SE350-Lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Jan 29 12:45:24 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Jan 29 13:03:25 2016
 <BR><P>
 <H3>Maximum Stack Usage =         40 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -78,12 +78,12 @@ Function Pointers
  <LI><a href="#[8]">UsageFault_Handler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[d]">WDT_IRQHandler</a> from startup_lpc17xx.o(.text) referenced from startup_lpc17xx.o(RESET)
  <LI><a href="#[37]">__main</a> from __main.o(!!!main) referenced from startup_lpc17xx.o(.text)
- <LI><a href="#[35]">k_get_process_priority</a> from process.o(.text) referenced from usr_proc.o(.text)
- <LI><a href="#[34]">k_release_memory_block</a> from memory.o(.text) referenced 2 times from usr_proc.o(.text)
- <LI><a href="#[32]">k_release_processor</a> from process.o(.text) referenced from usr_proc.o(.text)
- <LI><a href="#[36]">k_request_memory_block</a> from memory.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[36]">k_get_process_priority</a> from process.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[35]">k_release_memory_block</a> from memory.o(.text) referenced 2 times from usr_proc.o(.text)
+ <LI><a href="#[33]">k_release_processor</a> from process.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[32]">k_request_memory_block</a> from memory.o(.text) referenced from usr_proc.o(.text)
  <LI><a href="#[31]">k_rtx_init</a> from k_rtx_init.o(.text) referenced from main_svc.o(.text)
- <LI><a href="#[33]">k_set_process_priority</a> from process.o(.text) referenced 2 times from usr_proc.o(.text)
+ <LI><a href="#[34]">k_set_process_priority</a> from process.o(.text) referenced 2 times from usr_proc.o(.text)
  <LI><a href="#[59]">null_process</a> from process.o(.text) referenced from process.o(.text)
  <LI><a href="#[69]">proc1</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
  <LI><a href="#[68]">proc2</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
@@ -228,7 +228,7 @@ Global Symbols
 <P><STRONG><a name="[12]"></a>UART0_IRQHandler</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, uart_irq.o(.emb_text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = UART0_IRQHandler &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
-<BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 <LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;c_UART0_IRQHandler
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_lpc17xx.o(RESET)
@@ -470,22 +470,22 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_init
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_irq_init
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 <LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main_svc.o(.text)
 </UL>
 <P><STRONG><a name="[51]"></a>heap_push</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, heap.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
+<BR><BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memory_init
 </UL>
 
 <P><STRONG><a name="[53]"></a>heap_pop</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, heap.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
+<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
 </UL>
 
 <P><STRONG><a name="[52]"></a>heap_empty</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, heap.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
+<BR><BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
 </UL>
 
 <P><STRONG><a name="[4f]"></a>memory_init</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, memory.o(.text))
@@ -500,21 +500,21 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
 </UL>
 
-<P><STRONG><a name="[36]"></a>k_request_memory_block</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, memory.o(.text))
+<P><STRONG><a name="[32]"></a>k_request_memory_block</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, memory.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = k_request_memory_block &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_empty
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_pop
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[34]"></a>k_release_memory_block</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, memory.o(.text))
+<P><STRONG><a name="[35]"></a>k_release_memory_block</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, memory.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = k_release_memory_block &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_peek_block
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_push
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
@@ -523,7 +523,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rte
 </UL>
-<BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 
 <P><STRONG><a name="[57]"></a>scheduler</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, process.o(.text))
@@ -531,19 +531,19 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_peek_ready
 </UL>
-<BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 
-<P><STRONG><a name="[32]"></a>k_release_processor</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, process.o(.text))
+<P><STRONG><a name="[33]"></a>k_release_processor</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_switch
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;null_process
-<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
+<LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
+<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_request_memory_block
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_IRQHandler
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
 </UL>
@@ -552,7 +552,7 @@ Global Symbols
 <P><STRONG><a name="[59]"></a>null_process</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = null_process &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
-<BR>[Calls]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<BR>[Calls]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> process.o(.text)
 </UL>
@@ -571,16 +571,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
 </UL>
 
-<P><STRONG><a name="[33]"></a>k_set_process_priority</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, process.o(.text))
+<P><STRONG><a name="[34]"></a>k_set_process_priority</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = k_set_process_priority &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_remove
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
-<LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
+<LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[35]"></a>k_get_process_priority</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, process.o(.text))
+<P><STRONG><a name="[36]"></a>k_get_process_priority</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = k_get_process_priority &rArr; process_find
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_find
@@ -590,7 +590,7 @@ Global Symbols
 <P><STRONG><a name="[5d]"></a>process_enqueue</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = process_enqueue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
 </UL>
 
@@ -599,13 +599,13 @@ Global Symbols
 <P><STRONG><a name="[5f]"></a>process_find</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = process_find
 </UL>
-<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_get_process_priority
+<BR>[Called By]<UL><LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_get_process_priority
 </UL>
 
 <P><STRONG><a name="[5e]"></a>process_remove</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = process_remove
 </UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
+<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
 </UL>
 
 <P><STRONG><a name="[90]"></a>process_peek</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, process_queue.o(.text), UNUSED)
@@ -619,7 +619,7 @@ Global Symbols
 <P><STRONG><a name="[54]"></a>process_peek_block</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = process_peek_block
 </UL>
-<BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
+<BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
 </UL>
 
 <P><STRONG><a name="[60]"></a>print_test_start</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, usr_proc.o(.text))
@@ -666,7 +666,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc6
 </UL>
 
-<P><STRONG><a name="[64]"></a>proc6</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[64]"></a>proc6</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = proc6 &rArr; print_test_results &rArr; uart_put_string
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_test_results
@@ -675,7 +675,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[65]"></a>proc5</STRONG> (Thumb, 136 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[65]"></a>proc5</STRONG> (Thumb, 162 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = proc5 &rArr; print_test_FAIL &rArr; uart_put_string
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_test_FAIL
@@ -706,7 +706,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[69]"></a>proc1</STRONG> (Thumb, 330 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[69]"></a>proc1</STRONG> (Thumb, 344 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = proc1 &rArr; print_test_FAIL &rArr; uart_put_string
 </UL>
 <BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_test_FAIL

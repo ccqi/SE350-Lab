@@ -9,9 +9,30 @@
 /* initialization table item */
 PROC_INIT g_test_procs[NUM_TEST_PROCS];
 
+// TESTING VARIABLES
+int test_ok = 0;
+int test_fail = 0;
+int test_num = 6;
+
+void print_test_results() {
+	uart1_put_string("\r\n");
+	uart1_put_string("G001_test: ");
+	uart1_put_char((unsigned char)(test_ok + 48));
+	uart1_put_string("/");
+	uart1_put_char((unsigned char)(test_num + 48));
+	uart1_put_string(" tests OK\r\n");
+
+	uart1_put_string("G001_test: ");
+	uart1_put_char((unsigned char)(test_fail + 48));
+	uart1_put_string("/");
+	uart1_put_char((unsigned char)(test_num + 48));
+	uart1_put_string(" tests FAIL\r\n");
+	uart1_put_string("G001_test: END\r\n");
+}
+
 void set_test_procs() {
 	int i;
-	for( i = 0; i < NUM_TEST_PROCS; i++ ) {
+	for(i = 0; i < NUM_TEST_PROCS; i++) {
 		g_test_procs[i].pid=(U32)(i+1);
 		g_test_procs[i].priority=LOWEST;
 		g_test_procs[i].stack_size=0x100;
@@ -21,69 +42,27 @@ void set_test_procs() {
 	g_test_procs[1].start_pc = &proc2;
 	g_test_procs[2].start_pc = &proc3;
 	g_test_procs[3].start_pc = &proc4;
+	g_test_procs[4].start_pc = &proc5;
+	g_test_procs[5].start_pc = &proc6;
 
-	g_test_procs[2].priority = LOW;
-	g_test_procs[3].priority = MEDIUM;
+	g_test_procs[0].priority = HIGH;
+	print_test_results();
 }
 
 
-/**
- * @brief: a process that prints 5x6 uppercase letters
- *         and then yields the cpu.
- */
 void proc1(void)
 {
-	int i = 0;
-	int ret_val = 10;
-	int x = 0;
-	void *block1 = NULL;
-
-	while ( 1) {
-		block1 = request_memory_block();
-		if ( i != 0 && i%5 == 0 ) {
-			uart1_put_string("\n\r");
-			
-			if ( i%30 == 0 ) {
-				ret_val = release_processor();
-#ifdef DEBUG_0
-				printf("proc1: ret_val=%d\n", ret_val);
-			
-#endif /* DEBUG_0 */
-			}
-			for ( x = 0; x < 500000; x++); // some artifical delay
-		}
-		uart1_put_char('A' + i%26);
-		i++;
-		release_memory_block(block1);
+	uart1_put_string("\n\r");
+	while (1) {
+		release_processor();
 	}
 }
 
-/**
- * @brief: a process that prints 5x6 numbers
- *         and then yields the cpu.
- */
 void proc2(void)
 {
-	int i = 0;
-	int ret_val = 20;
-	int x = 0;
-	void *block1 = NULL;
-	while ( 1) {
-		block1 = request_memory_block();
-		if ( i != 0 && i%5 == 0 ) {
-			uart1_put_string("\n\r");
-			
-			if ( i%30 == 0 ) {
-				ret_val = release_processor();
-				#ifdef DEBUG_0
-				printf("proc2: ret_val=%d\n", ret_val);
-				#endif /* DEBUG_0 */
-			}
-			for ( x = 0; x < 500000; x++); // some artifical delay
-		}
-		uart1_put_char('0' + i%10);
-		i++;
-		release_memory_block(block1);
+	uart1_put_string("\n\r");
+	while (1) {
+		release_processor();
 	}
 }
 
@@ -146,6 +125,22 @@ void proc4(void) {
 		printf("proc4: proc3 priority: %x \n", get_process_priority(3));
 		#endif
 
+		release_processor();
+	}
+}
+
+void proc5(void)
+{
+	uart1_put_string("\n\r");
+	while (1) {
+		release_processor();
+	}
+}
+
+void proc6(void)
+{
+	uart1_put_string("\n\r");
+	while (1) {
 		release_processor();
 	}
 }

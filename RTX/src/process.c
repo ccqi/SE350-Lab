@@ -54,22 +54,6 @@ void process_init() {
 		gp_pcbs[i]->priority = g_proc_table[i].priority;
 		process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
 	}
-
-	#ifdef DEBUG_1
-	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
-	printf("gp_pcbs[1]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[1]->id));
-	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
-	k_set_process_priority(gp_pcbs[1]->id, HIGH);
-	printf("gp_pcbs[1]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[1]->id));
-	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
-	k_set_process_priority(gp_pcbs[1]->id, MEDIUM);
-	printf("gp_pcbs[1]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[1]->id));
-	printf("gp_pcbs[1]->priority = 0x%x \n", gp_pcbs[1]->priority);
-	k_set_process_priority(gp_pcbs[1]->id, LOW);
-	printf("gp_pcbs[1]->priority = 0x%x \n", k_get_process_priority(gp_pcbs[1]->id));
-	printf("gp_pcbs[2]->priority = 0x%x \n", gp_pcbs[2]->priority);
-	printf("gp_pcbs[2]->priority = 0x%x \n", gp_pcbs[2]->priority);
-	#endif
 }
 
 int k_set_process_priority(int process_id, int priority) {

@@ -14,8 +14,34 @@ int test_ok = 0;
 int test_fail = 0;
 int test_num = 6;
 
+int test_2_ok = 0;
+
+int test_3_ok_1 = 0;
+int test_3_ok_2 = 0;
+int test_3_ok_3 = 0;
+int test_3_ok_4 = 0;
+
+int test_6_ok = 0;
+
+void print_test_start() {
+	uart1_put_string("G001_test: START\r\n");
+}
+
+void print_test_OK(int n) {
+	uart1_put_string("G001_test: ");
+	uart1_put_char((unsigned char)(n + 48));
+	uart1_put_string(" test OK\r\n");
+	test_ok++;
+}
+
+void print_test_FAIL(int n) {
+	uart1_put_string("G001_test: ");
+	uart1_put_char((unsigned char)(n + 48));
+	uart1_put_string(" test FAIL\r\n");
+	test_fail++;
+}
+
 void print_test_results() {
-	uart1_put_string("\r\n");
 	uart1_put_string("G001_test: ");
 	uart1_put_char((unsigned char)(test_ok + 48));
 	uart1_put_string("/");
@@ -46,100 +72,202 @@ void set_test_procs() {
 	g_test_procs[5].start_pc = &proc6;
 
 	g_test_procs[0].priority = HIGH;
-	print_test_results();
 }
 
-
+// Request 4 memory blocks, then release all 4.
+// Lowers proc1 to LOWEST priority to run proc2.
 void proc1(void)
 {
-	uart1_put_string("\n\r");
+	int i;
+	int ret;
+	void *block1 = NULL;
+	void *block2 = NULL;
+	void *block3 = NULL;
+	void *block4 = NULL;
+	print_test_start();
 	while (1) {
-		release_processor();
+		block1 = request_memory_block();
+		block2 = request_memory_block();
+		block3 = request_memory_block();
+		block4 = request_memory_block();
+		for (i = 0; i < 10000; i++); // Delay
+		ret = release_memory_block(block1);
+		ret = ret || release_memory_block(block2);
+		ret = ret || release_memory_block(block3);
+		ret = ret || release_memory_block(block4);
+
+		if (ret == 0) {
+			print_test_OK(1);
+		} else {
+			print_test_FAIL(1);
+		}
+
+		set_process_priority(1, LOWEST); // Go to proc2
 	}
 }
 
+// Request 4 blocks.
+// set to medium priority.
+// set proc3 priority to high.
+// proc2 will be preempted, and proc3 will run.
 void proc2(void)
 {
-	uart1_put_string("\n\r");
+	void *block1 = NULL;
+	void *block2 = NULL;
+	void *block3 = NULL;
+	void *block4 = NULL;
 	while (1) {
-		release_processor();
+		block1 = request_memory_block();
+		block2 = request_memory_block();
+		block3 = request_memory_block();
+		block4 = request_memory_block();
+		set_process_priority(2, MEDIUM);
+		set_process_priority(3, HIGH);
+
+		// proc3 not run after priority set
+		if (!test_2_ok) {
+			print_test_FAIL(2);
+			test_2_ok = -1;
+		}
+
+		release_memory_block(block1);
+		if (!test_3_ok_1) {
+			test_3_ok_1 = -1;
+		}
+		release_memory_block(block2);
+		if (!test_3_ok_2) {
+			test_3_ok_2 = -1;
+		}
+		release_memory_block(block3);
+		if (!test_3_ok_3) {
+			test_3_ok_3 = -1;
+		}
+		release_memory_block(block4);
+		if (!test_3_ok_4) {
+			test_3_ok_4 = -1;
+		}
 	}
 }
 
+// Tests memory blocking with preemption.
+// First request should block process and run proc2
+// Should alternate running proc2 and proc3 until all blocks freed from proc2 and given to proc 3
 void proc3(void) {
 	void *block1 = NULL;
 	void *block2 = NULL;
 	void *block3 = NULL;
 	void *block4 = NULL;
+
+	// proc2 successfully preempted
+	if (test_2_ok != -1) {
+		print_test_OK(2);
+		test_2_ok = 1;
+	}
+
 	while (1) {
-		uart0_put_string("Hello proc3\n");
 		block1 = request_memory_block();
+		if (!test_3_ok_1) {
+			test_3_ok_1 = 1;
+		}
 		block2 = request_memory_block();
+		if (!test_3_ok_2) {
+			test_3_ok_2 = 1;
+		}
 		block3 = request_memory_block();
+		if (!test_3_ok_3) {
+			test_3_ok_3 = 1;
+		}
 		block4 = request_memory_block();
-		uart0_put_string("proc3: Request 4 memory blocks.\n");
+		if (!test_3_ok_4) {
+			test_3_ok_4 = 1;
+		}
+
+		if (test_3_ok_1 == 1 && test_3_ok_2 == 1 && test_3_ok_3 == 1 && test_3_ok_4 == 1) {
+			print_test_OK(3);
+		} else {
+			print_test_FAIL(3);
+		}
+
 		release_memory_block(block1);
 		release_memory_block(block2);
 		release_memory_block(block3);
 		release_memory_block(block4);
-		uart0_put_string("proc3: Release 4 memory blocks.\n");
-		uart0_put_string("proc3: Lower priority to LOWEST.\n");
+
+		// Go to proc4
+		set_process_priority(2, LOWEST);
 		set_process_priority(3, LOWEST);
-
-		#ifdef DEBUG_0
-		printf("proc3: Priority: %x \n", get_process_priority(3));
-		#endif
-
-		set_process_priority(1, HIGH);
-
-		release_processor();
 	}
 }
 
+// Test for priorities, should stay in proc4 for the test
 void proc4(void) {
-	void *block1 = NULL;
-	void *block2 = NULL;
-	void *block3 = NULL;
-	void *block4 = NULL;
-	void *block5 = NULL;
+	int p1;
+	int p2;
+	int p3;
+	int p4;
+	int p5;
 	while (1) {
-		uart0_put_string("Hello proc4\n");
-		block1 = request_memory_block();
-		block2 = request_memory_block();
-		block3 = request_memory_block();
-		block4 = request_memory_block();
-		block5 = request_memory_block();
-		uart0_put_string("proc4: Request 4 memory blocks.\n");
-		release_memory_block(block1);
-		release_memory_block(block2);
-		release_memory_block(block3);
-		release_memory_block(block4);
-		uart0_put_string("proc4: Release 4 memory blocks.\n");
-		uart0_put_string("proc4: Set proc3 priority to HIGH.\n");
-		set_process_priority(3, HIGH);
-		uart0_put_string("proc4: Lower priority to LOW.\n");
-		set_process_priority(4, LOW);
-
-		#ifdef DEBUG_0
-		printf("proc4: Priority: %x \n", get_process_priority(4));
-		printf("proc4: proc3 priority: %x \n", get_process_priority(3));
-		#endif
-
-		release_processor();
+		p1 = get_process_priority(1);
+		p2 = get_process_priority(2);
+		p3 = get_process_priority(3);
+		set_process_priority(4, MEDIUM);
+		p4 = get_process_priority(4);
+		set_process_priority(5, LOWEST);
+		p5 = get_process_priority(5);
+		if (p1 == p2 && p2 == p3 && p3 == LOWEST && p4 == MEDIUM && p5 == LOWEST) {
+			print_test_OK(4);
+		} else {
+			print_test_FAIL(4);
+		}
+		// Go to proc5
+		set_process_priority(5, HIGH);
 	}
 }
 
+// Test ok and error return values
 void proc5(void)
 {
-	uart1_put_string("\n\r");
+	int ret1;
+	int ret2;
+	int ret3;
+	int ret4;
 	while (1) {
-		release_processor();
+		// Change null priority
+		ret1 = set_process_priority(0, LOWEST);
+		// Change invalid process priority
+		ret2 = set_process_priority(-1, HIGH);
+		// Change process to invalid priority
+		ret3 = set_process_priority(1, -2);
+		// Change process to null process priority
+		ret4 = set_process_priority(2, 4);
+		if (ret1 && ret2 && ret3 && ret4) {
+			ret1 = set_process_priority(1, LOWEST);
+			ret2 = release_memory_block(0);
+			if (!ret1 && ret2) {
+				print_test_OK(5);
+			} else {
+				print_test_FAIL(5);
+			}
+		} else {
+			print_test_FAIL(5);
+		}
+
+		// Go to proc6
+		set_process_priority(6, HIGH);
+		// Since same priority as proc5, proc5 should continue to run
+		test_6_ok = 1;
+		set_process_priority(5, LOWEST);
 	}
 }
 
 void proc6(void)
 {
-	uart1_put_string("\n\r");
+	if (test_6_ok) {
+		print_test_OK(6);
+	} else {
+		print_test_FAIL(6);
+	}
+	print_test_results();
 	while (1) {
 		release_processor();
 	}

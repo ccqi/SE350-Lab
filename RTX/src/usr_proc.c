@@ -28,8 +28,10 @@ void set_test_procs() {
 	g_test_procs[0].start_pc = &proc1;
 	g_test_procs[1].start_pc = &proc2;
 	g_test_procs[2].start_pc = &proc3;
+	g_test_procs[3].start_pc = &proc4;
+
 	g_test_procs[2].priority = LOW;
-	// g_test_procs[3].priority = MEDIUM;
+	g_test_procs[3].priority = MEDIUM;
 }
 
 
@@ -113,6 +115,8 @@ void proc3(void) {
 		printf("proc3: Priority: %x \n", get_process_priority(3));
 		#endif
 
+		set_process_priority(1, HIGH);
+
 		release_processor();
 	}
 }
@@ -135,10 +139,13 @@ void proc4(void) {
 		release_memory_block(block4);
 		uart0_put_string("proc4: Release 4 memory blocks.\n");
 		uart0_put_string("proc4: Set proc3 priority to HIGH.\n");
-		// set_process_priority(3, HIGH);
+		set_process_priority(3, HIGH);
+		uart0_put_string("proc4: Lower priority to LOW.\n");
+		set_process_priority(4, LOW);
 
 		#ifdef DEBUG_0
-		// printf("proc4: proc3 priority: %x \n", get_process_priority(3));
+		printf("proc4: Priority: %x \n", get_process_priority(4));
+		printf("proc4: proc3 priority: %x \n", get_process_priority(3));
 		#endif
 
 		release_processor();

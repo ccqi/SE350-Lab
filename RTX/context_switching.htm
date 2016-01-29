@@ -3,7 +3,7 @@
 <title>Static Call Graph - [C:\Users\Ernest\Desktop\Winter 2016\SE 350\SE350-Lab\RTX\context_switching.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\Ernest\Desktop\Winter 2016\SE 350\SE350-Lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Jan 29 07:48:58 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Jan 29 07:53:58 2016
 <BR><P>
 <H3>Maximum Stack Usage =        136 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -85,9 +85,10 @@ Function Pointers
  <LI><a href="#[33]">k_rtx_init</a> from k_rtx_init.o(.text) referenced from main_svc.o(.text)
  <LI><a href="#[36]">k_set_process_priority</a> from process.o(.text) referenced from usr_proc.o(.text)
  <LI><a href="#[62]">null_process</a> from process.o(.text) referenced from process.o(.text)
- <LI><a href="#[6b]">proc1</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
- <LI><a href="#[6a]">proc2</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
- <LI><a href="#[69]">proc3</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[6c]">proc1</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[6b]">proc2</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[6a]">proc3</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
+ <LI><a href="#[69]">proc4</a> from usr_proc.o(.text) referenced from usr_proc.o(.text)
  <LI><a href="#[32]">putc</a> from uart_polling.o(.text) referenced from main_svc.o(.text)
  <LI><a href="#[31]">putcp</a> from printf.o(.text) referenced from printf.o(.text)
 </UL>
@@ -419,8 +420,8 @@ Global Symbols
 <P><STRONG><a name="[91]"></a>uart_get_char</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, uart_polling.o(.text), UNUSED)
 
 <P><STRONG><a name="[4b]"></a>uart_put_char</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, uart_polling.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
+<BR><BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;c_UART0_IRQHandler
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putc
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_string
@@ -431,10 +432,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc4
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc3
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc3
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc4
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;c_UART0_IRQHandler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
 <LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putc
@@ -469,9 +470,10 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_format
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
-<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc3
+<BR>[Called By]<UL><LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc1
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc2
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc3
+<LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;proc4
 <LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;c_UART0_IRQHandler
 </UL>
 
@@ -651,7 +653,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 </UL>
 
-<P><STRONG><a name="[69]"></a>proc3</STRONG> (Thumb, 142 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[69]"></a>proc4</STRONG> (Thumb, 178 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = proc4 &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
+</UL>
+<BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_printf
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_string
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
+</UL>
+<P><STRONG><a name="[6a]"></a>proc3</STRONG> (Thumb, 152 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = proc3 &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_printf
@@ -659,7 +669,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[6a]"></a>proc2</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[6b]"></a>proc2</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = proc2 &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_printf
@@ -668,7 +678,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[6b]"></a>proc1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[6c]"></a>proc1</STRONG> (Thumb, 96 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = proc1 &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_printf
@@ -677,12 +687,8 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[63]"></a>set_test_procs</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, usr_proc.o(.text))
+<P><STRONG><a name="[63]"></a>set_test_procs</STRONG> (Thumb, 80 bytes, Stack size 0 bytes, usr_proc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
-</UL>
-
-<P><STRONG><a name="[6c]"></a>proc4</STRONG> (Thumb, 114 bytes, Stack size 0 bytes, usr_proc.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_string
 </UL>
 
 <P><STRONG><a name="[93]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)

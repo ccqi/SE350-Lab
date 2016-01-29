@@ -5,8 +5,15 @@
 ### List of Objects: adding '"system_lpc17xx.o"'
 ### List of Objects: adding '"uart_polling.o"'
 ### List of Objects: adding '"main.o"'
+### List of Objects: adding '"hal.o"'
+### List of Objects: adding '"heap.o"'
+### List of Objects: adding '"memory.o"'
+### List of Objects: adding '"process.o"'
+### List of Objects: adding '"process_queue.o"'
+### List of Objects: adding '"usr_proc.o"'
+### List of Objects: adding '"printf.o"'
 ### ADS-LD Command completed:
---cpu Cortex-M3 "startup_lpc17xx.o" "system_lpc17xx.o" "uart_polling.o" "main.o" 
+--cpu Cortex-M3 "startup_lpc17xx.o" "system_lpc17xx.o" "uart_polling.o" "main.o" "hal.o" "heap.o" "memory.o" "process.o" "process_queue.o" "usr_proc.o" "printf.o" 
 --strict --scatter "HelloWorld.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 
@@ -14,7 +21,7 @@
 ### ADS-LD Output File: 'HelloWorld.axf'
 ### ADS-LD Command File: 'HelloWorld.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'HelloWorld.lnp', Handle=0x00000338
+### Creating CmdFile 'HelloWorld.lnp', Handle=0x00001CC4
 ### Writing '.lnp' file
 ### ADS-LD Command file 'HelloWorld.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

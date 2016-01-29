@@ -13,7 +13,7 @@
 #define LOWEST	3
 
 #define MEMORY_BLOCK_SIZE 128
-#define NUM_MEMORY_BLOCKS 1
+#define NUM_MEMORY_BLOCKS 0
 
 #define NUM_PROC_PRIORITY 5
 

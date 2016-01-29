@@ -1,4 +1,3 @@
-#include "rtx.h"
 #include "process.h"
 #include <LPC17xx.h>
 #include <system_LPC17xx.h>

@@ -12,7 +12,6 @@ void memory_init() {
 	p_end += 4;
 
 	// Allocate memory for pcb pointers
-	// todo allocate for a priority queue
 	gp_pcbs = (PCB**) p_end;
 	p_end += NUM_TEST_PROCS * sizeof(PCB*);
 
@@ -39,7 +38,7 @@ void memory_init() {
 	p_heap = NULL;
 	for (i = 0; i < NUM_MEMORY_BLOCKS; i++) {
 		MEMORY_BLOCK *block = (MEMORY_BLOCK*) p_end;
-		heap_push(p_heap, block);
+		heap_push(&p_heap, block);
 		p_end += sizeof(MEMORY_BLOCK*) + MEMORY_BLOCK_SIZE;
 	}
 }
@@ -61,12 +60,12 @@ U32 *alloc_stack(U32 size_b)
 
 void *request_memory_block() {
 	U32 *block;
-	while (heap_empty(p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
+	while (heap_empty(&p_heap)) { // CHECK IF BLOCK AVAILABLE FROM RELEASE_MEMORY_BLOCK
 		// ADD PCB TO BLOCKED RESOURCE QUEUE
 		// SET PROCSS STATE TO BLOCK
 		release_processor();
 	}
-	block = heap_pop(p_heap);
+	block = heap_pop(&p_heap);
 	return block;
 }
 
@@ -78,7 +77,7 @@ int release_memory_block(void *memory_block) {
 	if (0) { // BLOCKED RESOURCE QUEUE
 		// GIVE BLOCK TO BLOCKED RESOURCE
 	} else {
-		heap_push(p_heap, memory_block);
+		heap_push(&p_heap, memory_block);
 	}
 	return RTX_OK;
 }

@@ -1,6 +1,8 @@
-#include "rtx.h"
+#include "usr_proc.h"
 
-extern int release_processor(void);
+#ifdef DEBUG_0
+#include "printf.h"
+#endif
 
 PROC_INIT g_test_procs[NUM_TEST_PROCS];
 
@@ -21,6 +23,9 @@ void set_test_procs(void) {
 
 void proc1(void) {
 	while (1) {
+		#ifdef DEBUG_0
+		printf("PROC1");
+		#endif
 		release_processor();
 	}
 }

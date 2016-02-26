@@ -85,6 +85,8 @@ int k_get_process_priority(int process_id) {
 }
 
 PCB *scheduler(void) {
+	process_dequeue(gp_pcb_queue);
+	process_enqueue(gp_pcb_queue, gp_current_process, gp_current_process->priority);
 	gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
 	#ifdef DEBUG_0
 	printf("gp_current_process->id = 0x%x \n", gp_current_process->id);

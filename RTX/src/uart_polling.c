@@ -127,13 +127,13 @@ int uart_put_string(int n_uart, unsigned char *s)
 
 /**
  * @brief call back function for printf
- * NOTE: first paramter p is not used for now. UART1 used.
+ * NOTE: first paramter p is not used for now.
  */
 void putc(void *p, char c)
 {
   if ( p != NULL ) {
-    uart1_put_string("putc: first parameter needs to be NULL");
+    uart0_put_string("putc: first parameter needs to be NULL");
   } else {
-      uart1_put_char(c);
+      uart0_put_char(c);
   }
 }

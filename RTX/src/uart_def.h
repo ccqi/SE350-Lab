@@ -33,7 +33,9 @@
 
 
 /* convenient macro for bit operation */
+#ifndef BIT
 #define BIT(X)    ( 1 << (X) )
+#endif
 
 /* 
    8 bits, no Parity, 1 Stop bit

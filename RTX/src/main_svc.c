@@ -15,21 +15,31 @@
 #include <LPC17xx.h>
 #include <system_LPC17xx.h>
 #include "rtx.h"
-#ifdef DEBUG_0
 #include "uart_polling.h"
+#include "timer.h"
+#ifdef DEBUG_0
 #include "printf.h"
 #endif /* DEBUG_0 */
 
+extern volatile uint32_t g_timer_count;
+
 int main() 
-{	
+{
+	volatile uint8_t sec = 0;
+
 	/* CMSIS system initialization */
 	SystemInit(); 
+
+	__disable_irq();
+	timer_init(0); /* initialize timer 0 */
+	__enable_irq();
+
 #ifdef DEBUG_0
 	init_printf(NULL, putc);
 #endif /* DEBUG_0 */
-	
+
 	/* start the RTX and built-in processes */
-	rtx_init();  
+	rtx_init();
   
 	/* We should never reach here!!! */
 	return RTX_ERR;  

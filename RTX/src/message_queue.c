@@ -1,6 +1,6 @@
 #include "message_queue.h"
 
-void queue_enqueue(QUEUE **queue, MESSAGE_QUEUE *msg) {
+void queue_enqueue(MSG_QUEUE **queue, MESSAGE_QUEUE *msg) {
 	msg->next = NULL;
 	if (queue->last == NULL) {
 		queue->first = queue->last = msg;
@@ -10,7 +10,7 @@ void queue_enqueue(QUEUE **queue, MESSAGE_QUEUE *msg) {
 	}
 }
 
-void *queue_dequeue(QUEUE **queue) {
+void *queue_dequeue(MSG_QUEUE **queue) {
 	MESSAGE_QUEUE *msg = queue->first;
 	if (msg == NULL) {
 		return NULL;
@@ -24,6 +24,6 @@ void *queue_dequeue(QUEUE **queue) {
 	}
 }
 
-void *queue_peek(QUEUE **queue) {
+void *queue_peek(MSG_QUEUE **queue) {
 	return queue->first;
 }

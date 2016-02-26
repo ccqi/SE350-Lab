@@ -35,7 +35,7 @@ typedef struct {
 typedef struct {
 	U32 *first;
 	U32 *last;
-} MESSAGE_QUEUE;
+} MSG_QUEUE;
 
 // Message
 typedef struct {

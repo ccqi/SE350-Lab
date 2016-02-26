@@ -7,8 +7,7 @@ int k_send_message(int pid, void *p_msg) {
 	if (pcb == NULL || msg == NULL) {
 		return RTX_ERR;
 	}
-
-	__enable_irq();
+	__disable_irq();
 	msg->sPID = (int) gp_current_process->id;
 	msg->rPID = pid;
 
@@ -20,19 +19,19 @@ int k_send_message(int pid, void *p_msg) {
 			k_release_processor();
 		}
 	}
-	__disable_irq();
+	__enable_irq();
 
 	return RTX_OK;
 }
 
 void *k_receive_message(int *p_pid) {
 	MSG_QUEUE *q;
-	__enable_irq();
+	__disable_irq();
 	q = gp_current_process->message_queue;
 	while (message_queue_empty(q)) {
 		gp_current_process->state = BLOCKED_ON_RECEIVE;
 		k_release_processor();
 	}
-	__disable_irq();
+	__enable_irq();
 	return message_queue_dequeue(q);
 }

@@ -1,6 +1,8 @@
 #ifndef _RTX_H
 #define _RTX_H
 
+#include "common.h"
+
 #define RTX_ERR -1
 #define NULL 0
 #define RTX_OK 0
@@ -8,20 +10,10 @@
 #define NUM_TEST_PROCS 6
 #define NUM_PROCS 7
 
-#define HIGH		0
-#define MEDIUM	1
-#define LOW			2
-#define LOWEST	3
-
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 30
 
 #define NUM_PROC_PRIORITY 5
-
-#define MSG_TYPE 0
-
-typedef unsigned int U32;
-typedef unsigned char U8;
 
 // Process state
 typedef enum {
@@ -32,18 +24,6 @@ typedef enum {
 	RUN,
 	INTERRUPT
 } PROC_STATE;
-
-// PCB
-typedef struct {
-	PROC_STATE state;
-	U32 id;
-	int priority;
-	// Registers
-	U32 pc;
-	U32 *sp;
-	U32 *next;
-	U32 *memory_block;
-} PCB;
 
 // PROC_QUEUE
 typedef struct {
@@ -57,20 +37,36 @@ typedef struct {
 	U32 *last;
 } QUEUE;
 
+// Message
+typedef struct {
+#ifdef K_MSG_ENV
+	void* *next;
+	int sPID;
+	int rPID;
+	int kdata[5];
+#endif
+	int type;
+	// U32 *data;
+	char text[1];
+} MSG;
+
+// PCB
+typedef struct {
+	PROC_STATE state;
+	U32 id;
+	int priority;
+	// Registers
+	U32 pc;
+	U32 *sp;
+	U32 *next;
+	U32 *memory_block;
+	QUEUE *message_queue;
+} PCB;
+
 // Memory block
 typedef struct {
 	U32 *next;
 } MEMORY_BLOCK;
-
-// Message
-typedef struct MSG_T {
-	MSG_T *next;
-	int sPID;
-	int dPID;
-	int type;
-	U32 *data;
-} MSG;
-
 
 // Initialization table item
 typedef struct proc_init
@@ -108,5 +104,20 @@ extern int _set_process_priority(U32 p_func, int process_id, int priority) __SVC
 extern int k_get_process_priority(int);
 #define get_process_priority(process_id) _get_process_priority((U32)k_get_process_priority, process_id)
 extern int _get_process_priority(U32 p_func, int process_id) __SVC_0;
+
+/* IPC Management */
+extern int k_send_message(int pid, void *p_msg);
+#define send_message(pid, p_msg) _send_message((U32)k_send_message, pid, p_msg)
+extern int _send_message(U32 p_func, int pid, void *p_msg) __SVC_0;
+
+extern void *k_receive_message(int *p_pid);
+#define receive_message(p_pid) _receive_message((U32)k_receive_message, p_pid)
+extern void *_receive_message(U32 p_func, void *p_pid) __SVC_0;
+
+/* Timing Service */
+// extern int k_delayed_send(int pid, void *p_msg, int delay);
+// #define delayed_send(pid, p_msg, delay) _delayed_send((U32)k_delayed_send, pid, p_msg, delay)
+// extern int _delayed_send(U32 p_func, int pid, void *p_msg, int delay) __SVC_0;  
+// #endif /* !RTX_H_ */
 
 #endif

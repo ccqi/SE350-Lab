@@ -49,6 +49,12 @@ typedef struct {
 	U32 *last;
 } PROC_QUEUE;
 
+// QUEUE
+typedef struct {
+	U32 *first;
+	U32 *last;
+} QUEUE;
+
 // Memory block
 typedef struct {
 	U32 *next;

@@ -84,10 +84,13 @@ int k_get_process_priority(int process_id) {
 	return RTX_ERR;
 }
 
-PCB *scheduler(void) {
-	process_dequeue(gp_pcb_queue);
-	process_enqueue(gp_pcb_queue, gp_current_process, gp_current_process->priority);
+PCB *scheduler(PCB* p_pcb_old) {
 	gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
+	if (gp_current_process == p_pcb_old) {
+		process_dequeue(gp_pcb_queue);
+		process_enqueue(gp_pcb_queue, gp_current_process, gp_current_process->priority);
+		gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
+	}
 	#ifdef DEBUG_0
 	printf("gp_current_process->id = 0x%x \n", gp_current_process->id);
 	#endif
@@ -132,7 +135,7 @@ int k_release_processor() {
 	PCB *p_pcb_old = NULL;
 	
 	p_pcb_old = gp_current_process;
-	gp_current_process = scheduler();
+	gp_current_process = scheduler(p_pcb_old);
 	
 	if (gp_current_process == NULL) {
 		gp_current_process = p_pcb_old; // revert back to the old process

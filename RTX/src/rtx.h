@@ -22,7 +22,8 @@ typedef enum {
 	BLOCK,
 	WAIT,
 	RUN,
-	INTERRUPT
+	INTERRUPT,
+	BLOCKED_ON_RECEIVE
 } PROC_STATE;
 
 // PROC_QUEUE
@@ -40,14 +41,14 @@ typedef struct {
 // Message
 typedef struct {
 #ifdef K_MSG_ENV
-	void* *next;
+	void *next;
 	int sPID;
 	int rPID;
 	int kdata[5];
 #endif
 	int type;
 	// U32 *data;
-	char text[1];
+	void *text;
 } MSG;
 
 // PCB
@@ -60,7 +61,7 @@ typedef struct {
 	U32 *sp;
 	U32 *next;
 	U32 *memory_block;
-	QUEUE *message_queue;
+	MSG_QUEUE *message_queue;
 } PCB;
 
 // Memory block

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [N:\SE350\P2\SE350-lab\RTX\context_switching.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image N:\SE350\P2\SE350-lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Feb 26 16:37:57 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Feb 26 18:01:41 2016
 <BR><P>
 <H3>Maximum Stack Usage =         40 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -527,17 +527,17 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 
-<P><STRONG><a name="[57]"></a>scheduler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, process.o(.text))
+<P><STRONG><a name="[57]"></a>scheduler</STRONG> (Thumb, 68 bytes, Stack size 8 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = scheduler &rArr; process_peek_ready
 </UL>
-<BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_peek_ready
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_dequeue
+<BR>[Calls]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_peek_ready
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
+<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_dequeue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 
-<P><STRONG><a name="[33]"></a>k_release_processor</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, process.o(.text))
+<P><STRONG><a name="[33]"></a>k_release_processor</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
@@ -567,7 +567,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = process_init &rArr; process_enqueue
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_test_procs
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_null_proc
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alloc_stack
 </UL>
@@ -578,7 +578,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = k_set_process_priority &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_remove
-<LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
+<LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_enqueue
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_processor
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
@@ -590,7 +590,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[59]"></a>process_enqueue</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, process_queue.o(.text))
+<P><STRONG><a name="[5a]"></a>process_enqueue</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = process_enqueue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_set_process_priority
@@ -598,7 +598,7 @@ Global Symbols
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
 </UL>
 
-<P><STRONG><a name="[58]"></a>process_dequeue</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, process_queue.o(.text))
+<P><STRONG><a name="[59]"></a>process_dequeue</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = process_dequeue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
@@ -618,7 +618,7 @@ Global Symbols
 
 <P><STRONG><a name="[90]"></a>process_peek</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, process_queue.o(.text), UNUSED)
 
-<P><STRONG><a name="[5a]"></a>process_peek_ready</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, process_queue.o(.text))
+<P><STRONG><a name="[58]"></a>process_peek_ready</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, process_queue.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = process_peek_ready
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler

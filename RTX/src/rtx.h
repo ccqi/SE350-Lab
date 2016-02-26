@@ -32,12 +32,6 @@ typedef struct {
 	U32 *last;
 } PROC_QUEUE;
 
-// QUEUE
-typedef struct {
-	U32 *first;
-	U32 *last;
-} MSG_QUEUE;
-
 // Message
 typedef struct {
 #ifdef K_MSG_ENV
@@ -50,6 +44,12 @@ typedef struct {
 	// U32 *data;
 	void *text;
 } MSG;
+
+// MSG_QUEUE
+typedef struct {
+	MSG *first;
+	MSG *last;
+} MSG_QUEUE;
 
 // PCB
 typedef struct {

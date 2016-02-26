@@ -1,6 +1,8 @@
 #ifndef _PROCESS_H
 #define _PROCESS_H
 
+#define K_MSG_ENV
+
 #include "rtx.h"
 #include "message_queue.h"
 #include "process_queue.h"

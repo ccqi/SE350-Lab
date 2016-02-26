@@ -3,7 +3,7 @@
 <title>Static Call Graph - [N:\SE350\project2\SE350-Lab\RTX\context_switching.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image N:\SE350\project2\SE350-Lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Feb 26 18:48:40 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Feb 26 18:55:33 2016
 <BR><P>
 <H3>Maximum Stack Usage =        152 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -536,7 +536,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
 </UL>
 
-<P><STRONG><a name="[33]"></a>k_request_memory_block</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, memory.o(.text))
+<P><STRONG><a name="[33]"></a>k_request_memory_block</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, memory.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = k_request_memory_block &rArr; k_release_processor &rArr; scheduler &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;heap_empty
@@ -545,7 +545,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> usr_proc.o(.text)
 </UL>
-<P><STRONG><a name="[36]"></a>k_release_memory_block</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, memory.o(.text))
+<P><STRONG><a name="[36]"></a>k_release_memory_block</STRONG> (Thumb, 52 bytes, Stack size 16 bytes, memory.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = k_release_memory_block &rArr; k_release_processor &rArr; scheduler &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_peek_block

@@ -18,7 +18,7 @@ I (src\uart_polling.h)(0x56D0DCDB)
 F (.\src\printf.c)(0x56D0DCDB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "printf.o" --omf_browse "printf.crf" --depend "printf.d")
 I (src\printf.h)(0x56D0DCDB)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB16D2C)
-F (.\src\main_svc.c)(0x56D0E447)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "main_svc.o" --omf_browse "main_svc.crf" --depend "main_svc.d")
+F (.\src\main_svc.c)(0x56D0E527)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "main_svc.o" --omf_browse "main_svc.crf" --depend "main_svc.d")
 I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF59B7C)
 I (C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006C432)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB16D34)
@@ -62,7 +62,7 @@ F (.\src\heap.c)(0x56D0DCDB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\
 I (src\heap.h)(0x56D0DCDB)
 I (src\rtx.h)(0x56D0DCDB)
 I (src\common.h)(0x56D0DCDB)
-F (.\src\memory.c)(0x56D0DDDE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "memory.o" --omf_browse "memory.crf" --depend "memory.d")
+F (.\src\memory.c)(0x56D0E5B5)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "memory.o" --omf_browse "memory.crf" --depend "memory.d")
 I (src\memory.h)(0x56D0DCDB)
 I (src\rtx.h)(0x56D0DCDB)
 I (src\common.h)(0x56D0DCDB)
@@ -90,7 +90,7 @@ I (src\common.h)(0x56D0DCDB)
 I (src\printf.h)(0x56D0DCDB)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB16D2C)
 F (.\src\rtx.h)(0x56D0DCDB)()
-F (.\src\message.c)(0x56D0DCDB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "message.o" --omf_browse "message.crf" --depend "message.d")
+F (.\src\message.c)(0x56D0E5F2)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -o "message.o" --omf_browse "message.crf" --depend "message.d")
 I (src\message.h)(0x56D0DCDB)
 I (src\rtx.h)(0x56D0DCDB)
 I (src\common.h)(0x56D0DCDB)

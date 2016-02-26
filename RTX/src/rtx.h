@@ -18,6 +18,8 @@
 
 #define NUM_PROC_PRIORITY 5
 
+#define MSG_TYPE 0
+
 typedef unsigned int U32;
 typedef unsigned char U8;
 
@@ -59,6 +61,16 @@ typedef struct {
 typedef struct {
 	U32 *next;
 } MEMORY_BLOCK;
+
+// Message
+typedef struct MSG_T {
+	MSG_T *next;
+	int sPID;
+	int dPID;
+	int type;
+	U32 *data;
+} MSG;
+
 
 // Initialization table item
 typedef struct proc_init

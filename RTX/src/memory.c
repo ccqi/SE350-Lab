@@ -18,9 +18,10 @@ void memory_init() {
 	// Allocate memory for pcb pointers
 	gp_pcbs = (PCB**) p_end;
 	p_end += NUM_PROCS * sizeof(PCB*);
-
 	for (i = 0; i < NUM_PROCS; i++) {
 		gp_pcbs[i] = (PCB*) p_end;
+		gp_pcbs[i]->message_queue->first = NULL;
+		gp_pcbs[i]->message_queue->last = NULL;
 		p_end += sizeof(PCB);
 	}
 
@@ -29,6 +30,8 @@ void memory_init() {
 	p_end += NUM_PROC_PRIORITY * sizeof(PROC_QUEUE*);
 	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
 		gp_pcb_queue[i] = (PROC_QUEUE*) p_end;
+		gp_pcb_queue[i]->first = NULL;
+		gp_pcb_queue[i]->last = NULL;
 		p_end += sizeof(PROC_QUEUE);
 	}
 

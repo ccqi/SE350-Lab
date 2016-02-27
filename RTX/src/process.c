@@ -23,6 +23,7 @@ void set_null_proc(void);
 void process_init() {
 	U32 *sp;
 	int i;
+	int j;
 
 	// Initialization table
 	set_test_procs();
@@ -31,6 +32,19 @@ void process_init() {
 		g_proc_table[i].stack_size = g_test_procs[i - 1].stack_size;
 		g_proc_table[i].start_pc = g_test_procs[i - 1].start_pc;
 		g_proc_table[i].priority = g_test_procs[i - 1].priority;
+		g_proc_table[i].i_process = g_test_procs[i - 1].i_process;
+	}
+
+	// I-Processes
+	set_i_procs();
+	i = NUM_TEST_PROCS;
+	for (j = 0; j < 2; j++) {
+		i++;
+		g_proc_table[i].pid = g_i_procs[j].pid;
+		g_proc_table[i].stack_size = g_i_procs[j].stack_size;
+		g_proc_table[i].start_pc = g_i_procs[j].start_pc;
+		g_proc_table[i].priority = g_i_procs[j].priority;
+		g_proc_table[i].i_process = g_i_procs[j].i_process;
 	}
 
 	// Null process
@@ -41,7 +55,7 @@ void process_init() {
 		int j;
 		gp_pcbs[i]->id = g_proc_table[i].pid;
 		gp_pcbs[i]->state = NEW;
-		gp_pcbs[i]->isIProcess = 0;
+		gp_pcbs[i]->i_process = g_proc_table[i].i_process;
 
 		sp = alloc_stack(g_proc_table[i].stack_size);
 		*(--sp) = INITIAL_xPSR;      // user process initial xPSR  
@@ -51,9 +65,11 @@ void process_init() {
 		}
 		gp_pcbs[i]->sp = sp;
 
-		// Add to priority queue
-		gp_pcbs[i]->priority = g_proc_table[i].priority;
-		process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
+		if (i <= 7) {
+			// Add to priority queue
+			gp_pcbs[i]->priority = g_proc_table[i].priority;
+			process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
+		}
 	}
 }
 

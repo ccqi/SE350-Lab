@@ -8,7 +8,7 @@
 #define RTX_OK 0
 
 #define NUM_TEST_PROCS 6
-#define NUM_PROCS 7
+#define NUM_PROCS 9
 
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 30
@@ -56,7 +56,7 @@ typedef struct {
 	PROC_STATE state;
 	U32 id;
 	int priority;
-	int isIProcess;
+	int i_process;
 	// Registers
 	U32 pc;
 	U32 *sp;
@@ -76,6 +76,7 @@ typedef struct proc_init
 	U32 pid;
 	int priority;
 	int stack_size;
+	int i_process;
 	void (*start_pc) ();
 } PROC_INIT;
 

@@ -1,4 +1,4 @@
-#ifndef USR_PROC_H_
+#ifndef USR_PROC_H
 #define USR_PROC_H
 
 void set_test_procs(void);

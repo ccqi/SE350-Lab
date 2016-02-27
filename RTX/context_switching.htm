@@ -1,9 +1,9 @@
 <!doctype html public "-//w3c//dtd html 4.0 transitional//en">
 <html><head>
-<title>Static Call Graph - [N:\SE350\project2\SE350-Lab\RTX\context_switching.axf]</title></head>
+<title>Static Call Graph - [C:\Users\Ernest\Desktop\Winter 2016\SE 350\P2\SE350-Lab\RTX\context_switching.axf]</title></head>
 <body><HR>
-<H1>Static Call Graph for image N:\SE350\project2\SE350-Lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Fri Feb 26 21:42:13 2016
+<H1>Static Call Graph for image C:\Users\Ernest\Desktop\Winter 2016\SE 350\P2\SE350-Lab\RTX\context_switching.axf</H1><HR>
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sat Feb 27 18:00:53 2016
 <BR><P>
 <H3>Maximum Stack Usage =        136 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -603,8 +603,8 @@ Global Symbols
 <LI><a href="#[12]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART0_IRQHandler
 <LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
 </UL>
-<BR>[Address Reference Count : 2]<UL><LI> i_proc.o(.text)
-<LI> usr_proc.o(.text)
+<BR>[Address Reference Count : 2]<UL><LI> usr_proc.o(.text)
+<LI> i_proc.o(.text)
 </UL>
 <P><STRONG><a name="[67]"></a>null_process</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, process.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = null_process &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
@@ -709,20 +709,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
 </UL>
 
-<P><STRONG><a name="[5c]"></a>timer_init</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = timer_init
-</UL>
-<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
-</UL>
-
-<P><STRONG><a name="[4a]"></a>c_TIMER0_IRQHandler</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, timer.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = c_TIMER0_IRQHandler &rArr; run_i_timer &rArr; i_process_switch &rArr; process_switch
-</UL>
-<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_i_timer
-</UL>
-<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
-</UL>
-
 <P><STRONG><a name="[71]"></a>uart_proc</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i_proc.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = uart_proc &rArr; i_release_processor &rArr; k_release_processor &rArr; scheduler &rArr; process_peek_ready
 </UL>
@@ -739,6 +725,20 @@ Global Symbols
 </UL>
 <P><STRONG><a name="[69]"></a>set_i_procs</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, i_proc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;process_init
+</UL>
+
+<P><STRONG><a name="[5c]"></a>timer_init</STRONG> (Thumb, 64 bytes, Stack size 12 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = timer_init
+</UL>
+<BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
+</UL>
+
+<P><STRONG><a name="[4a]"></a>c_TIMER0_IRQHandler</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, timer.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = c_TIMER0_IRQHandler &rArr; run_i_timer &rArr; i_process_switch &rArr; process_switch
+</UL>
+<BR>[Calls]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_i_timer
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER0_IRQHandler
 </UL>
 
 <P><STRONG><a name="[73]"></a>print_test_start</STRONG> (Thumb, 42 bytes, Stack size 8 bytes, usr_proc.o(.text), UNUSED)

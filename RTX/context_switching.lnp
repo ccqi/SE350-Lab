@@ -1,4 +1,4 @@
---cpu Cortex-M3 "startup_lpc17xx.o" "system_lpc17xx.o" "uart_polling.o" "printf.o" "main_svc.o" "uart_irq.o" "hal.o" "k_rtx_init.o" "heap.o" "memory.o" "process.o" "process_queue.o" "message.o" "message_queue.o" "timer.o" "i_proc.o" "usr_proc.o" 
+--cpu Cortex-M3 "startup_lpc17xx.o" "system_lpc17xx.o" "uart_polling.o" "printf.o" "main_svc.o" "uart_irq.o" "hal.o" "k_rtx_init.o" "heap.o" "memory.o" "process.o" "process_queue.o" "i_proc.o" "message.o" "message_queue.o" "timer.o" "usr_proc.o" 
 --strict --scatter "context_switching.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 

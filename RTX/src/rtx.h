@@ -56,6 +56,7 @@ typedef struct {
 	PROC_STATE state;
 	U32 id;
 	int priority;
+	int isIProcess;
 	// Registers
 	U32 pc;
 	U32 *sp;

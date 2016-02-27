@@ -41,6 +41,7 @@ void process_init() {
 		int j;
 		gp_pcbs[i]->id = g_proc_table[i].pid;
 		gp_pcbs[i]->state = NEW;
+		gp_pcbs[i]->isIProcess = 0;
 
 		sp = alloc_stack(g_proc_table[i].stack_size);
 		*(--sp) = INITIAL_xPSR;      // user process initial xPSR  

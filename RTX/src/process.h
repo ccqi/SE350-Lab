@@ -3,6 +3,7 @@
 
 #include "rtx.h"
 #include "process_queue.h"
+#include "message_queue.h"
 
 #define INITIAL_xPSR 0x01000000
 

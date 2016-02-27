@@ -38,5 +38,9 @@ void timer_proc(void) {
 }
 
 void uart_proc(void) {
-
+	while (1) {
+		__disable_irq();
+		__enable_irq();
+		i_release_processor();
+	}
 }

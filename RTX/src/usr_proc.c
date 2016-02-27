@@ -6,6 +6,8 @@
 #include "printf.h"
 #endif /* DEBUG_0 */
 
+void proc0(void);
+
 /* initialization table item */
 PROC_INIT g_test_procs[NUM_TEST_PROCS];
 
@@ -68,7 +70,8 @@ void set_test_procs() {
 		g_test_procs[i].i_process = 0;
 	}
   
-	g_test_procs[0].start_pc = &proc1;
+	// g_test_procs[0].start_pc = &proc1;
+	g_test_procs[0].start_pc = &proc0;
 	g_test_procs[1].start_pc = &proc2;
 	g_test_procs[2].start_pc = &proc3;
 	g_test_procs[3].start_pc = &proc4;
@@ -76,6 +79,12 @@ void set_test_procs() {
 	g_test_procs[5].start_pc = &proc6;
 
 	g_test_procs[0].priority = HIGH;
+}
+
+void proc0(void) {
+	while (1) {
+
+	}
 }
 
 // Request 4 memory blocks, then release all 4.

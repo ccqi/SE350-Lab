@@ -25,6 +25,12 @@ void memory_init() {
 		p_end += sizeof(PCB);
 	}
 
+	// Timeout queue
+	gp_timeout_queue = (MSG_QUEUE*) p_end;
+	gp_timeout_queue->first = NULL;
+	gp_timeout_queue->last = NULL;
+	p_end += sizeof(MSG_QUEUE);
+
 	// Allocate memory for priority queue
 	gp_pcb_queue = (PROC_QUEUE**) p_end;
 	p_end += NUM_PROC_PRIORITY * sizeof(PROC_QUEUE*);

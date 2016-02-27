@@ -1,5 +1,7 @@
 #include "message.h"
 
+MSG_QUEUE *gp_timeout_queue;
+
 int k_send_message(int pid, void *p_msg) {
 	PCB* pcb = process_find(gp_pcb_queue, pid);
 	MSG *msg = (MSG*) p_msg;
@@ -34,4 +36,26 @@ void *k_receive_message(int *p_pid) {
 	}
 	__enable_irq();
 	return message_queue_dequeue(q);
+}
+
+int k_delayed_send(int process_id, void *message_envelope, int delay) {
+	PCB* pcb = process_find(gp_pcb_queue, process_id);
+	MSG *msg = (MSG*) message_envelope;
+
+	if (pcb == NULL || msg == NULL) {
+		return RTX_ERR;
+	}
+	
+	__disable_irq();
+
+	msg->sPID = (int) gp_current_process->id;
+	msg->rPID = process_id;
+
+	msg->expiry = (U32) delay;
+
+	message_queue_enqueue(gp_timeout_queue, msg);
+
+	__enable_irq();
+
+	return RTX_OK;
 }

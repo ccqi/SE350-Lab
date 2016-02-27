@@ -143,8 +143,10 @@ int process_switch(PCB *p_pcb_old) {
 	/* The following will only execute if the if block above is FALSE */
 	if (gp_current_process != p_pcb_old) {
 		if (state == READY) {
-			if (p_pcb_old->state != BLOCK) {
-				p_pcb_old->state = READY;
+			if (p_pcb_old->state != WAITING_FOR_INTERRUPT) {
+				if (p_pcb_old->state != BLOCK) {
+					p_pcb_old->state = READY;
+				}
 			}
 			p_pcb_old->sp = (U32 *) __get_MSP(); // save the old process's sp
 			gp_current_process->state = RUN;
@@ -190,10 +192,18 @@ void null_process() {
 }
 
 // I PROCESSES
+void i_release_processor() {
+	gp_current_process->state = WAITING_FOR_INTERRUPT;
+	k_release_processor();
+}
+
 void i_process_switch(PCB *i_process) {
 	PCB *p_pcb_old = NULL;
 	p_pcb_old = gp_current_process;
 	gp_current_process = i_process;
+	if (i_process->state != NEW) {
+		i_process->state = READY;
+	}
 	process_switch(p_pcb_old);
 }
 

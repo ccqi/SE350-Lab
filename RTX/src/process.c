@@ -17,6 +17,9 @@ PROC_INIT g_proc_table[NUM_PROCS];
 
 PCB **gp_pcbs_ready;
 
+PCB *i_timer;
+PCB *i_uart;
+
 void null_process(void);
 void set_null_proc(void);
 
@@ -69,6 +72,12 @@ void process_init() {
 			// Add to priority queue
 			gp_pcbs[i]->priority = g_proc_table[i].priority;
 			process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
+		} else {
+			if (gp_pcbs[i]->id == 14) {
+				i_timer = gp_pcbs[i];
+			} else if (gp_pcbs[i]->id == 15) {
+				i_uart = gp_pcbs[i];
+			}
 		}
 	}
 }
@@ -177,4 +186,13 @@ void null_process() {
 	while (1) {
 		k_release_processor();
 	}
+}
+
+// I PROCESSES
+PCB *get_timer_process() {
+	return i_timer;
+}
+
+PCB *get_uart_process() {
+	return i_uart;
 }

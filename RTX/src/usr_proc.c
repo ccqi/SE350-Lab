@@ -125,6 +125,12 @@ void proc2(void)
 	void *block2 = NULL;
 	void *block3 = NULL;
 	void *block4 = NULL;
+
+	// todo fix stuff
+	while (1) {
+		
+	}
+
 	while (1) {
 		block1 = request_memory_block();
 		block2 = request_memory_block();

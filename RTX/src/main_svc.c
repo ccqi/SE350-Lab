@@ -22,13 +22,13 @@
 #include "printf.h"
 #endif /* DEBUG_0 */
 
-extern volatile uint32_t g_timer_count;
-extern uint8_t g_send_char;
+// extern volatile uint32_t g_timer_count;
+// extern uint8_t g_send_char;
 
 int main() 
 {
-	volatile uint8_t sec = 0;
-	LPC_UART_TypeDef *pUart;
+	// volatile uint8_t sec = 0;
+	// LPC_UART_TypeDef *pUart;
 
 	/* CMSIS system initialization */
 	SystemInit(); 
@@ -43,12 +43,12 @@ int main()
 #endif /* DEBUG_0 */
 
 	/* start the RTX and built-in processes */
-	// rtx_init();
+	rtx_init();
 
-	uart1_put_string("COM1> Type a character at COM0 terminal\n\r");
-	pUart = (LPC_UART_TypeDef *) LPC_UART0;
+	// uart1_put_string("COM1> Type a character at COM0 terminal\n\r");
+	// pUart = (LPC_UART_TypeDef *) LPC_UART0;
   
-	while( 1 ) {
+	// while( 1 ) {
 		// if (g_send_char == 0) {
 		// 	/* Enable RBR, THRE is disabled */
 		// 	pUart->IER = IER_RLS | IER_RBR;
@@ -56,7 +56,7 @@ int main()
 		// 	/* Enable THRE, RBR left as enabled */
 		// 	pUart->IER = IER_THRE | IER_RLS | IER_RBR;
 		// }
-	}
+	// }
 
 	/* We should never reach here!!! */
 	return RTX_ERR;  

@@ -68,7 +68,7 @@ void process_init() {
 		}
 		gp_pcbs[i]->sp = sp;
 
-		if (i <= 7) {
+		if (i < 7) {
 			// Add to priority queue
 			gp_pcbs[i]->priority = g_proc_table[i].priority;
 			process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
@@ -118,7 +118,7 @@ PCB *scheduler(PCB* p_pcb_old) {
 		gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
 	}
 	#ifdef DEBUG_0
-	printf("gp_current_process->id = 0x%x \n", gp_current_process->id);
+	// printf("gp_current_process->id = 0x%x \n", gp_current_process->id);
 	#endif
 	return gp_current_process;
 }
@@ -180,6 +180,7 @@ void set_null_proc() {
 	g_proc_table[0].stack_size = 0x100;
 	g_proc_table[0].start_pc = &null_process;
 	g_proc_table[0].priority = LOWEST + 1;
+	g_proc_table[0].i_process = 0;
 }
 
 void null_process() {
@@ -189,10 +190,13 @@ void null_process() {
 }
 
 // I PROCESSES
-PCB *get_timer_process() {
-	return i_timer;
+void i_process_switch(PCB *i_process) {
+	PCB *p_pcb_old = NULL;
+	p_pcb_old = gp_current_process;
+	gp_current_process = i_process;
+	process_switch(p_pcb_old);
 }
 
-PCB *get_uart_process() {
-	return i_uart;
+void run_i_timer(void) {
+	i_process_switch(i_timer);
 }

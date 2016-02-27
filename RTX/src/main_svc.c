@@ -17,7 +17,7 @@
 #include "rtx.h"
 #include "uart.h"
 #include "uart_polling.h"
-#include "timer.h"
+// #include "timer.h"
 #ifdef DEBUG_0
 #include "printf.h"
 #endif /* DEBUG_0 */
@@ -32,10 +32,10 @@ int main()
 
 	/* CMSIS system initialization */
 	SystemInit(); 
-	__disable_irq();
-	uart0_irq_init(); // uart0 interrupt driven, for RTX console
-	uart1_init();     // uart1 polling, for debugging
-	timer_init(0); /* initialize timer 0 */
+	// __disable_irq();
+	// uart0_irq_init(); // uart0 interrupt driven, for RTX console
+	// uart1_init();     // uart1 polling, for debugging
+	// timer_init(0); /* initialize timer 0 */
 	__enable_irq();
 
 #ifdef DEBUG_0

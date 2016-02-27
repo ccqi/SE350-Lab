@@ -20,7 +20,6 @@ int k_set_process_priority(int process_id, int priority);
 int k_get_process_priority(int process_id);
 int k_release_processor(void);
 
-PCB *get_timer_process(void);
-PCB *get_uart_process(void);
+void run_i_timer(void);
 
 #endif

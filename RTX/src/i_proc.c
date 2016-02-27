@@ -1,4 +1,3 @@
-#include "rtx.h"
 #include "i_proc.h"
 
 #ifdef DEBUG_0
@@ -8,9 +7,11 @@
 /* initialization table item */
 PROC_INIT g_i_procs[2];
 
+volatile uint8_t sec = 0;
+
 void set_i_procs(void) {
 	int i;
-	for(i = 0; i < 2; i++) {
+	for (i = 0; i < 2; i++) {
 		g_i_procs[i].priority=LOWEST;
 		g_i_procs[i].stack_size=0x100;
 		g_i_procs[i].i_process = 1;
@@ -22,9 +23,20 @@ void set_i_procs(void) {
 }
 
 void timer_proc(void) {
-
+	while (1) {
+		__disable_irq();
+		if (g_timer_count >= SECOND) {
+			sec++;
+			g_timer_count = 0;
+			#ifdef DEBUG_0
+				printf("timer = 0x%x \n", sec);
+			#endif
+		}
+		__enable_irq();
+		release_processor();
+	}
 }
 
 void uart_proc(void) {
-	
+
 }

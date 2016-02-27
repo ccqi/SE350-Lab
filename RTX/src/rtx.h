@@ -8,7 +8,7 @@
 #define RTX_OK 0
 
 #define NUM_TEST_PROCS 6
-#define NUM_PROCS 7
+#define NUM_PROCS 9
 
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 30
@@ -22,8 +22,8 @@ typedef enum {
 	BLOCK,
 	WAIT,
 	RUN,
-	INTERRUPT,
-	BLOCKED_ON_RECEIVE
+	BLOCKED_ON_RECEIVE,
+	WAITING_FOR_INTERRUPT
 } PROC_STATE;
 
 // PROC_QUEUE
@@ -38,6 +38,7 @@ typedef struct {
 	void *next;
 	int sPID;
 	int rPID;
+	U32 expiry;
 	int kdata[5];
 #endif
 	int type;
@@ -56,6 +57,7 @@ typedef struct {
 	PROC_STATE state;
 	U32 id;
 	int priority;
+	int i_process;
 	// Registers
 	U32 pc;
 	U32 *sp;
@@ -75,6 +77,7 @@ typedef struct proc_init
 	U32 pid;
 	int priority;
 	int stack_size;
+	int i_process;
 	void (*start_pc) ();
 } PROC_INIT;
 
@@ -116,9 +119,8 @@ extern void *k_receive_message(int *p_pid);
 extern void *_receive_message(U32 p_func, void *p_pid) __SVC_0;
 
 /* Timing Service */
-// extern int k_delayed_send(int pid, void *p_msg, int delay);
-// #define delayed_send(pid, p_msg, delay) _delayed_send((U32)k_delayed_send, pid, p_msg, delay)
-// extern int _delayed_send(U32 p_func, int pid, void *p_msg, int delay) __SVC_0;  
-// #endif /* !RTX_H_ */
+extern int k_delayed_send(int pid, void *p_msg, int delay);
+#define delayed_send(pid, p_msg, delay) _delayed_send((U32)k_delayed_send, pid, p_msg, delay)
+extern int _delayed_send(U32 p_func, int pid, void *p_msg, int delay) __SVC_0;  
 
 #endif

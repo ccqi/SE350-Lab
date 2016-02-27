@@ -6,6 +6,8 @@
 #include "printf.h"
 #endif /* DEBUG_0 */
 
+void proc0(void);
+
 /* initialization table item */
 PROC_INIT g_test_procs[NUM_TEST_PROCS];
 
@@ -65,9 +67,11 @@ void set_test_procs() {
 		g_test_procs[i].pid=(U32)(i+1);
 		g_test_procs[i].priority=LOWEST;
 		g_test_procs[i].stack_size=0x100;
+		g_test_procs[i].i_process = 0;
 	}
   
-	g_test_procs[0].start_pc = &proc1;
+	// g_test_procs[0].start_pc = &proc1;
+	g_test_procs[0].start_pc = &proc0;
 	g_test_procs[1].start_pc = &proc2;
 	g_test_procs[2].start_pc = &proc3;
 	g_test_procs[3].start_pc = &proc4;
@@ -75,6 +79,12 @@ void set_test_procs() {
 	g_test_procs[5].start_pc = &proc6;
 
 	g_test_procs[0].priority = HIGH;
+}
+
+void proc0(void) {
+	while (1) {
+
+	}
 }
 
 // Request 4 memory blocks, then release all 4.
@@ -125,6 +135,12 @@ void proc2(void)
 	void *block2 = NULL;
 	void *block3 = NULL;
 	void *block4 = NULL;
+
+	// todo fix stuff
+	while (1) {
+
+	}
+
 	while (1) {
 		block1 = request_memory_block();
 		block2 = request_memory_block();

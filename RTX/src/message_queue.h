@@ -1,8 +1,6 @@
 #ifndef _MESSAGE_QUEUE_H
 #define _MESSAGE_QUEUE_H
 
-#define K_MSG_ENV
-
 #include "rtx.h"
 
 void message_queue_enqueue(MSG_QUEUE *queue, MSG *msg);

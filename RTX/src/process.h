@@ -24,5 +24,6 @@ int k_get_process_priority(int process_id);
 int k_release_processor(void);
 
 void run_i_timer(void);
+void run_i_uart(void);
 
 #endif

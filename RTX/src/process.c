@@ -177,7 +177,7 @@ int process_switch(PCB *p_pcb_old) {
 
 int k_release_processor() {
 	PCB *p_pcb_old = NULL;
-	
+
 	p_pcb_old = gp_current_process;
 	gp_current_process = scheduler(p_pcb_old);
 	
@@ -225,4 +225,8 @@ void i_process_switch(PCB *i_process) {
 
 void run_i_timer(void) {
 	i_process_switch(i_timer);
+}
+
+void run_i_uart(void) {
+	i_process_switch(i_uart);
 }

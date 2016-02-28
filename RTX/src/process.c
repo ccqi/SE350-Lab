@@ -17,6 +17,9 @@ PROC_INIT g_proc_table[NUM_PROCS];
 
 PCB **gp_pcbs_ready;
 
+PCB *s_kcd;
+PCB *s_crt;
+
 PCB *i_timer;
 PCB *i_uart;
 
@@ -38,9 +41,20 @@ void process_init() {
 		g_proc_table[i].i_process = g_test_procs[i - 1].i_process;
 	}
 
+	i = NUM_TEST_PROCS;
+	// System Processes
+	set_s_procs();
+for (j = 0; j < 2; j++) {
+		i++;
+		g_proc_table[i].pid = g_s_procs[j].pid;
+		g_proc_table[i].stack_size = g_s_procs[j].stack_size;
+		g_proc_table[i].start_pc = g_s_procs[j].start_pc;
+		g_proc_table[i].priority = g_s_procs[j].priority;
+		g_proc_table[i].i_process = g_s_procs[j].i_process;
+	}
+
 	// I-Processes
 	set_i_procs();
-	i = NUM_TEST_PROCS;
 	for (j = 0; j < 2; j++) {
 		i++;
 		g_proc_table[i].pid = g_i_procs[j].pid;
@@ -68,16 +82,18 @@ void process_init() {
 		}
 		gp_pcbs[i]->sp = sp;
 
-		if (i < 7) {
+		if (gp_pcbs[i]->id == PID_KCD) {
+			s_kcd = gp_pcbs[i];
+		} else if (gp_pcbs[i]->id == PID_CRT) {
+			s_crt = gp_pcbs[i];
+		} else if (gp_pcbs[i]->id == PID_TIMER_IPROC) {
+			i_timer = gp_pcbs[i];
+		} else if (gp_pcbs[i]->id == PID_UART_IPROC) {
+			i_uart = gp_pcbs[i];
+		} else {
 			// Add to priority queue
 			gp_pcbs[i]->priority = g_proc_table[i].priority;
 			process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
-		} else {
-			if (gp_pcbs[i]->id == 14) {
-				i_timer = gp_pcbs[i];
-			} else if (gp_pcbs[i]->id == 15) {
-				i_uart = gp_pcbs[i];
-			}
 		}
 	}
 }

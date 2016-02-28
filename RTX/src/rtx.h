@@ -42,8 +42,7 @@ typedef struct {
 	int kdata[5];
 #endif
 	int type;
-	// U32 *data;
-	void *text;
+	char text[1];
 } MSG;
 
 // MSG_QUEUE

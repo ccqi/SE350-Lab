@@ -144,7 +144,7 @@ int process_switch(PCB *p_pcb_old) {
 	if (gp_current_process != p_pcb_old) {
 		if (state == READY) {
 			if (p_pcb_old->state != WAITING_FOR_INTERRUPT) {
-				if (p_pcb_old->state != BLOCK) {
+				if (p_pcb_old->state != BLOCK && p_pcb_old->state != BLOCKED_ON_RECEIVE) {
 					p_pcb_old->state = READY;
 				}
 			}

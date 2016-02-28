@@ -7,8 +7,10 @@
 #include "message_queue.h"
 
 extern volatile uint32_t g_timer_count;
+extern MSG_QUEUE *gp_timeout_queue;
 
 extern void i_release_processor(void);
+extern int i_send_message(void *p_msg);
 
 void set_i_procs(void);
 void timer_proc(void);

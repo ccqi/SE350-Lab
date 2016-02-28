@@ -20,9 +20,12 @@ void memory_init() {
 	p_end += NUM_PROCS * sizeof(PCB*);
 	for (i = 0; i < NUM_PROCS; i++) {
 		gp_pcbs[i] = (PCB*) p_end;
+		p_end += sizeof(PCB);
+
+		gp_pcbs[i]->message_queue = (MSG_QUEUE*) p_end;
 		gp_pcbs[i]->message_queue->first = NULL;
 		gp_pcbs[i]->message_queue->last = NULL;
-		p_end += sizeof(PCB);
+		p_end += sizeof(MSG_QUEUE);
 	}
 
 	// Timeout queue
@@ -73,7 +76,7 @@ U32 *alloc_stack(U32 size_b)
 
 void *k_request_memory_block() {
 	U32 *block = NULL;
-	__disable_irq();
+
 	while (gp_current_process->memory_block == NULL && heap_empty(&p_heap)) {
 		// Block current process until a block is free
 		gp_current_process->state = BLOCK;
@@ -85,7 +88,6 @@ void *k_request_memory_block() {
 	} else { // Memory available in heap
 		block = heap_pop(&p_heap);
 	}
-	__enable_irq();
 	return block;
 }
 
@@ -96,7 +98,6 @@ int k_release_memory_block(void *memory_block) {
 		return RTX_ERR;
 	}
 	
-	__disable_irq();
 	// Check for blocked resources
 	blocked_process = (PCB*) process_peek_block(gp_pcb_queue);
 	if (blocked_process != NULL) {
@@ -109,6 +110,5 @@ int k_release_memory_block(void *memory_block) {
 		// Push back onto heap
 		heap_push(&p_heap, memory_block);
 	}
-	__enable_irq();
 	return RTX_OK;
 }

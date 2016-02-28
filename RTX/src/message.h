@@ -14,4 +14,6 @@ int k_send_message(int pid, void *p_msg);
 void *k_receive_message(int *p_pid);
 int k_delayed_send(int process_id, void *message_envelope, int delay);
 
+int i_send_message(void *p_msg);
+
 #endif

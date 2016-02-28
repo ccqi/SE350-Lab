@@ -30,7 +30,7 @@ void *message_queue_peek(MSG_QUEUE *queue) {
 
 int message_queue_empty(MSG_QUEUE *queue) {
 	if (message_queue_peek(queue) == NULL) {
-		return 0;
+		return 1;
 	}
-	return 1;
+	return 0;
 }

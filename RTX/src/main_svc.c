@@ -36,7 +36,7 @@ int main()
 	// uart0_irq_init(); // uart0 interrupt driven, for RTX console
 	// uart1_init();     // uart1 polling, for debugging
 	// timer_init(0); /* initialize timer 0 */
-	__enable_irq();
+	// __enable_irq();
 
 #ifdef DEBUG_0
 	init_printf(NULL, putc);

@@ -17,15 +17,19 @@ void process_enqueue(PROC_QUEUE **p_queue, PCB *pcb, int priority) {
 
 void *process_dequeue(PROC_QUEUE **p_queue) {
 	int i;
+	PCB *m_pcb;
 	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
 		PROC_QUEUE *q = p_queue[i];
 		U32 *pcb = q->first;
 		if (pcb != NULL) {
-			q->first = ((PCB*) pcb)->next;
-			if (q->first == NULL) {
-				q->last = NULL;
+			m_pcb = (PCB*) pcb;
+			if (m_pcb->state != BLOCK && m_pcb->state != BLOCKED_ON_RECEIVE) {
+				q->first = m_pcb->next;
+				if (q->first == NULL) {
+					q->last = NULL;
+				}
+				return pcb;
 			}
-			return pcb;
 		}
 	}
 	return NULL;
@@ -96,7 +100,7 @@ void *process_peek_ready(PROC_QUEUE **p_queue) {
 		PROC_QUEUE *q = p_queue[i];
 		PCB *pcb = (PCB*) q->first;
 		while (pcb != NULL) {
-			if (pcb->state != BLOCK) {
+			if (pcb->state != BLOCK && pcb->state != BLOCKED_ON_RECEIVE) {
 				return pcb;
 			}
 			pcb = (PCB*) pcb->next;

@@ -82,8 +82,29 @@ void set_test_procs() {
 }
 
 void proc0(void) {
-	while (1) {
+	int *sender_id;
+	int i;
+	char c;
+	MSG *msg;
 
+	while (1) {
+		msg = (MSG*) request_memory_block();
+		msg->type = DEFAULT;
+		msg->text[0] = 'a';
+		msg->text[1] = 'b';
+		msg->text[2] = 'c';
+		msg->text[3] = '\0';
+		delayed_send(1, msg, 50);
+		msg = (MSG*) receive_message(sender_id);
+		i = 0;
+		while (msg->text[i] != '\0') {
+			c = msg->text[i];
+			uart1_put_char(c);
+			i++;
+		}
+		uart1_put_char('\n');
+		release_memory_block(msg);
+		release_processor();
 	}
 }
 
@@ -138,7 +159,7 @@ void proc2(void)
 
 	// todo fix stuff
 	while (1) {
-
+		release_processor();
 	}
 
 	while (1) {
@@ -182,6 +203,10 @@ void proc3(void) {
 	void *block2 = NULL;
 	void *block3 = NULL;
 	void *block4 = NULL;
+
+	while (1) {
+		release_processor();
+	}
 
 	// proc2 successfully preempted
 	if (test_2_ok != -1) {
@@ -231,6 +256,11 @@ void proc4(void) {
 	int p3;
 	int p4;
 	int p5;
+
+	while (1) {
+		release_processor();
+	}
+
 	while (1) {
 		p1 = get_process_priority(1);
 		p2 = get_process_priority(2);
@@ -257,6 +287,11 @@ void proc5(void)
 	int ret3;
 	int ret4;
 	void *block = NULL;
+
+	while (1) {
+		release_processor();
+	}
+
 	while (1) {
 		// Change null priority
 		ret1 = set_process_priority(0, LOWEST);
@@ -295,6 +330,11 @@ void proc5(void)
 void proc6(void)
 {
 	int i;
+
+	while (1) {
+		release_processor();
+	}
+
 	while (1) {
 		for (i = 0; i < 4; i++) {
 			request_memory_block();

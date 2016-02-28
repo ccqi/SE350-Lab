@@ -35,6 +35,7 @@ void timer_proc(void) {
 	MSG *prev_message;
 
 	while (1) {
+		__disable_irq();
 		g_timer_count++;
 
 		if (g_timer_count >= SECOND) {

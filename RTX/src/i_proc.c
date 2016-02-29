@@ -5,12 +5,7 @@
 #endif /* DEBUG_0 */
 
 // UART
-extern uint8_t g_buffer[];
-extern uint8_t *gp_buffer;
-extern uint8_t g_send_char;
 extern uint8_t g_char_in;
-extern uint8_t g_char_out;
-extern uint32_t g_switch_flag;
 
 /* initialization table item */
 PROC_INIT g_i_procs[2];
@@ -77,23 +72,18 @@ void timer_proc(void) {
 }
 
 void uart_proc(void) {
-	uint8_t IIR_IntId;	    // Interrupt ID from IIR
-	LPC_UART_TypeDef *pUart;
 	while (1) {	
 		__disable_irq();
-		pUart = (LPC_UART_TypeDef *)LPC_UART0;
-
 		#ifdef DEBUG_0
 		uart1_put_string("Entering c_UART0_IRQHandler\n\r");
 		#endif // DEBUG_0
 
-		if (g_send_char) {
-			#ifdef DEBUG_0
-			uart1_put_string("Reading a char = ");
-			uart1_put_char(g_char_in);
-			uart1_put_string("\n\r");
-			#endif // DEBUG_0
-		}
+		#ifdef DEBUG_0
+		uart1_put_string("Reading a char = ");
+		uart1_put_char(g_char_in);
+		uart1_put_string("\n\r");
+		#endif // DEBUG_0
+
 		__enable_irq();
 		release_processor();
 	}

@@ -466,6 +466,21 @@
               <FileType>5</FileType>
               <FilePath>.\src\rtx.h</FilePath>
             </File>
+            <File>
+              <FileName>i_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\i_proc.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart_irq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\uart_irq.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

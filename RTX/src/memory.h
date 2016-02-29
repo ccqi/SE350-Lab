@@ -14,6 +14,7 @@ extern PCB **gp_pcbs;
 extern PROC_QUEUE **gp_pcb_queue;
 extern PROC_INIT g_proc_table[NUM_PROCS];
 extern MSG_QUEUE *gp_timeout_queue;
+extern char *gp_input_buffer;
 extern int k_release_processor(void);
 
 void memory_init(void);

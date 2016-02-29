@@ -10,6 +10,9 @@ extern uint8_t g_char_in;
 /* initialization table item */
 PROC_INIT g_i_procs[2];
 
+char *gp_input_buffer;
+int input_buffer_index = 0;
+
 volatile uint8_t sec = 0;
 
 void set_i_procs(void) {
@@ -71,6 +74,10 @@ void timer_proc(void) {
 	}
 }
 
+char read_char(int i) {
+	return (input_buffer_index - i) >= 0 ? gp_input_buffer[input_buffer_index - i] : gp_input_buffer[input_buffer_index - i + 10];
+}
+
 void uart_proc(void) {
 	while (1) {	
 		__disable_irq();
@@ -84,6 +91,23 @@ void uart_proc(void) {
 		uart1_put_string("\n\r");
 		#endif // DEBUG_0
 
+		// Add input to buffer
+		gp_input_buffer[input_buffer_index] = g_char_in;
+		
+		// Read input
+		#ifdef _DEBUG_HOTKEYS
+		if (input_buffer_index >= 2) {
+			uart1_put_char(read_char(0));
+			uart1_put_char(read_char(1));
+			uart1_put_char(read_char(2));
+			uart1_put_string("\n\r");
+		}
+		#endif		
+
+		// Check if need to loop buffer index
+		if (++input_buffer_index > 9) {
+			input_buffer_index = 0;
+		}
 		__enable_irq();
 		release_processor();
 	}

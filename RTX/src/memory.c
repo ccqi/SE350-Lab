@@ -34,6 +34,10 @@ void memory_init() {
 	gp_timeout_queue->last = NULL;
 	p_end += sizeof(MSG_QUEUE);
 
+	// Input buffer from uart
+	gp_input_buffer = (char*) p_end;
+	p_end += 10 * sizeof(char);
+
 	// Allocate memory for priority queue
 	gp_pcb_queue = (PROC_QUEUE**) p_end;
 	p_end += NUM_PROC_PRIORITY * sizeof(PROC_QUEUE*);

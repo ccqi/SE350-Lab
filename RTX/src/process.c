@@ -9,8 +9,6 @@
 PCB **gp_pcbs;
 PCB *gp_current_process = NULL;
 
-U32 g_switch_flag = 0;
-
 PROC_QUEUE **gp_pcb_queue;
 
 PROC_INIT g_proc_table[NUM_PROCS];

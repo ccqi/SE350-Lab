@@ -348,7 +348,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>DEBUG_0 K_MSG_ENV _DEBUG_HOTKEYS</Define>
               <Undefine></Undefine>
               <IncludePath></IncludePath>
             </VariousControls>
@@ -465,6 +465,31 @@
               <FileName>rtx.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\src\rtx.h</FilePath>
+            </File>
+            <File>
+              <FileName>i_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\i_proc.c</FilePath>
+            </File>
+            <File>
+              <FileName>message.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\message.c</FilePath>
+            </File>
+            <File>
+              <FileName>message_queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\message_queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>s_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\s_proc.c</FilePath>
             </File>
           </Files>
         </Group>

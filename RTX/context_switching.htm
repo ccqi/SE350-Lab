@@ -3,11 +3,11 @@
 <title>Static Call Graph - [C:\Users\Ernest\Desktop\Winter 2016\SE 350\P2\SE350-Lab\RTX\context_switching.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image C:\Users\Ernest\Desktop\Winter 2016\SE 350\P2\SE350-Lab\RTX\context_switching.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Sun Feb 28 04:14:12 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.02 [Build 28]: Last Updated: Mon Feb 29 05:27:03 2016
 <BR><P>
-<H3>Maximum Stack Usage =        136 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        120 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
-uart_proc &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
+timer_proc &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
 <P>
 <H3>
 Functions with no stack information
@@ -233,7 +233,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[12]"></a>UART0_IRQHandler</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, uart_irq.o(.emb_text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = UART0_IRQHandler &rArr; c_UART0_IRQHandler &rArr; run_i_uart &rArr; i_process_switch &rArr; process_switch
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = UART0_IRQHandler &rArr; c_UART0_IRQHandler &rArr; run_i_uart &rArr; i_process_switch &rArr; process_switch
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;c_UART0_IRQHandler
 </UL>
@@ -483,7 +483,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_format
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_proc
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_proc
 </UL>
 
 <P><STRONG><a name="[55]"></a>tfp_sprintf</STRONG> (Thumb, 38 bytes, Stack size 24 bytes, printf.o(.text), UNUSED)
@@ -508,8 +507,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[33]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_rtx_init
 </UL>
 
-<P><STRONG><a name="[4a]"></a>c_UART0_IRQHandler</STRONG> (Thumb, 10 bytes, Stack size 8 bytes, uart_irq.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = c_UART0_IRQHandler &rArr; run_i_uart &rArr; i_process_switch &rArr; process_switch
+<P><STRONG><a name="[4a]"></a>c_UART0_IRQHandler</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, uart_irq.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = c_UART0_IRQHandler &rArr; run_i_uart &rArr; i_process_switch &rArr; process_switch
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_i_uart
 </UL>
@@ -722,11 +721,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;k_release_memory_block
 </UL>
 
-<P><STRONG><a name="[75]"></a>uart_proc</STRONG> (Thumb, 200 bytes, Stack size 16 bytes, i_proc.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = uart_proc &rArr; tfp_printf &rArr; tfp_format &rArr; putchw
+<P><STRONG><a name="[75]"></a>uart_proc</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, i_proc.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = uart_proc &rArr; uart_put_string
 </UL>
-<BR>[Calls]<UL><LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tfp_printf
-<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_string
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_string
 <LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_put_char
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> i_proc.o(.text)

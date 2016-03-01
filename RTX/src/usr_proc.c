@@ -82,7 +82,7 @@ void set_test_procs() {
 }
 
 void proc0(void) {
-	int *sender_id;
+	int sender_id;
 	int i;
 	char c;
 	MSG *msg;
@@ -95,7 +95,7 @@ void proc0(void) {
 		msg->text[2] = 'c';
 		msg->text[3] = '\0';
 		delayed_send(1, msg, 50);
-		msg = (MSG*) receive_message(sender_id);
+		msg = (MSG*) receive_message(&sender_id);
 		i = 0;
 		while (msg->text[i] != '\0') {
 			c = msg->text[i];

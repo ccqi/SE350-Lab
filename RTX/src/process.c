@@ -42,7 +42,7 @@ void process_init() {
 	i = NUM_TEST_PROCS;
 	// System Processes
 	set_s_procs();
-for (j = 0; j < 2; j++) {
+	for (j = 0; j < 2; j++) {
 		i++;
 		g_proc_table[i].pid = g_s_procs[j].pid;
 		g_proc_table[i].stack_size = g_s_procs[j].stack_size;
@@ -88,7 +88,9 @@ for (j = 0; j < 2; j++) {
 			i_timer = gp_pcbs[i];
 		} else if (gp_pcbs[i]->id == PID_UART_IPROC) {
 			i_uart = gp_pcbs[i];
-		} else {
+		}
+
+		if (gp_pcbs[i]->id < PID_TIMER_IPROC) {
 			// Add to priority queue
 			gp_pcbs[i]->priority = g_proc_table[i].priority;
 			process_enqueue(gp_pcb_queue, gp_pcbs[i], gp_pcbs[i]->priority);
@@ -127,7 +129,7 @@ int k_get_process_priority(int process_id) {
 PCB *scheduler(PCB* p_pcb_old) {
 	gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
 	if (gp_current_process == p_pcb_old) {
-		process_dequeue(gp_pcb_queue);
+		process_remove(gp_pcb_queue, gp_current_process->id);
 		process_enqueue(gp_pcb_queue, gp_current_process, gp_current_process->priority);
 		gp_current_process = (PCB*) process_peek_ready(gp_pcb_queue);
 	}

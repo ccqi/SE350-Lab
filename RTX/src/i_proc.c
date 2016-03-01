@@ -10,9 +10,6 @@ extern uint8_t g_char_in;
 /* initialization table item */
 PROC_INIT g_i_procs[2];
 
-char *gp_input_buffer;
-int input_buffer_index = 0;
-
 volatile uint8_t sec = 0;
 
 void set_i_procs(void) {
@@ -74,12 +71,8 @@ void timer_proc(void) {
 	}
 }
 
-char read_char(int i) {
-	return (input_buffer_index - i) >= 0 ? gp_input_buffer[input_buffer_index - i] : gp_input_buffer[input_buffer_index - i + 10];
-}
-
 void uart_proc(void) {
-	char in;
+	MSG *msg;
 	while (1) {	
 		__disable_irq();
 		#ifdef DEBUG_0
@@ -91,27 +84,27 @@ void uart_proc(void) {
 		uart1_put_char(g_char_in);
 		uart1_put_string("\n\r");
 		#endif // DEBUG_0
-
-		// Add input to buffer
-		gp_input_buffer[input_buffer_index] = g_char_in;
 		
 		// Read input
 		#ifdef _DEBUG_HOTKEYS
-		in = read_char(0);
-		if (in == '!') {
+		if (g_char_in == '!') {
 			// Processes on ready queue(s) and their priority
-		} else if (in == '@') {
+		} else if (g_char_in == '@') {
 			// Processes on blocked on memory queue(s) and their priority
-		} else if (in == '#') {
+		} else if (g_char_in == '#') {
 			// Processes on blocked on receive queue(s) and their priority
 		}
 		#endif
 
 		// KCD
+		msg = (MSG*) i_request_memory_block();
+		if (msg != NULL) {
+			msg->sPID = PID_UART_IPROC;
+			msg->rPID = PID_KCD;
+			msg->type = UART_IN;
+			msg->text[0] = g_char_in;
 
-		// Check if need to loop buffer index
-		if (++input_buffer_index > 9) {
-			input_buffer_index = 0;
+			i_send_message(msg);
 		}
 		__enable_irq();
 		release_processor();

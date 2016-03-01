@@ -22,4 +22,6 @@ U32 *alloc_stack(U32 size_b);
 void *k_request_memory_block(void);
 int k_release_memory_block(void *memory_block);
 
+void *i_request_memory_block(void);
+
 #endif

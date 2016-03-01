@@ -68,7 +68,7 @@ F (.\src\heap.c)(0x56D228B6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\
 I (src\heap.h)(0x56D228B6)
 I (src\rtx.h)(0x56D421FD)
 I (src\common.h)(0x56D26F3B)
-F (.\src\memory.c)(0x56D423DB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "memory.o" --omf_browse "memory.crf" --depend "memory.d")
+F (.\src\memory.c)(0x56D427AF)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "memory.o" --omf_browse "memory.crf" --depend "memory.d")
 I (src\memory.h)(0x56D423A3)
 I (src\rtx.h)(0x56D421FD)
 I (src\common.h)(0x56D26F3B)
@@ -97,7 +97,7 @@ I (src\common.h)(0x56D26F3B)
 I (src\printf.h)(0x56D228B6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
 F (.\src\rtx.h)(0x56D421FD)()
-F (.\src\i_proc.c)(0x56D425E4)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "i_proc.o" --omf_browse "i_proc.crf" --depend "i_proc.d")
+F (.\src\i_proc.c)(0x56D42887)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "i_proc.o" --omf_browse "i_proc.crf" --depend "i_proc.d")
 I (src\i_proc.h)(0x56D4220D)
 I (C:\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
 I (C:\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)

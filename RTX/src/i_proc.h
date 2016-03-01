@@ -14,6 +14,8 @@ extern MSG_QUEUE *gp_timeout_queue;
 extern void i_release_processor(void);
 extern int i_send_message(void *p_msg);
 
+extern void *i_request_memory_block(void);
+
 void set_i_procs(void);
 void timer_proc(void);
 void uart_proc(void);

@@ -283,7 +283,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>101</TopLine>
+      <TopLine>102</TopLine>
       <CurrentLine>126</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\uart_polling.c</PathWithFileName>
@@ -313,10 +313,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>35</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>25</TopLine>
-      <CurrentLine>34</CurrentLine>
+      <CurrentLine>33</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\main_svc.c</PathWithFileName>
       <FilenameWithoutPath>main_svc.c</FilenameWithoutPath>
@@ -355,7 +355,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>23</TopLine>
+      <TopLine>14</TopLine>
       <CurrentLine>49</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\HAL.c</PathWithFileName>
@@ -417,9 +417,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>31</ColumnNumber>
+      <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>136</TopLine>
+      <TopLine>137</TopLine>
       <CurrentLine>153</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\process.c</PathWithFileName>
@@ -433,10 +433,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>32</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>98</TopLine>
-      <CurrentLine>102</CurrentLine>
+      <TopLine>89</TopLine>
+      <CurrentLine>118</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\process_queue.c</PathWithFileName>
       <FilenameWithoutPath>process_queue.c</FilenameWithoutPath>
@@ -515,7 +515,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>83</TopLine>
+      <TopLine>84</TopLine>
       <CurrentLine>109</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\timer.c</PathWithFileName>
@@ -553,10 +553,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>27</ColumnNumber>
+      <ColumnNumber>23</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>288</TopLine>
-      <CurrentLine>296</CurrentLine>
+      <TopLine>317</TopLine>
+      <CurrentLine>350</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\src\usr_proc.c</PathWithFileName>
       <FilenameWithoutPath>usr_proc.c</FilenameWithoutPath>

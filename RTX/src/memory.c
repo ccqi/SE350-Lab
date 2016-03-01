@@ -116,3 +116,13 @@ int k_release_memory_block(void *memory_block) {
 	}
 	return RTX_OK;
 }
+
+void *i_request_memory_block() {
+	U32 *block = NULL;
+
+	if (!heap_empty(&p_heap)) {
+		block = heap_pop(&p_heap);
+	}
+
+	return block;
+}

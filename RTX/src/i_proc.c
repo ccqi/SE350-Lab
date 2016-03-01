@@ -79,6 +79,7 @@ char read_char(int i) {
 }
 
 void uart_proc(void) {
+	char in;
 	while (1) {	
 		__disable_irq();
 		#ifdef DEBUG_0
@@ -96,13 +97,17 @@ void uart_proc(void) {
 		
 		// Read input
 		#ifdef _DEBUG_HOTKEYS
-		if (input_buffer_index >= 2) {
-			uart1_put_char(read_char(0));
-			uart1_put_char(read_char(1));
-			uart1_put_char(read_char(2));
-			uart1_put_string("\n\r");
+		in = read_char(0);
+		if (in == '!') {
+			// Processes on ready queue(s) and their priority
+		} else if (in == '@') {
+			// Processes on blocked on memory queue(s) and their priority
+		} else if (in == '#') {
+			// Processes on blocked on receive queue(s) and their priority
 		}
-		#endif		
+		#endif
+
+		// KCD
 
 		// Check if need to loop buffer index
 		if (++input_buffer_index > 9) {

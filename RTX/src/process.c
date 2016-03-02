@@ -40,6 +40,17 @@ void process_init() {
 	}
 
 	i = NUM_TEST_PROCS;
+	// User processes
+	set_u_procs();
+	for (j = 0; j < 1; j++) {
+		i++;
+		g_proc_table[i].pid = g_u_procs[j].pid;
+		g_proc_table[i].stack_size = g_u_procs[j].stack_size;
+		g_proc_table[i].start_pc = g_u_procs[j].start_pc;
+		g_proc_table[i].priority = g_u_procs[j].priority;
+		g_proc_table[i].i_process = g_u_procs[j].i_process;
+	}
+
 	// System Processes
 	set_s_procs();
 	for (j = 0; j < 2; j++) {

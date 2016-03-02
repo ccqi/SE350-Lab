@@ -115,11 +115,62 @@ void *process_peek_block(PROC_QUEUE **p_queue) {
 		PROC_QUEUE *q = p_queue[i];
 		PCB *pcb = (PCB*) q->first;
 		while (pcb != NULL) {
-			if (pcb->state == BLOCK) {
+			if (pcb->state == BLOCK || pcb->state == BLOCKED_ON_RECEIVE) {
 				return pcb;
 			}
 			pcb = (PCB*) pcb->next;
 		}
 	}
 	return NULL;
+}
+
+void process_print_ready(PROC_QUEUE **p_queue) {
+	#ifdef DEBUG_0
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		PCB *pcb = (PCB*) q->first;
+		printf("Priority: 0x%x \n\r", i);
+		while (pcb != NULL) {
+			if (pcb->state != BLOCK && pcb->state != BLOCKED_ON_RECEIVE) {
+				printf("PID: 0x%x \n\r", pcb->id);
+			}
+			pcb = (PCB*) pcb->next;
+		}
+	}
+	#endif
+}
+
+void process_print_blocked(PROC_QUEUE **p_queue) {
+	#ifdef DEBUG_0
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		PCB *pcb = (PCB*) q->first;
+		printf("Priority: 0x%x \n\r", i);
+		while (pcb != NULL) {
+			if (pcb->state == BLOCK) {
+				printf("PID: 0x%x \n\r", pcb->id);
+			}
+			pcb = (PCB*) pcb->next;
+		}
+	}
+	#endif
+}
+
+void process_print_blocked_on_receive(PROC_QUEUE **p_queue) {
+	#ifdef DEBUG_0
+	int i;
+	for (i = 0; i < NUM_PROC_PRIORITY; i++) {
+		PROC_QUEUE *q = p_queue[i];
+		PCB *pcb = (PCB*) q->first;
+		printf("Priority: 0x%x \n\r", i);
+		while (pcb != NULL) {
+			if (pcb->state == BLOCKED_ON_RECEIVE) {
+				printf("PID: 0x%x \n\r", pcb->id);
+			}
+			pcb = (PCB*) pcb->next;
+		}
+	}
+	#endif
 }

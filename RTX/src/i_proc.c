@@ -4,9 +4,6 @@
 #include "printf.h"
 #endif /* DEBUG_0 */
 
-// UART
-extern uint8_t g_char_in;
-
 /* initialization table item */
 PROC_INIT g_i_procs[2];
 
@@ -72,6 +69,7 @@ void timer_proc(void) {
 }
 
 void uart_proc(void) {
+	int i;
 	MSG *msg;
 	while (1) {	
 		__disable_irq();
@@ -89,10 +87,25 @@ void uart_proc(void) {
 		#ifdef _DEBUG_HOTKEYS
 		if (g_char_in == '!') {
 			// Processes on ready queue(s) and their priority
+			#ifdef DEBUG_0
+			printf("Ready processes:\n\r");
+			process_print_ready(gp_pcb_queue);
+			printf("End ready processes\n\r");
+			#endif
 		} else if (g_char_in == '@') {
 			// Processes on blocked on memory queue(s) and their priority
+			#ifdef DEBUG_0
+			printf("Memory blocked processes:\n\r");
+			process_print_blocked(gp_pcb_queue);
+			printf("End memory blocked processes\n\r");
+			#endif
 		} else if (g_char_in == '#') {
 			// Processes on blocked on receive queue(s) and their priority
+			#ifdef DEBUG_0
+			printf("Message blocked processes:\n\r");
+			process_print_blocked_on_receive(gp_pcb_queue);
+			printf("End message blocked processes\n\r");
+			#endif
 		}
 		#endif
 

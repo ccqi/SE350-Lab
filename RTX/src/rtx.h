@@ -54,7 +54,7 @@ typedef struct {
 // PCB
 typedef struct {
 	PROC_STATE state;
-	U32 id;
+	int id;
 	int priority;
 	int i_process;
 	// Registers

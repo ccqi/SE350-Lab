@@ -361,13 +361,13 @@ Image Symbol Table
     .text                                    0x000016d8   Section        0  s_proc.o(.text)
     .text                                    0x000018b4   Section        0  usr_proc.o(.text)
     .text                                    0x00001c2c   Section        0  u_proc.o(.text)
-    .text                                    0x00001ddc   Section        0  heapauxi.o(.text)
-    .text                                    0x00001de2   Section       74  sys_stackheap_outer.o(.text)
-    .text                                    0x00001e2c   Section        0  exit.o(.text)
-    .text                                    0x00001e38   Section        8  libspace.o(.text)
-    .text                                    0x00001e40   Section        0  sys_exit.o(.text)
-    .text                                    0x00001e4c   Section        2  use_no_semi.o(.text)
-    .text                                    0x00001e4e   Section        0  indicate_semi.o(.text)
+    .text                                    0x00001e6c   Section        0  heapauxi.o(.text)
+    .text                                    0x00001e72   Section       74  sys_stackheap_outer.o(.text)
+    .text                                    0x00001ebc   Section        0  exit.o(.text)
+    .text                                    0x00001ec8   Section        8  libspace.o(.text)
+    .text                                    0x00001ed0   Section        0  sys_exit.o(.text)
+    .text                                    0x00001edc   Section        2  use_no_semi.o(.text)
+    .text                                    0x00001ede   Section        0  indicate_semi.o(.text)
     .data                                    0x10000000   Section        4  system_lpc17xx.o(.data)
     .data                                    0x10000004   Section        8  printf.o(.data)
     stdout_putf                              0x10000004   Data           4  printf.o(.data)
@@ -594,22 +594,22 @@ Image Symbol Table
     proc1                                    0x00001abb   Thumb Code   176  usr_proc.o(.text)
     get_int                                  0x00001c2d   Thumb Code     8  u_proc.o(.text)
     is_int                                   0x00001c35   Thumb Code    22  u_proc.o(.text)
-    clock_proc                               0x00001c4b   Thumb Code   308  u_proc.o(.text)
-    set_u_procs                              0x00001d7f   Thumb Code    64  u_proc.o(.text)
-    __use_two_region_memory                  0x00001ddd   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_escrow$2region                 0x00001ddf   Thumb Code     2  heapauxi.o(.text)
-    __rt_heap_expand$2region                 0x00001de1   Thumb Code     2  heapauxi.o(.text)
-    __user_setup_stackheap                   0x00001de3   Thumb Code    74  sys_stackheap_outer.o(.text)
-    exit                                     0x00001e2d   Thumb Code    12  exit.o(.text)
-    __user_libspace                          0x00001e39   Thumb Code     8  libspace.o(.text)
-    __user_perproc_libspace                  0x00001e39   Thumb Code     0  libspace.o(.text)
-    __user_perthread_libspace                0x00001e39   Thumb Code     0  libspace.o(.text)
-    _sys_exit                                0x00001e41   Thumb Code     8  sys_exit.o(.text)
-    __I$use$semihosting                      0x00001e4d   Thumb Code     0  use_no_semi.o(.text)
-    __use_no_semihosting_swi                 0x00001e4d   Thumb Code     2  use_no_semi.o(.text)
-    __semihosting_library_function           0x00001e4f   Thumb Code     0  indicate_semi.o(.text)
-    Region$$Table$$Base                      0x00001e50   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001e70   Number         0  anon$$obj.o(Region$$Table)
+    clock_proc                               0x00001c4b   Thumb Code   454  u_proc.o(.text)
+    set_u_procs                              0x00001e11   Thumb Code    64  u_proc.o(.text)
+    __use_two_region_memory                  0x00001e6d   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_escrow$2region                 0x00001e6f   Thumb Code     2  heapauxi.o(.text)
+    __rt_heap_expand$2region                 0x00001e71   Thumb Code     2  heapauxi.o(.text)
+    __user_setup_stackheap                   0x00001e73   Thumb Code    74  sys_stackheap_outer.o(.text)
+    exit                                     0x00001ebd   Thumb Code    12  exit.o(.text)
+    __user_libspace                          0x00001ec9   Thumb Code     8  libspace.o(.text)
+    __user_perproc_libspace                  0x00001ec9   Thumb Code     0  libspace.o(.text)
+    __user_perthread_libspace                0x00001ec9   Thumb Code     0  libspace.o(.text)
+    _sys_exit                                0x00001ed1   Thumb Code     8  sys_exit.o(.text)
+    __I$use$semihosting                      0x00001edd   Thumb Code     0  use_no_semi.o(.text)
+    __use_no_semihosting_swi                 0x00001edd   Thumb Code     2  use_no_semi.o(.text)
+    __semihosting_library_function           0x00001edf   Thumb Code     0  indicate_semi.o(.text)
+    Region$$Table$$Base                      0x00001ee0   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001f00   Number         0  anon$$obj.o(Region$$Table)
     SystemFrequency                          0x10000000   Data           4  system_lpc17xx.o(.data)
     g_buffer                                 0x1000000c   Data          16  uart_irq.o(.data)
     gp_buffer                                0x1000001c   Data           4  uart_irq.o(.data)
@@ -659,9 +659,9 @@ Memory Map of the image
 
   Image Entry point : 0x000000cd
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001efc, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00001f8c, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x00001e70, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x00000000, Size: 0x00001f00, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -734,16 +734,16 @@ Memory Map of the image
     0x00001684   0x00000054   Code   RO          339    .text               timer.o
     0x000016d8   0x000001dc   Code   RO          363    .text               s_proc.o
     0x000018b4   0x00000378   Code   RO          382    .text               usr_proc.o
-    0x00001c2c   0x000001b0   Code   RO          401    .text               u_proc.o
-    0x00001ddc   0x00000006   Code   RO          421    .text               c_w.l(heapauxi.o)
-    0x00001de2   0x0000004a   Code   RO          441    .text               c_w.l(sys_stackheap_outer.o)
-    0x00001e2c   0x0000000c   Code   RO          443    .text               c_w.l(exit.o)
-    0x00001e38   0x00000008   Code   RO          451    .text               c_w.l(libspace.o)
-    0x00001e40   0x0000000c   Code   RO          510    .text               c_w.l(sys_exit.o)
-    0x00001e4c   0x00000002   Code   RO          521    .text               c_w.l(use_no_semi.o)
-    0x00001e4e   0x00000000   Code   RO          523    .text               c_w.l(indicate_semi.o)
-    0x00001e4e   0x00000002   PAD
-    0x00001e50   0x00000020   Data   RO          575    Region$$Table       anon$$obj.o
+    0x00001c2c   0x00000240   Code   RO          401    .text               u_proc.o
+    0x00001e6c   0x00000006   Code   RO          421    .text               c_w.l(heapauxi.o)
+    0x00001e72   0x0000004a   Code   RO          441    .text               c_w.l(sys_stackheap_outer.o)
+    0x00001ebc   0x0000000c   Code   RO          443    .text               c_w.l(exit.o)
+    0x00001ec8   0x00000008   Code   RO          451    .text               c_w.l(libspace.o)
+    0x00001ed0   0x0000000c   Code   RO          510    .text               c_w.l(sys_exit.o)
+    0x00001edc   0x00000002   Code   RO          521    .text               c_w.l(use_no_semi.o)
+    0x00001ede   0x00000000   Code   RO          523    .text               c_w.l(indicate_semi.o)
+    0x00001ede   0x00000002   PAD
+    0x00001ee0   0x00000020   Data   RO          575    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x10000000, Size: 0x000004b8, Max: 0x00008000, ABSOLUTE)
@@ -793,13 +793,13 @@ Image component sizes
         52         18        204          0        512        768   startup_lpc17xx.o
        540         64          0          4          0      21559   system_lpc17xx.o
         96          4          0          4          0       1553   timer.o
-       432         30          0          0         20       1812   u_proc.o
+       576         28          0          0         20       1932   u_proc.o
        308         32          0         28          0      25710   uart_irq.o
        292         54          0          0          0       1957   uart_polling.o
        888        194          0         36        120       3059   usr_proc.o
 
     ----------------------------------------------------------------------
-      7284        878        236        140        972      83333   Object Totals
+      7428        876        236        140        972      83453   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          6          0          0          3          0          0   (incl. Padding)
 
@@ -848,15 +848,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      7556        894        236        140       1068      82245   Grand Totals
-      7556        894        236        140       1068      82245   ELF Image Totals
-      7556        894        236        140          0          0   ROM Totals
+      7700        892        236        140       1068      82365   Grand Totals
+      7700        892        236        140       1068      82365   ELF Image Totals
+      7700        892        236        140          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 7792 (   7.61kB)
+    Total RO  Size (Code + RO Data)                 7936 (   7.75kB)
     Total RW  Size (RW Data + ZI Data)              1208 (   1.18kB)
-    Total ROM Size (Code + RO Data + RW Data)       7932 (   7.75kB)
+    Total ROM Size (Code + RO Data + RW Data)       8076 (   7.89kB)
 
 ==============================================================================
 

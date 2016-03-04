@@ -82,12 +82,12 @@ void clock_proc(void) {
             }
           }
           if (is_valid && msg->text[12] == '\0') {
-            h1 = get_int(4);
-            h1 = get_int(5);
-            m1 = get_int(7);
-            m1 = get_int(8);
-            s1 = get_int(10);
-            s1 = get_int(11);
+            h1 = get_int(msg->text[4]);
+            h2 = get_int(msg->text[5]);
+            m1 = get_int(msg->text[7]);
+            m2 = get_int(msg->text[8]);
+            s1 = get_int(msg->text[10]);
+            s2 = get_int(msg->text[11]);
             is_running = 1;
             is_start = 1;
           }
@@ -97,6 +97,29 @@ void clock_proc(void) {
       }
     }
     if (is_start || (msg->type == DEFAULT && pid == PID_CLOCK && is_running)) {
+      // Update time
+      if (!is_start) {
+        if (++s2 > 9) {
+          s2 = 0;
+          if (++s1 > 5) {
+            s1 = 0;
+            if (++m2 > 9) {
+              m2 = 0;
+              if (++m1 > 5) {
+                m1 = 0;
+                if (++h2 > 9) {
+                  h2 = 0;
+                  h1++;
+                } else if (h1 == 2 && h2 == 4) {
+                  h1 = 0;
+                  h2 = 0;
+                }
+              }
+            }
+          }
+        }
+      }
+
       msg->type = DEFAULT;
       msg->text[0] = '\0';
       delayed_send(PID_CLOCK, msg, 50);

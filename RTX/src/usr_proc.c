@@ -189,7 +189,7 @@ void proc3(void) {
 	test_2_ok_1 = 1;
 
 	msg = (MSG*) receive_message(&sender_id);
-	if (test_2_ok_2 && sender_id == 2 && msg->text[0] == '1' && msg->text[2] == '\0') {
+	if (test_2_ok_2 && sender_id == 2 && msg->text[0] == '1' && msg->text[1] == '\0') {
 		test_2_ok_3 = 1;
 	}
 	release_memory_block(msg);

@@ -51,7 +51,7 @@
 #define KCD_CMD 4
 
 // TIMER
-#define SECOND 30
+#define SECOND 1000
 
 /* ----- Types ----- */
 typedef unsigned char U8;

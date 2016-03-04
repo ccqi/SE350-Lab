@@ -206,7 +206,7 @@ void c_UART0_IRQHandler(void)
 			pUart->IER ^= IER_THRE; // toggle the IER_THRE bit 
 			pUart->THR = '\0';
 			g_send_char = 0;
-			gp_buffer = g_buffer;		
+			gp_buffer = g_buffer;
 		}
 	}
 }

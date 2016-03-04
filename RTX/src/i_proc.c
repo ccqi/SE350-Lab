@@ -34,7 +34,7 @@ void timer_proc(void) {
 			sec++;
 			g_timer_count = 0;
 			#ifdef DEBUG_0
-				printf("timer = 0x%x \n", sec);
+				// printf("timer = 0x%x \n", sec);
 			#endif
 		}
 
@@ -59,7 +59,7 @@ void timer_proc(void) {
 					gp_timeout_queue->last = NULL;
 				}
 			} else {
-				prev_message = message;	
+				prev_message = message;
 				message = (MSG*) message->next;
 			}
 		}
@@ -69,7 +69,6 @@ void timer_proc(void) {
 }
 
 void uart_proc(void) {
-	int i;
 	MSG *msg;
 	while (1) {	
 		__disable_irq();

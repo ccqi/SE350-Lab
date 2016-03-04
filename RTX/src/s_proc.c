@@ -35,12 +35,12 @@ void kcd_proc(void) {
   int i;
   int j;
   int is_command;
-  char in;
   MSG *msg;
   MSG *command_msg;
   MSG *current_msg;
   int pid;
   int lastCommandIndex = 20;
+  char in;
 
   while (1) {
     // Receive message
@@ -49,6 +49,7 @@ void kcd_proc(void) {
     if (pid == PID_UART_IPROC) { // Input
       // Add input to buffer
       gp_input_buffer[input_buffer_index] = msg->text[0];
+      in = msg->text[0];
 
       if (msg->text[0] == '%') {
         lastCommandIndex = 0;
@@ -94,7 +95,11 @@ void kcd_proc(void) {
         input_buffer_index = 0;
       }
 
-      release_memory_block(msg);
+      // Send last input to CRT process
+      msg->type = CRT_DISPLAY;
+      msg->text[0] = in;
+      msg->text[1] = '\0';
+      send_message(PID_CRT, msg);
     } else if (msg->type == KCD_REG) { // KCD, add msg to command_identifiers linked list
       msg->next = NULL;
       if (command_identifiers == NULL) {
@@ -116,10 +121,21 @@ void kcd_proc(void) {
 void crt_proc(void) {
   int pid;
   MSG *msg;
+  int i;
+  LPC_UART_TypeDef *pUart;
+  pUart = (LPC_UART_TypeDef *)LPC_UART0;
   while (1) {
     msg = (MSG*) receive_message(&pid);
     if (msg->type == CRT_DISPLAY) {
-
+      i = 0;
+      while (msg->text[i] != '\0') {
+        gp_buffer[i] = msg->text[i];
+        i++;
+      }
+      if (i > 0) {
+        gp_buffer[i] = '\0';
+        pUart->IER = IER_THRE | IER_RLS | IER_RBR;
+      }
     }
     release_memory_block(msg);
     release_processor();

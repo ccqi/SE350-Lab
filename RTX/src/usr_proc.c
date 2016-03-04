@@ -94,7 +94,7 @@ void proc0(void) {
 		msg->text[1] = 'b';
 		msg->text[2] = 'c';
 		msg->text[3] = '\0';
-		delayed_send(1, msg, 50);
+		delayed_send(1, msg, SECOND);
 		msg = (MSG*) receive_message(&sender_id);
 		i = 0;
 		while (msg->text[i] != '\0') {

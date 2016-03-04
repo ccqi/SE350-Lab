@@ -1,10 +1,3 @@
-// pUart->IER = IER_THRE | IER_RLS | IER_RBR;
-// gp_buffer[0] = 't';
-// gp_buffer[1] = 'e';
-// gp_buffer[2] = 's';
-// gp_buffer[3] = 't';
-// gp_buffer[4] = '\0';
-
 #include "u_proc.h"
 
 #ifdef DEBUG_0
@@ -51,6 +44,7 @@ void clock_proc(void) {
   int i;
   int pid;
   int is_valid;
+  MSG *crt_msg;
   MSG *msg = (MSG*) request_memory_block();
   msg->type = KCD_REG;
   msg->text[0] = '%';
@@ -97,6 +91,10 @@ void clock_proc(void) {
       }
     }
     if (is_start || (msg->type == DEFAULT && pid == PID_CLOCK && is_running)) {
+      msg->type = DEFAULT;
+      msg->text[0] = '\0';
+      delayed_send(PID_CLOCK, msg, SECOND);
+
       // Update time
       if (!is_start) {
         if (++s2 > 9) {
@@ -120,9 +118,20 @@ void clock_proc(void) {
         }
       }
 
-      msg->type = DEFAULT;
-      msg->text[0] = '\0';
-      delayed_send(PID_CLOCK, msg, 50);
+      // CRT Display
+      crt_msg = (MSG*) request_memory_block();
+      crt_msg->type = CRT_DISPLAY;
+      crt_msg->text[0] = '\n';
+      crt_msg->text[1] = (char) h1 + 48;
+      crt_msg->text[2] = (char) h2 + 48;
+      crt_msg->text[3] = ':';
+      crt_msg->text[4] = (char) m1 + 48;
+      crt_msg->text[5] = (char) m2 + 48;
+      crt_msg->text[6] = ':';
+      crt_msg->text[7] = (char) s1 + 48;
+      crt_msg->text[8] = (char) s2 + 48;
+      crt_msg->text[9] = '\0';
+      send_message(PID_CRT, crt_msg);
     } else {
       release_memory_block(msg);
     }

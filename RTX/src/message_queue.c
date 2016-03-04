@@ -15,8 +15,8 @@ void *message_queue_dequeue(MSG_QUEUE *queue) {
 	if (msg == NULL) {
 		return NULL;
 	} else {
-		msg->next = NULL;
 		queue->first = msg->next;
+		msg->next = NULL;
 		if (queue->first == NULL) {
 			queue->last = NULL;
 		}

@@ -18,7 +18,6 @@ extern uint8_t g_char_in;
 // PCB Queue
 extern PROC_QUEUE **gp_pcb_queue;
 
-extern void i_release_processor(void);
 extern int i_send_message(void *p_msg);
 
 extern void *i_request_memory_block(void);

@@ -219,11 +219,6 @@ void null_process() {
 }
 
 // I PROCESSES
-void i_release_processor() {
-	gp_current_process->state = WAITING_FOR_INTERRUPT;
-	k_release_processor();
-}
-
 void i_process_switch(PCB *i_process) {
 	PCB *p_pcb_old = NULL;
 	p_pcb_old = gp_current_process;

@@ -48,6 +48,7 @@
 #define KCD_REG 1
 #define CRT_DISPLAY 2
 #define UART_IN 3
+#define KCD_CMD 4
 
 // TIMER
 #define SECOND 30

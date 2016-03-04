@@ -115,7 +115,7 @@ void *process_peek_block(PROC_QUEUE **p_queue) {
 		PROC_QUEUE *q = p_queue[i];
 		PCB *pcb = (PCB*) q->first;
 		while (pcb != NULL) {
-			if (pcb->state == BLOCK || pcb->state == BLOCKED_ON_RECEIVE) {
+			if (pcb->state == BLOCK) {
 				return pcb;
 			}
 			pcb = (PCB*) pcb->next;

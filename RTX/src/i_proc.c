@@ -43,15 +43,15 @@ void timer_proc(void) {
 		while (message != NULL) {
 			message->expiry--;
 			if (message->expiry <= 0) {
-				i_send_message(message);
-
 				if (prev_message != NULL) {
 					prev_message->next = message->next;
 					message->next = NULL;
+					i_send_message(message);
 					message = prev_message->next;
 				} else {
 					gp_timeout_queue->first = message->next;
 					message->next = NULL;
+					i_send_message(message);
 					message = gp_timeout_queue->first;
 				}
 

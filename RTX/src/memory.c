@@ -36,7 +36,10 @@ void memory_init() {
 
 	// Input buffer from uart
 	gp_input_buffer = (char*) p_end;
-	p_end += 10 * sizeof(char);
+	p_end += 20 * sizeof(char);
+	for (i = 0; i < 20; i++) {
+		gp_input_buffer[i] = NULL;
+	}
 
 	// Allocate memory for priority queue
 	gp_pcb_queue = (PROC_QUEUE**) p_end;

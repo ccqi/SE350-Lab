@@ -99,10 +99,10 @@ void proc0(void) {
 		i = 0;
 		while (msg->text[i] != '\0') {
 			c = msg->text[i];
-			uart1_put_char(c);
+			// uart1_put_char(c);
 			i++;
 		}
-		uart1_put_char('\n');
+		// uart1_put_char('\n');
 		release_memory_block(msg);
 		release_processor();
 	}

@@ -120,7 +120,7 @@ I (src\message_queue.h)(0x56D22A0A)
 I (src\process_queue.h)(0x56D62A61)
 I (src\printf.h)(0x56D228B6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
-F (.\src\message.c)(0x56D60628)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "message.o" --omf_browse "message.crf" --depend "message.d")
+F (.\src\message.c)(0x56D9A20A)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "message.o" --omf_browse "message.crf" --depend "message.d")
 I (src\message.h)(0x56D60628)
 I (src\rtx.h)(0x56D9974E)
 I (src\common.h)(0x56D9494A)
@@ -166,7 +166,7 @@ I (src\rtx.h)(0x56D9974E)
 I (src\common.h)(0x56D9494A)
 I (src\printf.h)(0x56D228B6)
 I (C:\Keil\ARM\ARMCC\bin\..\include\stdarg.h)(0x4EB17B3C)
-F (.\src\usr_proc.c)(0x56D996FE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "usr_proc.o" --omf_browse "usr_proc.crf" --depend "usr_proc.d")
+F (.\src\usr_proc.c)(0x56D9AAFE)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx -DDEBUG_0 -DK_MSG_ENV -D_DEBUG_HOTKEYS -o "usr_proc.o" --omf_browse "usr_proc.crf" --depend "usr_proc.d")
 I (src\rtx.h)(0x56D9974E)
 I (src\common.h)(0x56D9494A)
 I (src\uart_polling.h)(0x56D228B6)

@@ -501,6 +501,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\usr_proc.c</FilePath>
             </File>
+            <File>
+              <FileName>u_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\u_proc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

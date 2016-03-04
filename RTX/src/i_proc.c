@@ -14,7 +14,6 @@ void set_i_procs(void) {
 	for (i = 0; i < 2; i++) {
 		g_i_procs[i].priority=LOWEST;
 		g_i_procs[i].stack_size=0x100;
-		g_i_procs[i].i_process = 1;
 	}
 	g_i_procs[0].pid = PID_TIMER_IPROC;
 	g_i_procs[0].start_pc = &timer_proc;

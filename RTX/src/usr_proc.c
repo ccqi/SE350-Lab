@@ -67,7 +67,6 @@ void set_test_procs() {
 		g_test_procs[i].pid=(U32)(i+1);
 		g_test_procs[i].priority=LOWEST;
 		g_test_procs[i].stack_size=0x100;
-		g_test_procs[i].i_process = 0;
 	}
   
 	// g_test_procs[0].start_pc = &proc1;

@@ -12,7 +12,6 @@ void set_u_procs(void) {
   for (i = 0; i < 1; i++) {
     g_u_procs[i].priority=HIGH;
     g_u_procs[i].stack_size=0x100;
-    g_u_procs[i].i_process = 0;
   }
   // g_u_procs[0].pid = PID_PID_SET_PRIO;
   // g_u_procs[0].start_pc = &set_prio_proc;

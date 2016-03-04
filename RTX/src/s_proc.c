@@ -23,7 +23,6 @@ void set_s_procs(void) {
   for (i = 0; i < 2; i++) {
     g_s_procs[i].priority=HIGH;
     g_s_procs[i].stack_size=0x100;
-    g_s_procs[i].i_process = 0;
   }
   g_s_procs[0].pid = PID_KCD;
   g_s_procs[0].start_pc = &kcd_proc;

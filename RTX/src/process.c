@@ -36,7 +36,6 @@ void process_init() {
 		g_proc_table[i].stack_size = g_test_procs[i - 1].stack_size;
 		g_proc_table[i].start_pc = g_test_procs[i - 1].start_pc;
 		g_proc_table[i].priority = g_test_procs[i - 1].priority;
-		g_proc_table[i].i_process = g_test_procs[i - 1].i_process;
 	}
 
 	i = NUM_TEST_PROCS;
@@ -48,7 +47,6 @@ void process_init() {
 		g_proc_table[i].stack_size = g_u_procs[j].stack_size;
 		g_proc_table[i].start_pc = g_u_procs[j].start_pc;
 		g_proc_table[i].priority = g_u_procs[j].priority;
-		g_proc_table[i].i_process = g_u_procs[j].i_process;
 	}
 
 	// System Processes
@@ -59,7 +57,6 @@ void process_init() {
 		g_proc_table[i].stack_size = g_s_procs[j].stack_size;
 		g_proc_table[i].start_pc = g_s_procs[j].start_pc;
 		g_proc_table[i].priority = g_s_procs[j].priority;
-		g_proc_table[i].i_process = g_s_procs[j].i_process;
 	}
 
 	// I-Processes
@@ -70,7 +67,6 @@ void process_init() {
 		g_proc_table[i].stack_size = g_i_procs[j].stack_size;
 		g_proc_table[i].start_pc = g_i_procs[j].start_pc;
 		g_proc_table[i].priority = g_i_procs[j].priority;
-		g_proc_table[i].i_process = g_i_procs[j].i_process;
 	}
 
 	// Null process
@@ -81,7 +77,6 @@ void process_init() {
 		int j;
 		gp_pcbs[i]->id = g_proc_table[i].pid;
 		gp_pcbs[i]->state = NEW;
-		gp_pcbs[i]->i_process = g_proc_table[i].i_process;
 
 		sp = alloc_stack(g_proc_table[i].stack_size);
 		*(--sp) = INITIAL_xPSR;      // user process initial xPSR  
@@ -209,7 +204,6 @@ void set_null_proc() {
 	g_proc_table[0].stack_size = 0x100;
 	g_proc_table[0].start_pc = &null_process;
 	g_proc_table[0].priority = LOWEST + 1;
-	g_proc_table[0].i_process = 0;
 }
 
 void null_process() {

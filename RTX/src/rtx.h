@@ -56,7 +56,6 @@ typedef struct {
 	PROC_STATE state;
 	int id;
 	int priority;
-	int i_process;
 	// Registers
 	U32 pc;
 	U32 *sp;
@@ -73,10 +72,9 @@ typedef struct {
 // Initialization table item
 typedef struct proc_init
 {	
-	U32 pid;
+	int pid;
 	int priority;
 	int stack_size;
-	int i_process;
 	void (*start_pc) ();
 } PROC_INIT;
 

@@ -17,6 +17,8 @@
 #define RTX_ERR -1
 #define RTX_OK 0
 #define NUM_TEST_PROCS 6
+#define USER_PROC_START 1
+#define USER_PROC_END 11
 
 /* Process IDs */
 #define PID_NULL 0
@@ -49,6 +51,8 @@
 #define CRT_DISPLAY 2
 #define UART_IN 3
 #define KCD_CMD 4
+#define COUNT_REPORT 5
+#define WAKEUP_10 6
 
 // TIMER
 #define SECOND 1000

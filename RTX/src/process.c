@@ -41,7 +41,7 @@ void process_init() {
 	i = NUM_TEST_PROCS;
 	// User processes
 	set_u_procs();
-	for (j = 0; j < 1; j++) {
+	for (j = 0; j < 5; j++) {
 		i++;
 		g_proc_table[i].pid = g_u_procs[j].pid;
 		g_proc_table[i].stack_size = g_u_procs[j].stack_size;

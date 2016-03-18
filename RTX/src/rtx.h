@@ -8,7 +8,7 @@
 #define RTX_OK 0
 
 #define NUM_TEST_PROCS 6
-#define NUM_PROCS 0xC
+#define NUM_PROCS 0x10
 
 #define MEMORY_BLOCK_SIZE 128
 #define NUM_MEMORY_BLOCKS 30

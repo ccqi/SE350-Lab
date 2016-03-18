@@ -5,11 +5,11 @@
 #endif /* DEBUG_0 */
 
 /* initialization table item */
-PROC_INIT g_u_procs[1];
+PROC_INIT g_u_procs[5];
 
 void set_u_procs(void) {
   int i;
-  for (i = 0; i < 1; i++) {
+  for (i = 0; i < 5; i++) {
     g_u_procs[i].priority=HIGH;
     g_u_procs[i].stack_size=0x100;
   }
@@ -17,6 +17,14 @@ void set_u_procs(void) {
   // g_u_procs[0].start_pc = &set_prio_proc;
   g_u_procs[0].pid = PID_CLOCK;
   g_u_procs[0].start_pc = &clock_proc;
+	g_u_procs[1].pid = PID_SET_PRIO;
+  g_u_procs[1].start_pc = &set_priority_proc;
+	g_u_procs[2].pid = PID_A;
+	g_u_procs[2].start_pc = &proc_a;
+	g_u_procs[3].pid = PID_B;
+	g_u_procs[3].start_pc = &proc_b;
+	g_u_procs[4].pid = PID_C;
+	g_u_procs[4].start_pc = &proc_c;
 }
 
 int is_int(char c) {
@@ -29,6 +37,168 @@ int is_int(char c) {
 
 int get_int(char c) {
   return (int) c - 48;
+}
+
+void proc_a(void) {
+	
+	int num = 0;
+	int pid;
+	MSG *msg = (MSG*) request_memory_block();
+  msg->type = KCD_REG;
+  msg->text[0] = '%';
+  msg->text[1] = 'Z';
+  msg->text[2] = '\0';
+  send_message(PID_KCD, msg);
+	while(1) {
+		
+		msg = (MSG*) receive_message(&pid);
+		if (msg->text[0] == '%' && msg->text[1] == 'Z' && msg->text[2]=='\0') {
+      release_memory_block(msg);
+			break;
+		} else {
+			release_memory_block(msg);
+		}
+	}
+	
+	while(1) {
+		MSG *p = (MSG*) request_memory_block();
+		p->type = COUNT_REPORT;
+		p->kdata[0] = num;
+		send_message(PID_B, p);
+		num++;
+		release_processor();
+	}
+}
+
+void proc_b(void) {
+	int pid;
+	MSG* msg;
+	while (1) {
+		msg = (MSG*) receive_message(&pid);
+		send_message(PID_C, msg);
+	}
+}
+
+void proc_c(void) {
+	MSG_QUEUE local_queue;
+	MSG* p; 
+	int pid;
+	local_queue.first = NULL;
+	local_queue.last = NULL;
+	while(1) {
+		if (message_queue_empty(&local_queue)) {
+			p = (MSG*) receive_message(&pid);
+		} else {
+			p = (MSG*)message_queue_dequeue(&local_queue);
+		}
+		if (p->type == COUNT_REPORT) {
+				if (p->kdata[0] % 20 == 0) {
+					send_message(PID_CRT, p);
+					hibernate(&local_queue);
+				}
+		}
+		release_memory_block(p);
+		release_processor();
+	}
+}
+
+void hibernate(MSG_QUEUE * queue) {
+		MSG *q = (MSG*) request_memory_block();
+		q->type = WAKEUP_10;
+		
+		delayed_send(PID_C, q, 10 * SECOND);
+		while(1) {
+			int pid;
+			MSG* p = (MSG*) receive_message(&pid);
+			if (p->type == WAKEUP_10) {
+					break;
+			} else {
+					message_queue_enqueue(queue, p);
+			}
+			
+		}
+}
+
+void set_priority_proc(void) {
+	int pid;
+  int is_valid;
+	int proc_id;
+	int priority;
+	int i;
+	int illegal;
+	int last_illegal;
+	MSG *crt_msg;
+  MSG *msg = (MSG*) request_memory_block();
+  msg->type = KCD_REG;
+  msg->text[0] = '%';
+  msg->text[1] = 'C';
+  msg->text[2] = '\0';
+  send_message(PID_KCD, msg);
+	while (1) {
+		msg = (MSG*) receive_message(&pid);
+		if (msg->type == KCD_CMD) {
+			if (msg->text[0] == '%' && msg->text[1] == 'C') {
+					is_valid = 1;
+					illegal = 0;
+					for (i = 2; i < 7 && is_valid; i++) {
+						if (i == 2 || i == 5) {
+							if (msg->text[i] != ' ') {
+								is_valid = 0;
+							}
+						} else {
+							if (!is_int(msg->text[i])) {
+								is_valid = 0;
+							}
+						}
+					}
+					i--;
+					
+					if (is_valid) {
+						illegal = 1;
+						proc_id = get_int(msg->text[3]) * 10 + get_int(msg->text[4]);
+						priority = get_int(msg->text[6]);
+						if (proc_id < USER_PROC_START || proc_id > USER_PROC_END) {
+							is_valid = 0;
+						}
+						if (priority < HIGH || priority > LOWEST) {
+							is_valid = 0;
+						}
+					} else if (msg->text[i] != '\0') {
+						illegal = 1;
+					}
+					
+					if (is_valid && msg->text[7] == '\0') {
+						set_process_priority(proc_id, priority);
+						crt_msg = (MSG*) request_memory_block();
+						crt_msg->type = CRT_DISPLAY;
+						crt_msg->text[0] = '\n';
+						crt_msg->text[1] = 's';
+						crt_msg->text[2] = 'e';
+						crt_msg->text[3] = 't';
+						crt_msg->text[4] = msg->text[3];
+						crt_msg->text[5] = msg->text[4];
+						crt_msg->text[6] = ' ';
+						crt_msg->text[7] = msg->text[6];
+						crt_msg->text[8] = '\0';
+						send_message(PID_CRT, crt_msg);
+					} else if (illegal) {
+						crt_msg = (MSG*) request_memory_block();
+						crt_msg->type = CRT_DISPLAY;
+						crt_msg->text[0] = '\n';
+						crt_msg->text[1] = 'i';
+						crt_msg->text[2] = 'l';
+						crt_msg->text[3] = 'l';
+						crt_msg->text[4] = 'e';
+						crt_msg->text[5] = 'g';
+						crt_msg->text[6] = 'a';
+						crt_msg->text[7] = 'l';
+						crt_msg->text[8] = '\0';
+						send_message(PID_CRT, crt_msg);
+					}
+			}
+		}
+		release_memory_block(msg);
+	}
 }
 
 void clock_proc(void) {

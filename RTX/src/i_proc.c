@@ -117,6 +117,11 @@ void uart_proc(void) {
 
 			i_send_message(msg);
 		}
+		#ifdef DEBUG_0
+		else {
+			printf("UART iProc can't send message\n\r");
+		}
+		#endif
 		__enable_irq();
 		release_processor();
 	}

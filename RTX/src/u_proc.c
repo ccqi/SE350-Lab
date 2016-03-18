@@ -93,6 +93,15 @@ void proc_c(void) {
 		}
 		if (p->type == COUNT_REPORT) {
 				if (p->kdata[0] % 20 == 0) {
+					p->type = CRT_DISPLAY;
+					p->text[0] = '\n';
+					p->text[1] = 'p';
+					p->text[2] = 'r';
+					p->text[3] = 'o';
+					p->text[4] = 'c';
+					p->text[5] = '_';
+					p->text[6] = 'c';
+					p->text[7] = '\0';
 					send_message(PID_CRT, p);
 					hibernate(&local_queue);
 				}
@@ -106,11 +115,12 @@ void hibernate(MSG_QUEUE * queue) {
 		MSG *q = (MSG*) request_memory_block();
 		q->type = WAKEUP_10;
 		
-		delayed_send(PID_C, q, 10 * SECOND);
+		delayed_send(PID_C, q, 1 * SECOND);
 		while(1) {
 			int pid;
 			MSG* p = (MSG*) receive_message(&pid);
 			if (p->type == WAKEUP_10) {
+					release_memory_block(p);
 					break;
 			} else {
 					message_queue_enqueue(queue, p);

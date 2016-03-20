@@ -57,7 +57,7 @@ void kcd_proc(void) {
       }
 
       // Check if command
-      if (lastCommandIndex < 20) {
+      if (lastCommandIndex < 20 && msg->text[0] == 13) {
         current_msg = command_identifiers;
         while (current_msg != NULL) {
           // Check if input is command
@@ -77,7 +77,7 @@ void kcd_proc(void) {
             command_msg->type = KCD_CMD;
             i = lastCommandIndex;
             j = 0;
-            while (i >= 0) {
+            while (i > 0) {
               command_msg->text[j++] = read_char(i--);
             }
             command_msg->text[j] = '\0';
@@ -87,8 +87,9 @@ void kcd_proc(void) {
             current_msg = current_msg->next;
           }
         }
+        lastCommandIndex = 0;
       }
-      
+
       // Check if need to loop buffer index
       if (++input_buffer_index >= 20) {
         input_buffer_index = 0;

@@ -1,5 +1,5 @@
-/* @brief: common defines and structs for both kernel and user 
- * @file: common.h 
+/* @brief: common defines and structs for both kernel and user
+ * @file: common.h
  * @author: Yiqing Huang
  * @date: 2016/02/24
  */
@@ -17,8 +17,8 @@
 #define RTX_ERR -1
 #define RTX_OK 0
 #define NUM_TEST_PROCS 6
-#define USER_PROC_START 1
-#define USER_PROC_END 11
+#define SET_PROC_START 1
+#define SET_PROC_END 13
 
 /* Process IDs */
 #define PID_NULL 0
@@ -65,11 +65,11 @@ typedef unsigned int U32;
 
 /* initialization table item, exposed to user space */
 // typedef struct proc_init
-// {	
-// 	int m_pid;	        /* process id */ 
-// 	int m_priority;          initial priority, not used in this example.  
+// {
+// 	int m_pid;	        /* process id */
+// 	int m_priority;          initial priority, not used in this example.
 // 	int m_stack_size;       /* size of stack in words */
-// 	void (*mpf_start_pc) ();/* entry point of the process */    
+// 	void (*mpf_start_pc) ();/* entry point of the process */
 // } PROC_INIT;
 
 /* message buffer */

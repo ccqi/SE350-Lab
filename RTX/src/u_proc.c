@@ -260,6 +260,16 @@ void clock_proc(void) {
             m2 = get_int(msg->text[8]);
             s1 = get_int(msg->text[10]);
             s2 = get_int(msg->text[11]);
+
+            if (h1 * 10 + h2 > 23) {
+              h1 = h2 = 0;
+            }
+            if (m1 * 10 + m2 > 59) {
+              m1 = m2 = 0;
+            }
+            if (s1 * 10 + s2 > 59) {
+              s1 = s2 = 0;
+            }
             is_running = 1;
             is_start = 1;
           }

@@ -45,17 +45,31 @@ void timer_proc(void) {
 				if (prev_message != NULL) {
 					prev_message->next = message->next;
 					message->next = NULL;
+					#ifdef DEBUG_0
+					if (message->rPID == 9)
+						uart1_put_string("Send expire message to proc_c\n\r");
+					else if (message->rPID == 11)
+						uart1_put_string("Send expire message to wallclock\n\r");
+					#endif // DEBUG_0
 					i_send_message(message);
 					message = prev_message->next;
 				} else {
 					gp_timeout_queue->first = message->next;
 					message->next = NULL;
+					#ifdef DEBUG_0
+					if (message->rPID == 9)
+						uart1_put_string("Send expire message to proc_c\n\r");
+					else if (message->rPID == 11)
+						uart1_put_string("Send expire message to wallclock\n\r");
+					#endif // DEBUG_0
 					i_send_message(message);
 					message = gp_timeout_queue->first;
 				}
 
 				if (gp_timeout_queue->first == NULL) {
 					gp_timeout_queue->last = NULL;
+				} else if (gp_timeout_queue->first->next == NULL) {
+					gp_timeout_queue->last = gp_timeout_queue->first;
 				}
 			} else {
 				prev_message = message;
@@ -69,7 +83,7 @@ void timer_proc(void) {
 
 void uart_proc(void) {
 	MSG *msg;
-	while (1) {	
+	while (1) {
 		__disable_irq();
 		#ifdef DEBUG_0
 		uart1_put_string("Entering c_UART0_IRQHandler\n\r");
@@ -80,7 +94,7 @@ void uart_proc(void) {
 		uart1_put_char(g_char_in);
 		uart1_put_string("\n\r");
 		#endif // DEBUG_0
-		
+
 		// Read input
 		#ifdef _DEBUG_HOTKEYS
 		if (g_char_in == '!') {

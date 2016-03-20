@@ -1,4 +1,5 @@
 #include "u_proc.h"
+#include "uart_polling.h"
 
 #ifdef DEBUG_0
 #include "printf.h"
@@ -94,7 +95,7 @@ void proc_b(void) {
 
 void proc_c(void) {
 	MSG_QUEUE local_queue;
-	MSG* p, *q, *msg;
+	MSG* p, *q;
 	int pid;
 	local_queue.first = NULL;
 	local_queue.last = NULL;
@@ -102,8 +103,10 @@ void proc_c(void) {
 	q->type = WAKEUP_10;
 	while(1) {
 		if (message_queue_empty(&local_queue)) {
+      uart1_put_string("waiting for message from proc_a\r\n");
 			p = (MSG*) receive_message(&pid);
 		} else {
+      uart1_put_string("message queue dequeue\r\n");
 			p = (MSG*)message_queue_dequeue(&local_queue);
 		}
 		if (p->type == COUNT_REPORT) {
@@ -111,14 +114,16 @@ void proc_c(void) {
 					p->type = CRT_DISPLAY;
           msg_put_str(p, "\nproc_c\0", 8);
 					send_message(PID_CRT, p);
+          uart1_put_string("sending wakeup\r\n");
 					delayed_send(PID_C, q, 10);
 					while(1) {
 						int pid;
-						msg = (MSG*) receive_message(&pid);
-						if (msg->type == WAKEUP_10) {
+						q = (MSG*) receive_message(&pid);
+						if (q->type == WAKEUP_10) {
+                uart1_put_string("wakeup\r\n");
 								break;
 						} else {
-								message_queue_enqueue(local_queue, msg);
+								message_queue_enqueue(&local_queue, q);
 						}
 					}
 				}
@@ -266,7 +271,8 @@ void clock_proc(void) {
     if (is_start || (msg->type == DEFAULT && pid == PID_CLOCK && is_running)) {
       msg->type = DEFAULT;
       msg->text[0] = '\0';
-      delayed_send(PID_CLOCK, msg, SECOND);
+      uart1_put_string("clock delay send\r\n");
+      delayed_send(PID_CLOCK, msg, 50);
 
       // Update time
       if (!is_start) {

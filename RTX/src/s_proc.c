@@ -74,7 +74,7 @@ void kcd_proc(void) {
           }
           if (is_command) {
             command_msg = (MSG*) request_memory_block();
-            command_msg->type = KCD_CMD;
+            command_msg->type = DEFAULT;
             i = lastCommandIndex;
             j = 0;
             while (i > 0) {

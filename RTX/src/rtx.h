@@ -38,11 +38,14 @@ typedef struct {
 	void *next;
 	int sPID;
 	int rPID;
-	U32 expiry;
 	int kdata[5];
 #endif
 	int type;
 	char text[1];
+#ifdef K_MSG_ENV
+	int kbuffer[64];
+	int expiry;
+#endif
 } MSG;
 
 // MSG_QUEUE

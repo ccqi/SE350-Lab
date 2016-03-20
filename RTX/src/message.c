@@ -49,7 +49,7 @@ int k_delayed_send(int process_id, void *message_envelope, int delay) {
 	msg->sPID = (int) gp_current_process->id;
 	msg->rPID = process_id;
 
-	msg->expiry = (U32) delay;
+	msg->expiry = delay;
 
 	message_queue_enqueue(gp_timeout_queue, msg);
 

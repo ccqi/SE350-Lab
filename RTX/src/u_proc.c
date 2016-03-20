@@ -150,7 +150,7 @@ void set_priority_proc(void) {
   send_message(PID_KCD, msg);
 	while (1) {
 		msg = (MSG*) receive_message(&pid);
-		if (msg->type == KCD_CMD) {
+		if (msg->type == DEFAULT) {
 			if (msg->text[0] == '%' && msg->text[1] == 'C') {
         valid = 0;
         proc_id = 0;
@@ -233,7 +233,7 @@ void clock_proc(void) {
     msg = (MSG*) receive_message(&pid);
 
     is_start = 0;
-    if (msg->type == KCD_CMD) {
+    if (msg->type == DEFAULT) {
       if (msg->text[0] == '%' && msg->text[1] == 'W') {
         if (msg->text[2] == 'R' && msg->text[3] == '\0') {
           h1 = h2 = m1 = m2 = s1 = s2 = 0;

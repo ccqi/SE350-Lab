@@ -50,7 +50,6 @@
 #define KCD_REG 1
 #define CRT_DISPLAY 2
 #define UART_IN 3
-#define KCD_CMD 4
 #define COUNT_REPORT 5
 #define WAKEUP_10 6
 

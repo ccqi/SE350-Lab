@@ -1,5 +1,6 @@
 #include "u_proc.h"
 #include "uart_polling.h"
+#include "message_queue.h"
 
 #ifdef DEBUG_0
 #include "printf.h"
@@ -103,24 +104,20 @@ void proc_c(void) {
 	q->type = WAKEUP_10;
 	while(1) {
 		if (message_queue_empty(&local_queue)) {
-      uart1_put_string("waiting for message from proc_a\r\n");
 			p = (MSG*) receive_message(&pid);
 		} else {
-      uart1_put_string("message queue dequeue\r\n");
 			p = (MSG*)message_queue_dequeue(&local_queue);
 		}
 		if (p->type == COUNT_REPORT) {
 				if (p->kdata[0] % 20 == 0) {
 					p->type = CRT_DISPLAY;
-          msg_put_str(p, "\nproc_c\0", 8);
+          msg_put_str(p, "\nProcess C\0", 11);
 					send_message(PID_CRT, p);
-          uart1_put_string("sending wakeup\r\n");
-					delayed_send(PID_C, q, 10);
+					delayed_send(PID_C, q, 10*SECOND);
 					while(1) {
 						int pid;
 						q = (MSG*) receive_message(&pid);
 						if (q->type == WAKEUP_10) {
-                uart1_put_string("wakeup\r\n");
 								break;
 						} else {
 								message_queue_enqueue(&local_queue, q);
@@ -139,7 +136,6 @@ void set_priority_proc(void) {
 	int priority;
   int state;
 	int i;
-  int l;
   int valid;
 	MSG *crt_msg;
   MSG *msg = (MSG*) request_memory_block();
@@ -192,13 +188,11 @@ void set_priority_proc(void) {
             valid = 0;
         }
 
+
 				if (valid) {
 					set_process_priority(proc_id, priority);
-					crt_msg = (MSG*) request_memory_block();
-					crt_msg->type = CRT_DISPLAY;
-          msg_put_str(crt_msg, "\nset\0", 5);
-					send_message(PID_CRT, crt_msg);
 				} else {
+					release_processor(); // somehow if I don't add this message isn't printed
 					crt_msg = (MSG*) request_memory_block();
 					crt_msg->type = CRT_DISPLAY;
           msg_put_str(crt_msg, "\nillegal\0", 9);
@@ -281,8 +275,6 @@ void clock_proc(void) {
     if (is_start || (msg->type == DEFAULT && pid == PID_CLOCK && is_running)) {
       msg->type = DEFAULT;
       msg->text[0] = '\0';
-      uart1_put_string("clock delay send\r\n");
-      delayed_send(PID_CLOCK, msg, 50);
 
       // Update time
       if (!is_start) {
@@ -321,6 +313,7 @@ void clock_proc(void) {
       crt_msg->text[8] = (char) s2 + 48;
       crt_msg->text[9] = '\0';
       send_message(PID_CRT, crt_msg);
+      delayed_send(PID_CLOCK, msg, 1*SECOND);
     } else {
       release_memory_block(msg);
     }

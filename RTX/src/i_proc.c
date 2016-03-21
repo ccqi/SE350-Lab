@@ -45,6 +45,8 @@ void timer_proc(void) {
 				if (prev_message != NULL) {
 					prev_message->next = message->next;
 					message->next = NULL;
+					if (gp_timeout_queue->last == message)
+						gp_timeout_queue->last = prev_message;
 					#ifdef DEBUG_0
 					if (message->rPID == 9)
 						uart1_put_string("Send expire message to proc_c\n\r");
@@ -68,8 +70,6 @@ void timer_proc(void) {
 
 				if (gp_timeout_queue->first == NULL) {
 					gp_timeout_queue->last = NULL;
-				} else if (gp_timeout_queue->first->next == NULL) {
-					gp_timeout_queue->last = gp_timeout_queue->first;
 				}
 			} else {
 				prev_message = message;

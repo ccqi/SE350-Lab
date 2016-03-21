@@ -17,9 +17,7 @@ int k_send_message(int pid, void *p_msg) {
 
 	if (pcb->state == BLOCKED_ON_RECEIVE) {
 		pcb->state = READY;
-		if (pcb->priority < gp_current_process->priority) {
-			k_release_processor();
-		}
+		k_release_processor();
 	}
 
 	return RTX_OK;

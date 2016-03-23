@@ -65,7 +65,6 @@ void proc_a(void) {
   msg->text[2] = '\0';
   send_message(PID_KCD, msg);
 	while(1) {
-
 		msg = (MSG*) receive_message(&pid);
 		if (msg->text[0] == '%' && msg->text[1] == 'Z' && msg->text[2]=='\0') {
       release_memory_block(msg);
@@ -111,7 +110,7 @@ void proc_c(void) {
 		if (p->type == COUNT_REPORT) {
 				if (p->kdata[0] % 20 == 0) {
 					p->type = CRT_DISPLAY;
-          msg_put_str(p, "\nProcess C\0", 11);
+          msg_put_str(p, "\nProc_C\0", 8);
 					send_message(PID_CRT, p);
 					delayed_send(PID_C, q, 10*SECOND);
 					while(1) {
@@ -231,8 +230,10 @@ void clock_proc(void) {
       if (msg->text[0] == '%' && msg->text[1] == 'W') {
         if (msg->text[2] == 'R' && msg->text[3] == '\0') {
           h1 = h2 = m1 = m2 = s1 = s2 = 0;
-          is_running = 1;
-          is_start = 1;
+					if (!is_running) {
+						is_running = 1;
+						is_start = 1;
+					}
         } else if (msg->text[2] == 'S' && msg->text[3] == ' ') {
           // hh:mm:ss
           is_valid = 1;
@@ -264,8 +265,10 @@ void clock_proc(void) {
             if (s1 * 10 + s2 > 59) {
               s1 = s2 = 0;
             }
-            is_running = 1;
-            is_start = 1;
+						if (!is_running) {
+							is_running = 1;
+							is_start = 1;
+						}
           }
         } else if (msg->text[2] == 'T' && msg->text[3] == '\0') {
           is_running = 0;

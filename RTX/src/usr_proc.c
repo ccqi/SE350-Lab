@@ -295,7 +295,7 @@ void proc6(void)
 		test_6 = 1;
 	}
 	print_test_results();
-	set_process_priority(6, MEDIUM);
+	set_process_priority(6, LOWEST);
 
 	while (1) {
 		release_processor();

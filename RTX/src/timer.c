@@ -14,6 +14,7 @@
 #define BIT(X) (1<<X)
 #endif
 
+LPC_TIM_TypeDef *pTimer;
 volatile uint32_t g_timer_count = 0; // increment every 1 ms
 
 /**
@@ -21,7 +22,6 @@ volatile uint32_t g_timer_count = 0; // increment every 1 ms
  */
 uint32_t timer_init(uint8_t n_timer) 
 {
-	LPC_TIM_TypeDef *pTimer;
 	if (n_timer == 0) {
 		/*
 		Steps 1 & 2: system control configuration.

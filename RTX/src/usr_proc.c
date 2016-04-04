@@ -1,11 +1,14 @@
 #include "rtx.h"
 #include "uart_polling.h"
 #include "usr_proc.h"
+#include "timer.h"
+#include <LPC17xx.h>
 
 #ifdef DEBUG_0
 #include "printf.h"
 #endif /* DEBUG_0 */
 
+extern LPC_TIM_TypeDef *pTimer;
 /* initialization table item */
 PROC_INIT g_test_procs[NUM_TEST_PROCS];
 
@@ -119,8 +122,37 @@ void set_test_procs() {
 void proc1(void) {
 	int sender_id;
 	MSG *msg;
+	int startTime;
+	int i;
+	int a1, a2, a3;
 
 	print_test_start();
+	
+	a1 = a2 = a3 = 0;
+	for (i = 0; i < 100; i++) {
+
+		startTime = pTimer->PC;
+		msg = (MSG*) request_memory_block();
+		sender_id = pTimer->PC - startTime;
+		printf("%d\n", sender_id);
+		a3 += sender_id;
+		
+		startTime = pTimer->PC;
+		send_message(1, msg);
+		sender_id = pTimer->PC - startTime;
+		printf("%d\n", sender_id);
+		a1 += sender_id;
+
+		startTime = pTimer->TC * pTimer->PR + pTimer->PC;
+		receive_message(&sender_id);
+		sender_id = pTimer->TC * pTimer->PR + pTimer->PC - startTime;
+		printf("%d\n", sender_id);
+		a2 += sender_id;
+		
+		release_memory_block(msg);
+	}
+	
+	printf("average : %d %d %d\n", a1/100, a2/100, a3/100);
 
 	msg = (MSG*) request_memory_block();
 	msg->type = DEFAULT;
